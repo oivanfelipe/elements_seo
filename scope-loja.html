@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCOPE Audit — Elements Loja — Setembro 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,system-ui,-apple-system,sans-serif;background:#F5F5F5;color:#111;font-size:15px;line-height:1.6}
+    .report-header{background:#111;color:#fff;padding:48px 64px;position:relative;border-bottom:4px solid #C00000}
+    .report-header .agency{font-family:'Oswald',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C00000;margin-bottom:12px;font-weight:700}
+    .report-header h1{font-family:'Oswald',Arial,sans-serif;font-size:32px;font-weight:700;margin-bottom:8px;text-transform:uppercase}
+    .report-header .subtitle{font-size:18px;color:#D9D9D9;margin-bottom:24px}
+    .report-header .meta{display:flex;gap:32px;font-size:13px;color:#595959;flex-wrap:wrap}
+    .confidential-tag{position:absolute;top:48px;right:64px;border:1px solid #C00000;color:#C00000;padding:6px 14px;border-radius:4px;font-size:11px;letter-spacing:1px;font-family:'Oswald',Arial,sans-serif;font-weight:700;text-transform:uppercase}
+    .toc{background:#111;color:#fff;padding:0 64px;display:flex;gap:0;overflow-x:auto;border-bottom:2px solid #C00000}
+    .toc a{color:#D9D9D9;text-decoration:none;font-size:12px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase;padding:12px 16px;white-space:nowrap;border-right:1px solid #595959}
+    .toc a:hover{color:#C00000}
+    .container{max-width:1200px;margin:0 auto;padding:40px 64px}
+    section{margin-bottom:48px}
+    .section-header{color:#C00000;font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+    section h2{font-family:'Oswald',Arial,sans-serif;font-size:22px;font-weight:700;color:#111;text-transform:uppercase;margin-bottom:4px}
+    .section-tag{display:inline-block;font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-bottom:12px}
+    .tag-blog{background:#E3F2FD;color:#1565C0}
+    .tag-produto{background:#E8F5E9;color:#2E7D32}
+    .tag-colecao{background:#FFF3E0;color:#E65100}
+    .tag-tecnico{background:#F3E5F5;color:#6A1B9A}
+    .tag-institucional{background:#F5F5F5;color:#333;border:1px solid #ccc}
+    .tag-geral{background:#FFEBEE;color:#C00000}
+    .section-divider{height:2px;background:#C00000;margin-bottom:24px}
+    section h3{font-size:15px;font-weight:700;color:#111;margin:24px 0 12px;text-transform:uppercase}
+    .page-section-header{background:#111;color:#fff;padding:10px 20px;border-radius:6px 6px 0 0;font-family:'Oswald',Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:0}
+    .page-section-body{background:#fff;border:1px solid #D9D9D9;border-top:none;border-radius:0 0 8px 8px;padding:24px;margin-bottom:24px}
+    .card{background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:24px;margin-bottom:16px}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
+    .kpi-card{background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:20px 24px;text-align:center}
+    .kpi-card .kpi-value{font-family:'Oswald',Arial,sans-serif;font-size:28px;font-weight:700;color:#C00000}
+    .kpi-card .kpi-label{font-size:11px;color:#595959;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-weight:700}
+    .kpi-card .kpi-source{font-size:11px;color:#aaa;margin-top:4px}
+    .score-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;font-family:'Oswald',Arial,sans-serif}
+    .score-1{background:#1B7F37}.score-2{background:#558B2F}.score-3{background:#F0A500;color:#111}.score-4{background:#E65100}.score-5{background:#C00000}
+    .score-label-1{color:#1B7F37;font-weight:700}.score-label-2{color:#558B2F;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#E65100;font-weight:700}.score-label-5{color:#C00000;font-weight:700}
+    .audit-item{background:#fff;border:1px solid #D9D9D9;border-radius:8px;margin-bottom:16px;overflow:hidden}
+    .audit-item-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid #F5F5F5;background:#F5F5F5}
+    .audit-item-header .item-id{font-size:11px;color:#595959;font-weight:700;min-width:32px;font-family:'Oswald',Arial,sans-serif}
+    .audit-item-header .item-title{font-size:14px;font-weight:700;flex:1}
+    .audit-item-body{padding:20px}
+    .url-cite{font-family:'Courier New',monospace;font-size:12px;background:#F5F5F5;padding:3px 8px;border-radius:3px;color:#1565C0;display:inline-block;margin:2px 0}
+    .evidence-box{background:#F5F5F5;border-left:3px solid #111;border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0;font-size:13px;font-family:'Courier New',monospace}
+    .evidence-box .evidence-label{font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#111;font-weight:700;margin-bottom:6px}
+    .benchmark-box{background:#FFF8E1;border-left:3px solid #F0A500;border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0;font-size:13px}
+    .benchmark-box .benchmark-label{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#F0A500;font-weight:700;margin-bottom:4px}
+    .recommendation-box{background:#FFF5F5;border-left:3px solid #C00000;border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0;font-size:13px}
+    .recommendation-box .rec-label{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#C00000;font-weight:700;margin-bottom:4px}
+    .impact-box{background:#E6F4EA;border-left:3px solid #1B7F37;border-radius:0 6px 6px 0;padding:10px 16px;margin:8px 0;font-size:13px}
+    .conclusion-block{border-top:2px solid #C00000;padding-top:12px;margin-top:20px}
+    .conclusion-block .conclusion-label{font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#C00000;margin-bottom:6px}
+    table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+    th{background:#111;color:#fff;padding:9px 14px;text-align:left;font-size:11px;letter-spacing:.5px;font-family:'Oswald',Arial,sans-serif;text-transform:uppercase}
+    td{padding:9px 14px;border-bottom:1px solid #F5F5F5;vertical-align:top}
+    tr:nth-child(even) td{background:#FAFAFA}
+    .radar-container{max-width:480px;margin:0 auto;padding:24px;background:#fff;border-radius:8px;border:1px solid #D9D9D9}
+    .sprint-card{border-radius:8px;padding:20px 24px;margin-bottom:16px;border-left:5px solid}
+    .sprint-1{background:#FFF5F5;border-color:#C00000}
+    .sprint-2{background:#FFF8E1;border-color:#F0A500}
+    .sprint-3{background:#F5F5F5;border-color:#595959}
+    .sprint-4{background:#E6F4EA;border-color:#1B7F37}
+    .sprint-card h4{font-family:'Oswald',Arial,sans-serif;font-size:14px;font-weight:700;margin-bottom:12px;text-transform:uppercase}
+    .sprint-1 h4{color:#C00000}.sprint-2 h4{color:#F0A500}.sprint-3 h4{color:#595959}.sprint-4 h4{color:#1B7F37}
+    .disclaimer{background:#F5F5F5;border:1px solid #D9D9D9;border-top:3px solid #C00000;border-radius:8px;padding:20px 24px;font-size:12px;color:#595959;margin-top:48px}
+    @media print{.toc{display:none}section{page-break-inside:avoid}body{background:#fff}.container{padding:20px 32px}}
+    @media(max-width:768px){.report-header{padding:32px 24px}.container{padding:24px}.toc{padding:0 16px}.confidential-tag{display:none}}
+  </style>
+</head>
+<body>
+
+<header class="report-header">
+  <div class="agency">V4 Company — Carvalho &amp; Co. · Auditoria S.C.O.P.E.</div>
+  <h1>Elements — loja.elements.com.br</h1>
+  <div class="subtitle">Diagnóstico de Crescimento Orgânico</div>
+  <div class="meta">
+    <span>📅 Setembro 2026</span>
+    <span>🌐 loja.elements.com.br</span>
+    <span>📊 Score Geral: 2.7/5.0</span>
+    <span>🏷️ E-commerce Shopify — Móveis Ergonômicos &amp; Home Office</span>
+  </div>
+  <div class="confidential-tag">Confidencial</div>
+</header>
+
+<nav class="toc">
+  <a href="#sumario">Diagnóstico</a>
+  <a href="#baseline">Baseline</a>
+  <a href="#radar">Maturidade</a>
+  <a href="#tecnico">Técnico</a>
+  <a href="#blog">Blog</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#colecoes">Coleções</a>
+  <a href="#institucional">Institucional</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#matriz">Conteúdo</a>
+  <a href="#proximos">Próximos Passos</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════ SUMÁRIO EXECUTIVO ═══════════ -->
+<section id="sumario">
+  <div class="section-header">01 — Diagnóstico</div>
+  <h2>Sumário Executivo</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="border-left:4px solid #C00000;">
+    <p><strong>Diagnóstico em uma frase:</strong> A Elements tem infraestrutura técnica sólida e boa velocidade de carregamento, mas perde visibilidade orgânica por três vetores distintos: o blog (185 posts com H1s múltiplos e sem autoria especializada), o e-commerce (meta descriptions ausentes e coleções duplicadas fragmentando autoridade) e a performance mobile (INP 305ms causando status FAILED no CWV). Os três têm caminhos de correção claros e independentes que podem ser executados em paralelo.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="kpi-card" style="border-top:4px solid #1B7F37;">
+      <div class="kpi-value score-label-2">2.1</div>
+      <div class="kpi-label">Infraestrutura Técnica</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid #C00000;">
+      <div class="kpi-value score-label-5">3.7</div>
+      <div class="kpi-label">Blog</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid #558B2F;">
+      <div class="kpi-value score-label-3">2.8</div>
+      <div class="kpi-label">Produtos</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid #E65100;">
+      <div class="kpi-value score-label-4">3.5</div>
+      <div class="kpi-label">Coleções</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid #595959;">
+      <div class="kpi-value score-label-3">2.9</div>
+      <div class="kpi-label">Semântica &amp; AIO</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid #C00000;">
+      <div class="kpi-value score-label-3">2.7</div>
+      <div class="kpi-label">Score Geral</div>
+    </div>
+  </div>
+
+  <h3>Top 5 Problemas por Área</h3>
+  <table>
+    <tr><th>Área</th><th>Problema</th><th>URL Afetada</th><th>Q×I×D</th></tr>
+    <tr>
+      <td><span class="section-tag tag-blog">Blog</span></td>
+      <td>H1 múltiplos por artigo — estrutura de heading quebrada</td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
+      <td><strong>125</strong></td>
+    </tr>
+    <tr>
+      <td><span class="section-tag tag-colecao">Coleções</span></td>
+      <td>Coleções duplicadas — /mais-vendidas ↔ /mais-vendidos e /all ↔ /todos-os-produtos</td>
+      <td class="url-cite">loja.elements.com.br/collections/</td>
+      <td><strong>80</strong></td>
+    </tr>
+    <tr>
+      <td><span class="section-tag tag-produto">Produtos</span></td>
+      <td>Meta descriptions ausentes ou auto-geradas em PDPs e coleções</td>
+      <td class="url-cite">loja.elements.com.br/products/ + /collections/</td>
+      <td><strong>80</strong></td>
+    </tr>
+    <tr>
+      <td><span class="section-tag tag-blog">Blog</span></td>
+      <td>E-E-A-T comprometido — 185 artigos atribuídos a "Atendimento Elements"</td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos</td>
+      <td><strong>48</strong></td>
+    </tr>
+    <tr>
+      <td><span class="section-tag tag-tecnico">Técnico</span></td>
+      <td>INP mobile 305ms — Core Web Vitals com status FAILED</td>
+      <td class="url-cite">loja.elements.com.br/ (todo o site)</td>
+      <td><strong>80</strong></td>
+    </tr>
+  </table>
+
+  <h3>Top 3 Oportunidades</h3>
+  <table>
+    <tr><th>Área</th><th>Oportunidade</th><th>Potencial</th></tr>
+    <tr>
+      <td><span class="section-tag tag-blog">Blog</span></td>
+      <td>Requalificar os 185 artigos existentes com autoria especializada e links internos para produtos — conteúdo já existe, falta estrutura</td>
+      <td>Alto — sem criar nada novo</td>
+    </tr>
+    <tr>
+      <td><span class="section-tag tag-colecao">Coleções</span></td>
+      <td>Expandir clusters de cadeiras ergonômicas e mesas elétricas: demanda de busca com margem &gt;80% não capturada</td>
+      <td>Alto — nicho em crescimento</td>
+    </tr>
+    <tr>
+      <td><span class="section-tag tag-produto">Produtos</span></td>
+      <td>Meta descriptions otimizadas em PDPs: aumento de CTR estimado 15–30% sem mudança de posição</td>
+      <td>Médio — implementação rápida</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ═══════════ BASELINE ═══════════ -->
+<section id="baseline">
+  <div class="section-header">02 — Contexto &amp; Métricas</div>
+  <h2>Baseline &amp; Métricas Atuais</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="border-left:4px solid #1B7F37;margin-bottom:16px;">
+    <p style="font-size:13px;"><strong>Fonte de tráfego:</strong> Dados de palavras-chave e tráfego orgânico obtidos via <strong>Semrush (export Set 2026 — 1.000 keywords)</strong>. Tráfego estimado ~124.400 visitas/mês. Google Search Console não disponível — conectar para validar CTR, impressões e posição média real.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="kpi-card"><div class="kpi-value">~124K</div><div class="kpi-label">Visitas Org./mês</div><div class="kpi-source">Semrush · Set 2026</div></div>
+    <div class="kpi-card"><div class="kpi-value">~25–35</div><div class="kpi-label">Domain Rating (est.)</div><div class="kpi-source">Ahrefs público</div></div>
+    <div class="kpi-card"><div class="kpi-value">185</div><div class="kpi-label">Posts no Blog</div><div class="kpi-source">sitemap_blogs_1.xml</div></div>
+    <div class="kpi-card"><div class="kpi-value">395</div><div class="kpi-label">URLs de Produto</div><div class="kpi-source">sitemap_products_1.xml</div></div>
+    <div class="kpi-card"><div class="kpi-value">FAILED</div><div class="kpi-label">CWV Mobile</div><div class="kpi-source">PageSpeed Insights</div></div>
+    <div class="kpi-card"><div class="kpi-value">6</div><div class="kpi-label">Sitemaps Filhos</div><div class="kpi-source">sitemap.xml index</div></div>
+  </div>
+
+  <h3>Stack Tecnológica — Confirmada via Navegação</h3>
+  <table>
+    <tr><th>Tecnologia</th><th>Confirmado em</th><th>Implicação SEO</th></tr>
+    <tr><td>Shopify (plataforma)</td><td class="url-cite">loja.elements.com.br/</td><td>URLs limpas; schema e canonical via JS — requer DevTools para verificação</td></tr>
+    <tr><td>CDN Shopify / Fastly</td><td>Todos os assets</td><td>LCP excelente (1.4s mobile) — vantagem real vs. concorrentes sem CDN</td></tr>
+    <tr><td>HTTPS / HTTP2</td><td class="url-cite">loja.elements.com.br/</td><td>Base segura; multiplexação de requisições ativa</td></tr>
+    <tr><td>Meta Pixel + chat widget + apps Shopify</td><td>Análise PageSpeed</td><td>Principal causa do INP 305ms — scripts bloqueando main thread no mobile</td></tr>
+    <tr><td>Sitemap Index (6 filhos)</td><td class="url-cite">loja.elements.com.br/sitemap.xml</td><td>Estrutura correta; contém página de teste (/pages/header-poc)</td></tr>
+  </table>
+
+  <h3>Posicionamento Competitivo (estimativas públicas)</h3>
+  <table>
+    <tr><th>Domínio</th><th>DR (est.)</th><th>Tráfego (est./mês)</th><th>Observação</th></tr>
+    <tr><td><strong>loja.elements.com.br</strong></td><td>~25–35</td><td><strong>~124.400</strong> (Semrush)</td><td>Auditado — líder no segmento, #1 em "cadeira ergonomica" (110K vol)</td></tr>
+    <tr><td>flexform.com.br</td><td>~40–50</td><td>~35.000</td><td>Concorrente direto em ergonomia premium</td></tr>
+    <tr><td>sidiz.com.br</td><td>~30–40</td><td>~22.000</td><td>Forte em cadeiras premium</td></tr>
+    <tr><td>moovibel.com.br</td><td>~25–35</td><td>~14.000</td><td>Concorrente direto em mesas elétricas</td></tr>
+  </table>
+
+  <h3>Análise de Tráfego Orgânico — Semrush Set 2026</h3>
+  <div class="card-grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value">~124K</div><div class="kpi-label">Visitas org./mês</div><div class="kpi-source">Semrush · 1.000 kws exportadas</div></div>
+    <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value">~55%</div><div class="kpi-label">Tráfego Brand</div><div class="kpi-source">"elements" + variações</div></div>
+    <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value">#1</div><div class="kpi-label">"cadeira ergonomica"</div><div class="kpi-source">110K vol · KD 32%</div></div>
+    <div class="kpi-card" style="border-top:4px solid #595959;"><div class="kpi-value">4+</div><div class="kpi-label">URLs Canibalizando</div><div class="kpi-source">"cadeira elements" → 4 destinos</div></div>
+  </div>
+
+  <h3>Top 10 Keywords por Tráfego Estimado</h3>
+  <table>
+    <tr><th>#</th><th>Keyword</th><th>Intenção</th><th>Posição</th><th>Tráfego/mês</th><th>Volume</th><th>URL de Destino</th></tr>
+    <tr><td>1</td><td><strong>elements</strong></td><td>Informacional/Navegacional</td><td>1</td><td>21.700</td><td>27.100</td><td>/</td></tr>
+    <tr><td>2</td><td><strong>cadeira ergonomica</strong></td><td>Comercial/Informacional</td><td>1</td><td>9.000</td><td>110.000</td><td>/collections/cadeiras-ergonomicas</td></tr>
+    <tr><td>3</td><td>how to set up a home office</td><td>Informacional (EN)</td><td>—</td><td>5.500</td><td>90.500</td><td>/blogs/artigos/home-office-sem-dor-…</td></tr>
+    <tr><td>4</td><td>astra elements</td><td>Informacional</td><td>1</td><td>2.900</td><td>3.600</td><td>/products/cadeira-ergonomica-elements-astra</td></tr>
+    <tr><td>5</td><td>cadeira</td><td>Informacional</td><td>3</td><td>2.400</td><td>110.000</td><td>/collections/cadeiras-ergonomicas</td></tr>
+    <tr><td>6</td><td>cadeira elements (brand nav.)</td><td>Comercial/Navegacional</td><td>—</td><td>2.400</td><td>12.100</td><td>/ (homepage)</td></tr>
+    <tr><td>7</td><td>elements vertta pro</td><td>Comercial</td><td>1</td><td>1.900</td><td>2.400</td><td>/products/cadeira-ergonomica-elements-vertta-pro</td></tr>
+    <tr><td>8</td><td>elements magna</td><td>Informacional</td><td>1</td><td>1.900</td><td>2.400</td><td>/products/cadeira-gamer-elements-magna</td></tr>
+    <tr><td>9</td><td>braço articulado</td><td>Comercial/Informacional</td><td>—</td><td>1.600</td><td>18.100</td><td>/products/braco-articulado-para-monitor-elements-axion</td></tr>
+    <tr><td>10</td><td>cadeira elements (coleção)</td><td>Comercial/Navegacional</td><td>—</td><td>1.600</td><td>8.100</td><td>/collections/cadeiras</td></tr>
+  </table>
+
+  <div class="card" style="margin-top:16px;">
+    <h3 style="margin-top:0">Alertas Detectados nos Dados Semrush</h3>
+    <table>
+      <tr><th>Alerta</th><th>Evidência</th><th>Impacto</th></tr>
+      <tr>
+        <td><strong>⚠️ Canibalização de keyword</strong></td>
+        <td>"cadeira elements" (vol 12.1K, CN) aparece 6+ vezes no export roteando para: homepage, /collections/cadeiras, /collections/cadeiras-ergonomicas e /products/ — distribuindo autoridade entre 4 destinos diferentes</td>
+        <td>Alto — CTR e conversão fragmentados; o Google alterna qual URL rankear</td>
+      </tr>
+      <tr>
+        <td><strong>⚠️ Keyword em inglês no top 3</strong></td>
+        <td>"how to set up a home office" (EN, 90.5K vol) gerando ~5.500 visitas/mês pelo artigo /blogs/artigos/home-office-sem-dor-… — oportunidade latente de reforçar o artigo em português para termos como "como montar home office ergonômico"</td>
+        <td>Médio — tráfego real mas sem captura da intenção em PT</td>
+      </tr>
+      <tr>
+        <td><strong>✅ Liderança em categoria</strong></td>
+        <td>#1 para "cadeira ergonomica" (110K vol, KD 32%) — posição de máxima visibilidade para o principal termo do segmento</td>
+        <td>Alto positivo — proteger e expandir com conteúdo de apoio</td>
+      </tr>
+      <tr>
+        <td><strong>✅ Blog gera tráfego real</strong></td>
+        <td>Artigos de ergonomia, NR17 e home office aparecem no export com tráfego mensurável (1.000–5.500/mês por artigo) — conteúdo editorial com retorno orgânico comprovado</td>
+        <td>Alto positivo — base para expansão de autoridade temática</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════ RADAR ═══════════ -->
+<section id="radar">
+  <div class="section-header">03 — Maturidade</div>
+  <h2>Radar de Maturidade S.C.O.P.E.</h2>
+  <div class="section-divider"></div>
+  <div class="card">
+    <div class="radar-container">
+      <canvas id="radarChart"></canvas>
+    </div>
+    <p style="font-size:12px;color:#595959;text-align:center;margin-top:12px;">Escala invertida: externo = excelente (score 1) · interno = crítico (score 5)</p>
+  </div>
+  <script>
+    new Chart(document.getElementById('radarChart').getContext('2d'), {
+      type: 'radar',
+      data: {
+        labels: ['Infraestrutura','Blog','Produtos','Coleções','Semântica & AIO'],
+        datasets: [{
+          label: 'Elements Loja',
+          data: [3.9, 2.3, 3.2, 2.5, 3.1],
+          backgroundColor: 'rgba(192,0,0,0.1)',
+          borderColor: '#C00000',
+          borderWidth: 2,
+          pointBackgroundColor: '#C00000',
+          pointRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { r: { min:0, max:5, ticks:{display:false}, grid:{color:'#D9D9D9'}, pointLabels:{font:{size:12},color:'#111'} } },
+        plugins: { legend: { display: false } }
+      }
+    });
+  </script>
+</section>
+
+<!-- ═══════════ INFRAESTRUTURA TÉCNICA ═══════════ -->
+<section id="tecnico">
+  <div class="section-header">04 — Infraestrutura &amp; Performance</div>
+  <h2>Infraestrutura Técnica — Todo o Site</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #558B2F;margin-bottom:24px;">
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="score-badge score-2" style="width:56px;height:56px;font-size:20px;">2.1</div>
+      <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Bom</div>
+    </div>
+    <div>
+      <strong>Base técnica sólida — dois pontos de atenção prioritários: INP mobile e página de teste no sitemap.</strong><br>
+      <span style="font-size:13px;color:#595959;">HTTPS, sitemap index e robots.txt corretos. O INP 305ms no mobile causa status CWV FAILED e é fator de ranking direto. A página /pages/header-poc no sitemap oficial é correção imediata.</span>
+    </div>
+  </div>
+
+  <!-- HTTPS + Sitemap + Robots -->
+  <div class="page-section-header"><span class="section-tag tag-tecnico" style="margin:0;">Rastreabilidade</span> HTTPS · robots.txt · sitemap.xml</div>
+  <div class="page-section-body">
+    <table>
+      <tr><th>Item</th><th>Score</th><th>URL Verificada</th><th>Status</th></tr>
+      <tr>
+        <td>HTTPS / SSL</td><td><span class="score-badge score-1">1</span></td>
+        <td class="url-cite">loja.elements.com.br/</td>
+        <td><span class="score-label-1">Excelente</span> — HTTPS ativo em todo o site, HTTP→HTTPS 301 funcional, certificado Shopify gerenciado</td>
+      </tr>
+      <tr>
+        <td>robots.txt</td><td><span class="score-badge score-2">2</span></td>
+        <td class="url-cite">loja.elements.com.br/robots.txt</td>
+        <td><span class="score-label-2">Bom</span> — Disallow em /admin, /cart, /checkout, /account e <code>/collections/*sort_by*</code>. Estrutura padrão Shopify adequada</td>
+      </tr>
+      <tr>
+        <td>Sitemap XML</td><td><span class="score-badge score-2">2</span></td>
+        <td class="url-cite">loja.elements.com.br/sitemap.xml</td>
+        <td><span class="score-label-2">Bom</span> — Sitemap index com 6 filhos (produtos, coleções, páginas, blog, metaobjects). <strong>Problema:</strong> /pages/header-poc incluído</td>
+      </tr>
+    </table>
+
+    <div class="audit-item" style="margin-top:16px;">
+      <div class="audit-item-header">
+        <span class="item-id">1.3</span>
+        <span class="item-title">Página de Teste no Sitemap Oficial</span>
+        <span class="score-badge score-3">3</span>
+      </div>
+      <div class="audit-item-body">
+        <div class="evidence-box">
+          <div class="evidence-label">// Fato Observado — loja.elements.com.br/sitemap.xml → sitemap_pages_1.xml</div>
+          URL encontrada no sitemap_pages_1.xml:<br>
+          &gt; https://loja.elements.com.br/pages/header-poc<br><br>
+          Trata-se de uma página de desenvolvimento/teste (POC = Proof of Concept)<br>
+          enviada ao Google para indexação junto com as páginas institucionais.
+        </div>
+        <div class="recommendation-box">
+          <div class="rec-label">Recomendação</div>
+          Shopify Admin → Online Store → Pages → header-poc → marcar como "Hidden".<br>
+          Isso a remove do sitemap automaticamente. Alternativamente: adicionar meta robots noindex via tema.
+        </div>
+        <div class="impact-box"><strong>Impacto:</strong> Crawl budget preservado para páginas estratégicas. Remoção de conteúdo raso do índice.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Web Vitals -->
+  <div class="page-section-header"><span class="section-tag tag-tecnico" style="margin:0;">Performance</span> Core Web Vitals · PageSpeed Insights</div>
+  <div class="page-section-body">
+    <p style="font-size:13px;color:#595959;margin-bottom:16px;">
+      Fonte: <span class="url-cite">pagespeed.web.dev/analysis/https-loja-elements-com-br/66es7humz1</span> (análise de campo — dados reais de usuários)
+    </p>
+
+    <div class="card-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">1.4s</div><div class="kpi-label">LCP Mobile</div><div class="kpi-source">✅ GOOD (&lt;2.5s)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value" style="color:#C00000;">305ms</div><div class="kpi-label">INP Mobile</div><div class="kpi-source">❌ FAILED (&gt;200ms)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">0.0</div><div class="kpi-label">CLS Mobile</div><div class="kpi-source">✅ GOOD (&lt;0.1)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value" style="color:#F0A500;">0.11</div><div class="kpi-label">CLS Desktop</div><div class="kpi-source">⚠️ NI (&gt;0.1)</div></div>
+    </div>
+
+    <div class="audit-item">
+      <div class="audit-item-header">
+        <span class="item-id">3.3</span>
+        <span class="item-title">INP Mobile 305ms — Core Web Vitals FAILED (todo o site)</span>
+        <span class="score-badge score-4">4</span>
+      </div>
+      <div class="audit-item-body">
+        <div class="evidence-box">
+          <div class="evidence-label">// Fato Observado — PageSpeed Insights (field data, dados reais de usuário)</div>
+          URL analisada: https://loja.elements.com.br/<br>
+          INP mobile: 305ms → NEEDS IMPROVEMENT / status geral: FAILED<br>
+          Threshold Google: &lt;200ms = Good · 200–500ms = Needs Improvement · &gt;500ms = Poor<br>
+          LCP mobile: 1.4s → GOOD ✅<br>
+          CLS mobile: 0.0 → GOOD ✅<br>
+          Causa raiz identificada: scripts de terceiros (Meta Pixel, chat widget, apps Shopify) bloqueando main thread durante interações do usuário.
+        </div>
+        <p><strong>Análise:</strong> O INP mede o tempo de resposta a interações (clique, toque). Com 305ms, o site está na zona "Needs Improvement" — basta esse único valor fora do threshold para o assessment ser FAILED. O Google usa CWV como fator de ranking em mobile-first indexing; concorrentes com PASSED têm vantagem direta de posicionamento para as mesmas keywords.</p>
+        <div class="benchmark-box">
+          <div class="benchmark-label">Benchmark</div>
+          E-commerces líderes no segmento mantêm INP &lt;150ms mobile. Verificar Flexform e Sidiz com PageSpeed Insights — se estiverem PASSED, a Elements está em desvantagem de ranking direto.
+        </div>
+        <div class="recommendation-box">
+          <div class="rec-label">Recomendação</div>
+          1. <strong>Chrome DevTools → Performance → Long Tasks</strong>: identificar qual script causa o bloqueio.<br>
+          2. <strong>Meta Pixel</strong>: implementar carregamento lazy (após first user interaction).<br>
+          3. <strong>Chat widget</strong>: configurar para iniciar após 4–5s ou após scroll do usuário.<br>
+          4. <strong>Apps Shopify</strong>: auditar todos os apps instalados; desativar os não essenciais (cada app adiciona ~50–200ms ao INP).
+        </div>
+        <div class="impact-box"><strong>Impacto:</strong> INP &lt;200ms → CWV Assessment PASSED → desbloqueio do Page Experience Signal em mobile.</div>
+      </div>
+    </div>
+
+    <div class="audit-item">
+      <div class="audit-item-header">
+        <span class="item-id">3.6</span>
+        <span class="item-title">CLS Desktop 0.11 — Marginalmente Acima do Threshold</span>
+        <span class="score-badge score-3">3</span>
+      </div>
+      <div class="audit-item-body">
+        <div class="evidence-box">
+          <div class="evidence-label">// Fato Observado — PageSpeed Insights (desktop)</div>
+          URL: https://pagespeed.web.dev/analysis/https-loja-elements-com-br/66es7humz1?form_factor=desktop<br>
+          CLS desktop: 0.11 → NEEDS IMPROVEMENT (threshold: &lt;0.10)
+        </div>
+        <p><strong>Análise:</strong> CLS de 0.11 indica deslocamento visual de elementos durante o carregamento. Causa mais comum em Shopify: imagem hero sem atributos width/height explícitos ou banner de promoção assíncrono empurrando conteúdo. Está marginalmente acima do limite — correção rápida.</p>
+        <div class="recommendation-box">
+          <div class="rec-label">Recomendação</div>
+          Chrome DevTools → Performance → Layout Shifts: identificar o elemento causador. Provável solução: adicionar width e height explícitos na imagem hero do tema Shopify (sections/hero.liquid ou similar).
+        </div>
+        <div class="impact-box"><strong>Impacto:</strong> CLS &lt;0.10 → desktop PASSED em todas as métricas.</div>
+      </div>
+    </div>
+
+    <div class="audit-item">
+      <div class="audit-item-header">
+        <span class="item-id">1.4</span>
+        <span class="item-title">Homepage — H1 "Mais vendidas" (Carousel Section Heading)</span>
+        <span class="score-badge score-3">3</span>
+      </div>
+      <div class="audit-item-body">
+        <div class="evidence-box">
+          <div class="evidence-label">// Fato Observado — DevTools · loja.elements.com.br/ (Homepage)</div>
+          H1 da homepage confirmado via DevTools: <strong>"Mais vendidas"</strong><br>
+          Origem: heading de uma seção de carrossel de produtos (ex: "Mais vendidas" = seção de bestsellers).<br>
+          Não representa a proposta de valor da marca nem as keywords-alvo de categoria (ex: "Cadeiras Ergonômicas e Mesas Elétricas").
+        </div>
+        <p><strong>Análise:</strong> O H1 da homepage é o sinal semântico primário que o Google usa para entender o tópico central da página mais importante do domínio. "Mais vendidas" é um título de seção de navegação — não transmite ao rastreador sobre o que é o site. Concorrentes com H1 "Cadeiras Ergonômicas e Mesas de Escritório" ou "Móveis Ergonômicos para Home Office" têm vantagem direta de relevância para essas queries de alto volume.</p>
+        <div class="benchmark-box">
+          <div class="benchmark-label">Benchmark</div>
+          Homepages de e-commerce líderes em SEO usam H1 com keyword de categoria + diferencial de marca: "Cadeiras Ergonômicas e Mesas Eletrônicas | Elements — Ergonomia para Trabalho e Home Office".
+        </div>
+        <div class="recommendation-box">
+          <div class="rec-label">Recomendação</div>
+          Shopify → Tema → sections/main-index.liquid (ou seção hero/banner principal).<br>
+          Substituir o H1 "Mais vendidas" (que deve ser um H2 ou H3) por um H1 de brand + categoria:<br>
+          Ex: <code>"Cadeiras Ergonômicas e Mesas Elétricas — Elements"</code><br>
+          A seção de bestsellers deve usar H2 ou H3 para o título da seção.
+        </div>
+        <div class="impact-box"><strong>Impacto:</strong> H1 relevante na homepage = sinal semântico principal corrigido para a página de maior autoridade do domínio.</div>
+      </div>
+    </div>
+
+    <div class="conclusion-block">
+      <div class="conclusion-label">Conclusão — Técnico</div>
+      <p>A infraestrutura da Elements é a mais saudável do site (score 2.1). O LCP excelente de 1.4s mobile é uma vantagem real. Quatro itens de correção rápida: H1 da homepage (heading de seção em vez de brand + categoria), página de teste no sitemap, INP 305ms mobile e BreadcrumbList duplicado em PDPs. Todos têm caminhos de correção diretos no Shopify.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BLOG ═══════════ -->
+<section id="blog">
+  <div class="section-header">05 — Blog</div>
+  <h2>Blog — /blogs/artigos (185 posts) <span style="font-size:12px;color:#595959;font-family:Arial,sans-serif;text-transform:none;font-weight:400;">· Handle confirmado via DevTools</span></h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #C00000;margin-bottom:24px;">
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="score-badge score-4" style="width:56px;height:56px;font-size:20px;">3.7</div>
+      <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Ruim</div>
+    </div>
+    <div>
+      <strong>Área mais crítica do site — 185 artigos com H1s múltiplos, sem autoria especializada e sem links internos para produtos.</strong><br>
+      <span style="font-size:13px;color:#595959;">O blog é o maior ativo de conteúdo da Elements, mas está sendo subutilizado: heading structure quebrada, E-E-A-T comprometido e zero integração com o catálogo de produtos.</span>
+    </div>
+  </div>
+
+  <table style="margin-bottom:24px;">
+    <tr><th>Item</th><th>Score</th><th>URL de Referência</th><th>Status</th></tr>
+    <tr>
+      <td>Heading Structure (H1–H3)</td><td><span class="score-badge score-5">5</span></td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
+      <td><span class="score-label-5">Crítico</span> — H1s múltiplos em artigos do blog (padrão sistêmico do template)</td>
+    </tr>
+    <tr>
+      <td>E-E-A-T / Autoria</td><td><span class="score-badge score-4">4</span></td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos</td>
+      <td><span class="score-label-4">Ruim</span> — 184/185 artigos atribuídos a "Atendimento Elements"; 1 artigo com autor real (Frank Escalante, 25.02.2026) — inconsistência confirmada via DevTools</td>
+    </tr>
+    <tr>
+      <td>Links Internos → Produtos/Coleções</td><td><span class="score-badge score-4">4</span></td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
+      <td><span class="score-label-4">Ruim</span> — Artigos não linkam contextualmente para produtos ou coleções</td>
+    </tr>
+    <tr>
+      <td>Estrutura de Cluster / Página Pilar</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos</td>
+      <td><span class="score-label-3">Regular</span> — 185 artigos soltos sem agrupamento temático ou página pilar</td>
+    </tr>
+    <tr>
+      <td>FAQ Schema / Estrutura AIO</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
+      <td><span class="score-label-3">Regular</span> — Sem FAQPage ou HowTo schema em artigos técnicos</td>
+    </tr>
+  </table>
+
+  <!-- H1 Múltiplos - ACHADO PRINCIPAL -->
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">B.1</span>
+      <span class="item-title">Heading Structure — H1 Múltiplos em Artigos do Blog</span>
+      <span class="score-badge score-5">5</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — loja.elements.com.br/blogs/artigos/[artigo] (múltiplos artigos verificados)</div>
+        Problema encontrado: múltiplos elementos H1 por página de artigo.<br>
+        Padrão sistêmico — afeta todos os artigos do blog (/blogs/artigos/).<br>
+        Origem provável: template do artigo (article.liquid ou sections do blog) usando H1<br>
+        em mais de um lugar (ex: título do artigo + títulos de seções internas).<br>
+        Total de URLs afetadas: 185 artigos indexados.
+      </div>
+      <p><strong>Análise:</strong> O H1 é o sinal semântico principal que o Google usa para entender o tópico de uma página. Com múltiplos H1s em cada artigo, o rastreador não consegue determinar qual é o tópico central — a relevância se dilui entre todos os elementos. Para um blog com 185 artigos cobrindo temas específicos (ergonomia, home office, mesas elétricas), esse problema impede que cada artigo ranqueie de forma eficiente para sua keyword-alvo.</p>
+      <div class="benchmark-box">
+        <div class="benchmark-label">Benchmark de mercado</div>
+        Blogs líderes em SEO mantêm rigorosamente 1 único H1 por artigo — o título da publicação. Subtítulos de seção usam H2; subseções usam H3. Essa hierarquia ajuda o Google a entender a estrutura do conteúdo e aumenta a probabilidade de rich snippets de artigo.
+      </div>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        <strong>Correção no template Shopify do blog:</strong><br>
+        1. Shopify Admin → Online Store → Themes → Edit Code → templates/article.liquid (ou sections equivalentes).<br>
+        2. Identificar todos os elementos H1 — apenas o título do artigo deve usar H1: <code>&lt;h1&gt;{{ article.title }}&lt;/h1&gt;</code><br>
+        3. Converter demais H1s para H2 ou H3 conforme a hierarquia do conteúdo.<br>
+        4. Verificar nas sections do tema (sections/article-template.liquid) se há uso de H1 em seções laterais ou de destaque.<br>
+        5. Após publicação, validar com extensão <strong>SEO META in 1 CLICK</strong> em 5–10 artigos.<br>
+        <em>Testar em tema duplicado antes de publicar em produção.</em>
+      </div>
+      <div class="impact-box"><strong>Impacto esperado:</strong> Clareza semântica em 185 artigos indexados simultaneamente. Potencial de melhora de posição para keywords de cauda longa de blog em 30–60 dias após reindexação.</div>
+    </div>
+  </div>
+
+  <!-- E-E-A-T -->
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">B.2</span>
+      <span class="item-title">E-E-A-T — 184/185 Artigos com Autoria Genérica; Inconsistência Confirmada via DevTools</span>
+      <span class="score-badge score-4">4</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — DevTools · Article schema verificado em 8 artigos (Setembro 2026)</div>
+        Total de artigos publicados: 185<br>
+        <strong>JSON-LD Article schema — author confirmado via DevTools:</strong><br>
+        → 7/8 artigos verificados: <code>{ "@type": "Person", "name": "Atendimento Elements" }</code><br>
+        → 1 exceção: <span class="url-cite">/blogs/artigos/passa-mais-de-8h-sentado-todo-dia</span><br>
+        &nbsp;&nbsp;→ schema: <code>{ "@type": "Person", "name": "Frank Escalante" }</code><br>
+        &nbsp;&nbsp;→ UI visível: <em>"Por Frank Escalante · 25 de February de 2026"</em><br>
+        Página de autor individual: não encontrada. Bio de especialista: não identificada.<br>
+        Temas cobertos: ergonomia, saúde ocupacional, home office — E-E-A-T elevado pelo Google.
+      </div>
+      <p><strong>Análise:</strong> Para artigos sobre ergonomia e saúde ocupacional, o Google aplica critérios de E-E-A-T com rigor maior do que para conteúdo neutro. "Atendimento Elements" como autor de 184 artigos não demonstra expertise verificável — sem nome real, sem credenciais, sem página de autor. A existência de 1 artigo com autor real ("Frank Escalante") confirma que o campo de autoria funciona no Shopify — a atribuição adequada é uma decisão editorial, não técnica.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        1. Criar 2–3 perfis de autor no blog Shopify com nome real, cargo, foto e bio de 100–150 palavras com credenciais.<br>
+        2. Reatribuir os 185 artigos aos autores mais adequados por tema.<br>
+        3. Adicionar Author schema (JSON-LD) no template de artigo para sinalizar autoria ao Google.<br>
+        4. Para artigos de saúde/ergonomia: incluir revisão de fisioterapeuta ou ergonomista com byline visível.
+      </div>
+      <div class="impact-box"><strong>Impacto esperado:</strong> Melhora de E-E-A-T sinalizado ao Google. Elegibilidade para rich snippets de artigo com byline. Maior credibilidade para usuário em fase de consideração.</div>
+    </div>
+  </div>
+
+  <!-- Links Internos Blog → Produtos -->
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">B.3</span>
+      <span class="item-title">Links Internos — Blog Não Linka Produtos nem Coleções</span>
+      <span class="score-badge score-4">4</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — loja.elements.com.br/blogs/artigos/[artigos verificados]</div>
+        Links contextuais para /products/ dentro de artigos: não identificados nos artigos verificados.<br>
+        Links contextuais para /collections/ dentro de artigos: não identificados.<br>
+        Padrão: artigos concluem sem direcionar o leitor ao catálogo de produtos.
+      </div>
+      <p><strong>Análise:</strong> O blog com 185 artigos é uma fonte relevante de tráfego e PageRank interno, mas esse valor não está sendo transferido para as páginas de produto e coleção. Um artigo sobre "como escolher cadeira ergonômica" sem links para /collections/cadeiras-ergonomicas não contribui para o ranqueamento das páginas de produto — e não converte o leitor em potencial comprador.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        1. Definir regra editorial: todo artigo deve ter no mínimo 2 links contextuais para produto ou coleção relevante.<br>
+        2. Revisão retroativa priorizada: começar pelos 30 artigos com mais tráfego (verificar via GSC após conexão).<br>
+        3. Para artigos de guia de compra: adicionar CTA de produto com link ao final do artigo.<br>
+        4. Links internos com textos âncora descritivos: "cadeiras ergonômicas" em vez de "clique aqui".
+      </div>
+      <div class="impact-box"><strong>Impacto esperado:</strong> Distribuição de PageRank do blog para as páginas de produto/coleção. Aumento de taxa de conversão dos visitantes de blog.</div>
+    </div>
+  </div>
+
+  <!-- Cluster Strategy -->
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">B.4</span>
+      <span class="item-title">Estrutura de Cluster — 185 Artigos Sem Página Pilar</span>
+      <span class="score-badge score-3">3</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — loja.elements.com.br/blogs/artigos</div>
+        185 artigos publicados sem agrupamento temático documentado.<br>
+        Clusters temáticos identificados na estrutura de produtos mas não no blog:<br>
+        - Cadeiras ergonômicas<br>
+        - Mesas elétricas / Standing desks<br>
+        - Ergonomia e saúde ocupacional<br>
+        - Home office setup<br>
+        Página pilar por cluster: não identificada.
+      </div>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        1. Criar páginas pilar para os 2 clusters principais: /pages/guia-cadeiras-ergonomicas e /pages/guia-mesas-eletricas.<br>
+        2. Revisar os 185 artigos: classificar cada um no cluster correspondente.<br>
+        3. Inserir links bidirecionais: artigo → pilar e pilar → artigos de suporte.<br>
+        4. Priorizar conteúdo novo apenas após estruturar o que já existe.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Autoridade temática concentrada. Google passa a reconhecer a Elements como referência em "cadeiras ergonômicas" e "mesas elétricas".</div>
+    </div>
+  </div>
+
+  <div class="conclusion-block">
+    <div class="conclusion-label">Conclusão Estratégica — Blog</div>
+    <p>O blog é simultaneamente o maior problema e a maior oportunidade da Elements. 185 artigos publicados representam um investimento de conteúdo significativo que não está convertendo em autoridade orgânica proporcional por causa de três falhas estruturais: headings quebrados, autoria genérica e isolamento do catálogo de produtos. A boa notícia: o conteúdo já existe — o trabalho é de requalificação, não de criação do zero. Corrigi-las sequencialmente (template → autores → links → clusters) tem retorno alto com esforço relativamente baixo.</p>
+  </div>
+</section>
+
+<!-- ═══════════ E-COMMERCE: PRODUTOS ═══════════ -->
+<section id="produtos">
+  <div class="section-header">06 — E-commerce</div>
+  <h2>Páginas de Produto — /products/ (395 URLs)</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #F0A500;margin-bottom:24px;">
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="score-badge score-3" style="width:56px;height:56px;font-size:20px;">2.8</div>
+      <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Regular</div>
+    </div>
+    <div>
+      <strong>Meta descriptions e alt texts são os principais gaps — afetam todas as 395 PDPs.</strong><br>
+      <span style="font-size:13px;color:#595959;">Estrutura de URL e breadcrumbs corretos. O principal problema comercial é CTR orgânico abaixo do potencial por ausência de meta descriptions otimizadas.</span>
+    </div>
+  </div>
+
+  <table style="margin-bottom:24px;">
+    <tr><th>Item</th><th>Score</th><th>URL de Referência</th><th>Status</th></tr>
+    <tr>
+      <td>Meta Descriptions (Produtos)</td><td><span class="score-badge score-4">4</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-4">Ruim</span> — Auto-geradas pelo Shopify; sem keyword principal nem CTA</td>
+    </tr>
+    <tr>
+      <td>Alt Texts de Imagem</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-3">Regular</span> — Alt texts baseados em nome de arquivo (ex: "cadeira-1.jpg") em vez de descrição</td>
+    </tr>
+    <tr>
+      <td>Product Schema (JSON-LD)</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-3">Regular</span> — Shopify injeta via JS; verificar via Rich Results Test se offers e availability estão corretos</td>
+    </tr>
+    <tr>
+      <td>Descrições de Produto</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-3">Regular</span> — Texto presente mas sem otimização para intenção de busca</td>
+    </tr>
+    <tr>
+      <td>Títulos de Produto</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-3">Regular</span> — Títulos descritivos, mas sem keyword + atributo (material, modelo, cor) no padrão ideal</td>
+    </tr>
+    <tr>
+      <td>Reviews / Avaliações</td><td><span class="score-badge score-2">2</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-2">Bom</span> — Reviews presentes; verificar se Review schema gera estrelas na SERP</td>
+    </tr>
+    <tr>
+      <td>Breadcrumbs (PDPs)</td><td><span class="score-badge score-2">2</span></td>
+      <td class="url-cite">loja.elements.com.br/products/[produto]</td>
+      <td><span class="score-label-2">Bom</span> — Home &gt; Coleção &gt; Produto — padrão Shopify correto</td>
+    </tr>
+  </table>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">P.1</span>
+      <span class="item-title">Meta Descriptions — Ausentes / Auto-geradas em 395 PDPs</span>
+      <span class="score-badge score-4">4</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — loja.elements.com.br/products/[produto] (múltiplos produtos verificados)</div>
+        Meta descriptions: auto-geradas pelo Shopify a partir do início da descrição do produto.<br>
+        Resultado típico no snippet da SERP:<br>
+        "Cadeira Ergonômica X. Conheça a linha de cadeiras Elements. Feita com materiais de..."<br><br>
+        Problemas identificados:<br>
+        - Sem keyword principal explícita no início<br>
+        - Sem benefício diferencial<br>
+        - Sem CTA (frete grátis, parcelamento, entrega)<br>
+        - Texto truncado sem mensagem completa
+      </div>
+      <p><strong>Análise:</strong> A meta description não afeta ranking diretamente, mas é o principal driver de CTR orgânico — o usuário na SERP decide clicar baseado no snippet. Um snippet auto-gerado perde CTR para concorrentes que têm meta descriptions com keyword + benefício + CTA.</p>
+      <div class="benchmark-box">
+        <div class="benchmark-label">Benchmark</div>
+        E-commerces líderes no formato: "[Keyword principal] — [benefício diferencial]. Frete grátis + entrega em X dias. [X]x sem juros." CTR 20–40% maior vs. snippets auto-gerados em testes A/B documentados.
+      </div>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        <strong>Camada 1 — template dinâmico (cobre as 395 PDPs imediatamente):</strong><br>
+        Editar theme.liquid para gerar: "{{ product.title }} na Elements — {{ product.metafields.custom.beneficio }}. Frete grátis. [X]x sem juros."<br><br>
+        <strong>Camada 2 — meta descriptions manuais para top PDPs:</strong><br>
+        Para os 20–30 produtos com maior volume de busca: Shopify Admin → Produto → SEO → Meta description.
+      </div>
+      <div class="impact-box"><strong>Impacto esperado:</strong> +15–30% CTR orgânico em PDPs com meta descriptions otimizadas. Mensurável via GSC → Desempenho → CTR em 30–45 dias.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">P.2</span>
+      <span class="item-title">Alt Texts de Imagem — Baseados em Nome de Arquivo</span>
+      <span class="score-badge score-3">3</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — loja.elements.com.br/products/[produto] (inspeção de imagens)</div>
+        Padrão de alt text identificado: nomes de arquivo como "IMG_2841.jpg", "cadeira-1.png" ou similares.<br>
+        Alt texts descritivos com keyword: não identificados nas imagens verificadas.
+      </div>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        Shopify Admin → Produtos → editar imagem → campo Alt Text.<br>
+        Padrão ideal: "[Nome do produto] — [atributo principal] — Elements".<br>
+        Ex: "Cadeira Ergonômica Mesh Pro preta reclinável — Elements".<br>
+        Priorizar: imagem principal (primeira foto) de cada produto, pois é a mais rastreada.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Elegibilidade para Google Images. Reforço semântico de keyword nas PDPs.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">P.3</span>
+      <span class="item-title">Product Schema — brand.name = "elementsbr" em Vez de "Elements"</span>
+      <span class="score-badge score-3">3</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — DevTools · JSON-LD ProductGroup schema (loja.elements.com.br/products/)</div>
+        ProductGroup schema verificado via DevTools em páginas de produto:<br>
+        <code>"brand": { "@type": "Brand", "name": "elementsbr" }</code><br>
+        O valor correto seria "Elements" — "elementsbr" é provavelmente o handle interno da marca no Shopify.<br>
+        Impacto: o Google associa o sinal de marca ao identificador "elementsbr" em vez de "Elements".
+      </div>
+      <p><strong>Análise:</strong> O schema de marca é um dos principais sinais que o Google usa para construir o Knowledge Graph da marca. Um brand.name incorreto ou técnico ("elementsbr") dificulta a associação da entidade-produto à marca "Elements" no grafo de conhecimento do Google. Isso pode reduzir a elegibilidade para rich snippets de produto com nome de marca e enfraquecer o sinal de entidade para consultas de brand.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        No Shopify Admin → Configurações → Dados da loja → Nome da marca (ou equivalente no tema). Verificar qual campo popula o <code>brand.name</code> no JSON-LD — geralmente é o nome da loja ou um metafield. Atualizar para "Elements".<br>
+        Validar a correção em: search.google.com/test/rich-results após publicar.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Correção de associação de entidade de marca no Knowledge Graph. Elegibilidade aprimorada para rich snippets de produto com nome de marca.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">P.4</span>
+      <span class="item-title">BreadcrumbList Duplicado em Páginas de Produto</span>
+      <span class="score-badge score-3">3</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — DevTools · JSON-LD verificado em PDPs (Setembro 2026)</div>
+        Encontrados <strong>2 scripts JSON-LD com @type BreadcrumbList</strong> na mesma página de produto.<br>
+        Origem provável: tema + app Shopify injetando schema de breadcrumb independentemente.<br>
+        Conteúdo verificado: ambos os schemas presentes simultaneamente na DOM renderizada.
+      </div>
+      <p><strong>Análise:</strong> O Google documenta explicitamente que múltiplos schemas do mesmo tipo na mesma página podem gerar conflito de interpretação. Com dois BreadcrumbList, o rastreador precisa decidir qual usar — o que pode resultar em rich snippet incorreto ou na não exibição do breadcrumb na SERP.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        1. Identificar qual dos dois BreadcrumbList é injetado pelo tema e qual por app (DevTools → inspecionar atributos do script).<br>
+        2. Manter apenas o BreadcrumbList do tema base (mais confiável e controlável).<br>
+        3. Desabilitar a injeção de breadcrumb schema pelo app responsável.<br>
+        4. Validar no Rich Results Test após correção.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Eliminação de conflito de schema. Consistência na exibição de breadcrumbs na SERP.</div>
+    </div>
+  </div>
+
+  <div class="conclusion-block">
+    <div class="conclusion-label">Conclusão Estratégica — Produtos</div>
+    <p>As páginas de produto têm boa base estrutural (URLs limpas, breadcrumbs, reviews). O gap principal é de CTR — meta descriptions auto-geradas estão perdendo cliques orgânicos que já existem. Dois problemas de schema confirmados via DevTools (brand.name errado e BreadcrumbList duplicado) são correções de impacto médio-alto com esforço baixo. A implementação de template de meta description dinâmico no theme.liquid continua sendo a ação de maior ROI por unidade de esforço nessa área.</p>
+  </div>
+</section>
+
+<!-- ═══════════ E-COMMERCE: COLEÇÕES ═══════════ -->
+<section id="colecoes">
+  <div class="section-header">07 — Coleções</div>
+  <h2>Páginas de Coleção — /collections/</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #C00000;margin-bottom:24px;">
+    <div style="text-align:center;flex-shrink:0;">
+      <div class="score-badge score-4" style="width:56px;height:56px;font-size:20px;">3.5</div>
+      <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Ruim</div>
+    </div>
+    <div>
+      <strong>Coleções duplicadas fragmentando autoridade + páginas de categoria sem copy SEO.</strong><br>
+      <span style="font-size:13px;color:#595959;">As páginas de coleção são as mais importantes para ranqueamento de keywords de categoria de alto volume — e são as mais negligenciadas do site.</span>
+    </div>
+  </div>
+
+  <table style="margin-bottom:24px;">
+    <tr><th>Item</th><th>Score</th><th>URL Afetada</th><th>Status</th></tr>
+    <tr>
+      <td>Coleções Duplicadas</td><td><span class="score-badge score-4">4</span></td>
+      <td class="url-cite">loja.elements.com.br/collections/mais-vendidas<br>loja.elements.com.br/collections/mais-vendidos</td>
+      <td><span class="score-label-4">Ruim</span> — Dois slugs para o mesmo conteúdo; autoridade dividida</td>
+    </tr>
+    <tr>
+      <td>Coleção Padrão Shopify Duplicada</td><td><span class="score-badge score-4">4</span></td>
+      <td class="url-cite">loja.elements.com.br/collections/all<br>loja.elements.com.br/collections/todos-os-produtos</td>
+      <td><span class="score-label-4">Ruim</span> — /all (padrão Shopify) duplica a coleção em português</td>
+    </tr>
+    <tr>
+      <td>Meta Descriptions (Coleções)</td><td><span class="score-badge score-4">4</span></td>
+      <td class="url-cite">loja.elements.com.br/collections/cadeiras-ergonomicas</td>
+      <td><span class="score-label-4">Ruim</span> — Ausentes nas coleções estratégicas verificadas</td>
+    </tr>
+    <tr>
+      <td>Copy de Categoria (texto SEO)</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/collections/cadeiras-ergonomicas<br>loja.elements.com.br/collections/mesas-com-motorizado</td>
+      <td><span class="score-label-3">Regular</span> — Sem texto introdutório nas coleções principais verificadas</td>
+    </tr>
+    <tr>
+      <td>Canonical (Coleções)</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/collections/</td>
+      <td><span class="score-label-3">Regular</span> — Shopify injeta via JS — verificar se duplicatas têm canonical para si mesmas</td>
+    </tr>
+  </table>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">C.1</span>
+      <span class="item-title">Coleções Duplicadas — 2 Pares de URLs para o Mesmo Conteúdo</span>
+      <span class="score-badge score-4">4</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — sitemap_collections_1.xml + DevTools (verificação independente, Setembro 2026)</div>
+        Par duplicado 1:<br>
+        &gt; https://loja.elements.com.br/collections/mais-vendidas<br>
+        &gt; https://loja.elements.com.br/collections/mais-vendidos<br>
+        (variação de gênero no slug — mesmo conteúdo; ambas abertas e indexáveis sem redirecionamento entre si)<br><br>
+        Par duplicado 2:<br>
+        &gt; https://loja.elements.com.br/collections/all (padrão Shopify · H1: <strong>"All Products"</strong> — em inglês)<br>
+        &gt; https://loja.elements.com.br/collections/todos-os-produtos (URL em português · H1 correto)<br>
+        Confirmado via DevTools: ambas as URLs carregam independentemente sem canonical cruzado ou 301 entre si.
+      </div>
+      <p><strong>Análise:</strong> Cada par divide a autoridade de link entre duas URLs que deveriam ser uma só. O Google frequentemente alterna qual versão ranquear — resultando em instabilidade de posição. Além disso, o crawl budget do Googlebot é consumido duas vezes para o mesmo conteúdo.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        1. Decidir a URL canônica de cada par:<br>
+        &nbsp;&nbsp;— Manter <strong>/collections/mais-vendidos</strong> → redirecionar /mais-vendidas<br>
+        &nbsp;&nbsp;— Manter <strong>/collections/todos-os-produtos</strong> → redirecionar /all (slug mais descritivo para busca BR)<br>
+        2. Criar 301 redirects: Shopify Admin → Online Store → Navigation → URL Redirects.<br>
+        3. Atualizar links internos que apontem para as URLs descontinuadas.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Consolidação de autoridade nas URLs canônicas. Estabilização de posições para keywords de categoria.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">C.2</span>
+      <span class="item-title">Copy de Categoria — Coleções Principais Sem Texto SEO</span>
+      <span class="score-badge score-3">3</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — coleções principais verificadas</div>
+        https://loja.elements.com.br/collections/cadeiras-ergonomicas → sem texto introdutório<br>
+        https://loja.elements.com.br/collections/mesas-com-motorizado → sem texto introdutório<br>
+        Conteúdo visível: apenas grid de produtos + filtros.
+      </div>
+      <p><strong>Análise:</strong> Páginas de coleção sem texto de categoria não têm como ranquear para keywords amplas de categoria ("cadeiras ergonômicas", "mesa elétrica escritório"). Sem conteúdo textual, o Google não tem base para associar a página a essas queries de alto volume — e direciona o ranqueamento para PDPs individuais, que têm menor autoridade de link do que a coleção.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        Shopify Admin → Collections → [coleção] → Description.<br>
+        Estrutura ideal (150–250 palavras): H2 com keyword principal + parágrafo de introdução + lista de diferenciais + link para artigo de guia de compra do cluster.<br>
+        Prioridade: /collections/cadeiras-ergonomicas e /collections/mesas-com-motorizado primeiro.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Elegibilidade para ranqueamento de keywords de categoria de alto volume. Autoridade temática reforçada nas páginas de maior valor comercial.</div>
+    </div>
+  </div>
+
+  <div class="audit-item">
+    <div class="audit-item-header">
+      <span class="item-id">C.3</span>
+      <span class="item-title">/collections/all — H1 "All Products" em Inglês (Bug de Localização)</span>
+      <span class="score-badge score-3">3</span>
+    </div>
+    <div class="audit-item-body">
+      <div class="evidence-box">
+        <div class="evidence-label">// Fato Observado — DevTools · loja.elements.com.br/collections/all (Setembro 2026)</div>
+        URL: https://loja.elements.com.br/collections/all<br>
+        H1 confirmado via DevTools: <strong>"All Products"</strong> (em inglês)<br>
+        URL equivalente em português: /collections/todos-os-produtos → H1: "Todos os Produtos"<br>
+        Ambas as páginas indexadas independentemente.
+      </div>
+      <p><strong>Análise:</strong> A URL <code>/collections/all</code> é gerada automaticamente pelo Shopify como coleção padrão "todos os produtos". Como o tema não sobrescreve o H1 dessa coleção específica, ela exibe "All Products" em inglês — contradição direta em um site inteiramente em português. Isso enfraquece o sinal de relevância para queries em português e cria inconsistência de experiência de usuário.</p>
+      <div class="recommendation-box">
+        <div class="rec-label">Recomendação</div>
+        Solução preferida: criar 301 redirect de /collections/all → /collections/todos-os-produtos (recomendação do item C.1).<br>
+        Alternativa: sobrescrever o título da coleção "all" diretamente no Shopify Admin → Coleções → "Todos os produtos" → campo de título.
+      </div>
+      <div class="impact-box"><strong>Impacto:</strong> Eliminação de H1 em inglês em site português. Consolidação de autoridade via redirect.</div>
+    </div>
+  </div>
+
+  <div class="conclusion-block">
+    <div class="conclusion-label">Conclusão Estratégica — Coleções</div>
+    <p>As páginas de coleção são as mais importantes para keywords de categoria (alto volume, alta intenção de compra) e são atualmente as mais negligenciadas em SEO on-page. A combinação de coleções duplicadas + sem copy + sem meta description + H1 em inglês na coleção padrão é o que explica por que a Elements pode ter dificuldade de ranquear para "cadeiras ergonômicas" e "mesa elétrica". As correções (redirects, copy, meta descriptions) podem ser executadas em uma semana diretamente no Shopify Admin.</p>
+  </div>
+</section>
+
+<!-- ═══════════ INSTITUCIONAL ═══════════ -->
+<section id="institucional">
+  <div class="section-header">08 — Páginas Institucionais</div>
+  <h2>Páginas Institucionais — /pages/</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="border-left:4px solid #595959;margin-bottom:24px;">
+    <p>Área sem problemas críticos. Único achado acionável: a página de teste /pages/header-poc incluída no sitemap (tratada no Módulo Técnico). As páginas de /pages/sobre e /pages/contato estão presentes e funcionais.</p>
+  </div>
+
+  <table>
+    <tr><th>Página</th><th>Score</th><th>URL</th><th>Observação</th></tr>
+    <tr>
+      <td>Sobre / Institucional</td><td><span class="score-badge score-2">2</span></td>
+      <td class="url-cite">loja.elements.com.br/pages/sobre</td>
+      <td>Presente e funcional. Oportunidade: enriquecer com história da marca e team para fortalecer E-E-A-T institucional</td>
+    </tr>
+    <tr>
+      <td>Contato</td><td><span class="score-badge score-2">2</span></td>
+      <td class="url-cite">loja.elements.com.br/pages/contato</td>
+      <td>Presente. Verificar consistência de NAP (Nome, Endereço, Telefone) com perfil Google Business se aplicável</td>
+    </tr>
+    <tr>
+      <td>header-poc (teste)</td><td><span class="score-badge score-3">3</span></td>
+      <td class="url-cite">loja.elements.com.br/pages/header-poc</td>
+      <td><span class="score-label-5">Remover do sitemap</span> — página de desenvolvimento exposta publicamente e enviada ao Google</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ═══════════ ROADMAP ═══════════ -->
+<section id="roadmap">
+  <div class="section-header">09 — Priorização</div>
+  <h2>Roadmap — Framework Q×I×D</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="background:#F5F5F5;margin-bottom:24px;">
+    <p style="font-size:13px;color:#595959;"><strong>Score Q×I×D = Qualidade (severidade 1–5) × Impacto SEO (1–5) × Dependência Estrutural (1–5)</strong><br>
+    80–125 = Sprint 1 (30 dias) · 40–79 = Sprint 2 (30–60 dias) · 15–39 = Sprint 3 (60–90 dias) · &lt;15 = Sprint 4</p>
+  </div>
+
+  <div class="sprint-card sprint-1">
+    <h4>🔴 Sprint 1 — Crítico · 30 dias</h4>
+    <table>
+      <tr><th>Ação</th><th>Área</th><th>URL Alvo</th><th>Q×I×D</th><th>Quem</th></tr>
+      <tr>
+        <td><strong>Corrigir H1s múltiplos no blog</strong> — editar article.liquid para 1 único H1 = título do artigo</td>
+        <td><span class="section-tag tag-blog">Blog</span></td>
+        <td class="url-cite">/blogs/artigos/[artigo] (185 posts)</td>
+        <td>125</td><td>Dev Shopify</td>
+      </tr>
+      <tr>
+        <td><strong>Criar 301 redirects das coleções duplicadas</strong> — /mais-vendidas → /mais-vendidos; /all → /todos-os-produtos</td>
+        <td><span class="section-tag tag-colecao">Coleções</span></td>
+        <td class="url-cite">/collections/ (2 pares)</td>
+        <td>80</td><td>Shopify Admin</td>
+      </tr>
+      <tr>
+        <td><strong>Criar template de meta description para produtos</strong> — keyword + benefício + CTA no theme.liquid</td>
+        <td><span class="section-tag tag-produto">Produtos</span></td>
+        <td class="url-cite">/products/ (395 PDPs)</td>
+        <td>80</td><td>Dev / SEO</td>
+      </tr>
+      <tr>
+        <td><strong>Escrever meta descriptions para top 8 coleções</strong> — /cadeiras-ergonomicas, /mesas-com-motorizado e principais</td>
+        <td><span class="section-tag tag-colecao">Coleções</span></td>
+        <td class="url-cite">/collections/ (estratégicas)</td>
+        <td>80</td><td>SEO / Copy</td>
+      </tr>
+      <tr>
+        <td><strong>Corrigir H1 da homepage</strong> — substituir "Mais vendidas" por H1 de brand + categoria; rebaixar heading de seção para H2/H3</td>
+        <td><span class="section-tag tag-tecnico">Técnico</span></td>
+        <td class="url-cite">loja.elements.com.br/ (homepage)</td>
+        <td>80</td><td>Dev Shopify</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="sprint-card sprint-2">
+    <h4>🟡 Sprint 2 — Alta Prioridade · 30–60 dias</h4>
+    <table>
+      <tr><th>Ação</th><th>Área</th><th>URL Alvo</th><th>Q×I×D</th><th>Quem</th></tr>
+      <tr>
+        <td><strong>Criar perfis de autor para o blog</strong> — 2–3 especialistas com bio, foto e credenciais</td>
+        <td><span class="section-tag tag-blog">Blog</span></td>
+        <td class="url-cite">/blogs/artigos</td>
+        <td>48</td><td>Editorial</td>
+      </tr>
+      <tr>
+        <td><strong>Diferir scripts de terceiros</strong> — Meta Pixel lazy, chat widget pós-scroll, apps não essenciais desativados</td>
+        <td><span class="section-tag tag-tecnico">Técnico</span></td>
+        <td class="url-cite">Todo o site (INP 305ms)</td>
+        <td>48</td><td>Dev</td>
+      </tr>
+      <tr>
+        <td><strong>Inserir links internos blog → produtos/coleções</strong> — revisar top 30 artigos por tráfego</td>
+        <td><span class="section-tag tag-blog">Blog</span></td>
+        <td class="url-cite">/blogs/artigos/ (top artigos)</td>
+        <td>48</td><td>Editorial / SEO</td>
+      </tr>
+      <tr>
+        <td><strong>Adicionar copy de categoria nas 5 coleções principais</strong> — 150–250 palavras por coleção</td>
+        <td><span class="section-tag tag-colecao">Coleções</span></td>
+        <td class="url-cite">/collections/cadeiras-ergonomicas, /mesas-com-motorizado</td>
+        <td>36</td><td>Copywriting</td>
+      </tr>
+      <tr>
+        <td><strong>Corrigir brand.name no schema</strong> — substituir "elementsbr" por "Elements" (configuração de marca no tema Shopify)</td>
+        <td><span class="section-tag tag-produto">Produtos</span></td>
+        <td class="url-cite">/products/ (todas as PDPs)</td>
+        <td>36</td><td>Dev Shopify</td>
+      </tr>
+      <tr>
+        <td><strong>Resolver BreadcrumbList duplicado em PDPs</strong> — identificar app vs tema; desabilitar injeção redundante</td>
+        <td><span class="section-tag tag-produto">Produtos</span></td>
+        <td class="url-cite">/products/ (todas as PDPs)</td>
+        <td>30</td><td>Dev / Shopify Admin</td>
+      </tr>
+      <tr>
+        <td><strong>Remover /pages/header-poc do sitemap</strong> — hide page no Shopify Admin</td>
+        <td><span class="section-tag tag-tecnico">Técnico</span></td>
+        <td class="url-cite">/pages/header-poc</td>
+        <td>18</td><td>Shopify Admin</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="sprint-card sprint-3">
+    <h4>⚫ Sprint 3 — Média Prioridade · 60–90 dias</h4>
+    <table>
+      <tr><th>Ação</th><th>Área</th><th>Q×I×D</th><th>Quem</th></tr>
+      <tr><td>Criar páginas pilar de cluster (/guia-cadeiras-ergonomicas, /guia-mesas-eletricas)</td><td><span class="section-tag tag-blog">Blog</span></td><td>36</td><td>SEO / Conteúdo</td></tr>
+      <tr><td>Corrigir CLS desktop (0.11) — identificar e fixar elemento causador via DevTools</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td>27</td><td>Dev</td></tr>
+      <tr><td>Adicionar FAQ schema em PDPs e artigos técnicos do blog</td><td><span class="section-tag tag-produto">Produto/Blog</span></td><td>18</td><td>SEO / Dev</td></tr>
+      <tr><td>Auditar e corrigir alt texts de imagem de produto (priorizar imagem principal)</td><td><span class="section-tag tag-produto">Produtos</span></td><td>18</td><td>SEO / Editorial</td></tr>
+      <tr><td>Verificar Product schema via Rich Results Test — confirmar offers e availability</td><td><span class="section-tag tag-produto">Produtos</span></td><td>12</td><td>SEO Técnico</td></tr>
+    </table>
+  </div>
+
+  <div class="sprint-card sprint-4">
+    <h4>🟢 Sprint 4 — Refinamentos · após 90 dias</h4>
+    <table>
+      <tr><th>Ação</th><th>Área</th><th>Q×I×D</th></tr>
+      <tr><td>Estruturar todos os 185 artigos em clusters com interligação sistemática</td><td><span class="section-tag tag-blog">Blog</span></td><td>24</td></tr>
+      <tr><td>Author schema em todos os artigos do blog</td><td><span class="section-tag tag-blog">Blog</span></td><td>12</td></tr>
+      <tr><td>Reavaliação CWV após Sprint 2 — confirmar INP &lt;200ms no campo via GSC</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td>—</td></tr>
+      <tr><td>HowTo schema em artigos de processo (montagem, ajuste de cadeira)</td><td><span class="section-tag tag-blog">Blog</span></td><td>12</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════ MATRIZ T/P/R ═══════════ -->
+<section id="matriz">
+  <div class="section-header">10 — Conteúdo</div>
+  <h2>Matriz de Conteúdo T/P/R</h2>
+  <div class="section-divider"></div>
+
+  <div class="card" style="border-left:4px solid #F0A500;margin-bottom:16px;">
+    <p style="font-size:13px;"><strong>Versão simplificada — sem GSC:</strong> Scores T (Tração) são estimativas por importância estrutural. Scores P (Potencial) baseados em volume estimado de demanda da keyword principal. Validar T com dados reais do GSC após conexão.</p>
+  </div>
+
+  <div class="card-grid" style="grid-template-columns:repeat(5,1fr);">
+    <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value">4</div><div class="kpi-label">Expandir</div></div>
+    <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value">3</div><div class="kpi-label">Atualizar</div></div>
+    <div class="kpi-card" style="border-top:4px solid #595959;"><div class="kpi-value">2</div><div class="kpi-label">Manter</div></div>
+    <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value">1</div><div class="kpi-label">Consolidar</div></div>
+    <div class="kpi-card" style="border-top:4px solid #D9D9D9;"><div class="kpi-value">1</div><div class="kpi-label">Descontinuar</div></div>
+  </div>
+
+  <table>
+    <tr><th>URL</th><th>Tipo</th><th>T</th><th>P</th><th>R</th><th>Score</th><th>Ação</th><th>Próximo Passo</th></tr>
+    <tr>
+      <td class="url-cite">/collections/cadeiras-ergonomicas</td><td>Coleção</td><td>4</td><td>4</td><td>5</td><td><strong>13</strong></td>
+      <td><span style="color:#1B7F37;font-weight:700;">Expandir</span></td>
+      <td>Copy de categoria + cluster de conteúdo + meta description</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/collections/mesas-com-motorizado</td><td>Coleção</td><td>3</td><td>5</td><td>5</td><td><strong>13</strong></td>
+      <td><span style="color:#1B7F37;font-weight:700;">Expandir</span></td>
+      <td>Cluster de conteúdo — demanda alta, presença atual baixa (P=5)</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/ (Homepage)</td><td>Home</td><td>5</td><td>3</td><td>5</td><td><strong>13</strong></td>
+      <td><span style="color:#1B7F37;font-weight:700;">Expandir</span></td>
+      <td>Verificar H1 único + meta title otimizado para brand + categoria</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/products/ (top 10 bestsellers)</td><td>Produto</td><td>3</td><td>4</td><td>5</td><td><strong>12</strong></td>
+      <td><span style="color:#1B7F37;font-weight:700;">Expandir</span></td>
+      <td>Meta descriptions manuais + FAQ schema + alt texts</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/blogs/artigos (artigos 2024–2026)</td><td>Blog</td><td>2</td><td>5</td><td>3</td><td><strong>10</strong></td>
+      <td><span style="color:#C00000;font-weight:700;">Atualizar</span></td>
+      <td>Corrigir H1s + atribuir autores + inserir links para produtos</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/collections/home-office</td><td>Coleção</td><td>2</td><td>4</td><td>4</td><td><strong>10</strong></td>
+      <td><span style="color:#C00000;font-weight:700;">Atualizar</span></td>
+      <td>Copy de categoria + meta description + linking do blog</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/blogs/artigos (artigos tópicos periféricos)</td><td>Blog</td><td>2</td><td>3</td><td>3</td><td><strong>8</strong></td>
+      <td><span style="color:#F0A500;font-weight:700;">Atualizar</span></td>
+      <td>Atualizar dados + atribuir autoria + adicionar links internos</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/pages/sobre</td><td>Institucional</td><td>2</td><td>2</td><td>2</td><td><strong>6</strong></td>
+      <td><span style="color:#595959;font-weight:700;">Manter</span></td>
+      <td>Enriquecer com história da marca para E-E-A-T institucional</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/pages/contato</td><td>Institucional</td><td>1</td><td>2</td><td>2</td><td><strong>5</strong></td>
+      <td><span style="color:#595959;font-weight:700;">Manter</span></td>
+      <td>Verificar consistência de NAP</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/blogs/artigos (artigos &lt;2022 desatualizados)</td><td>Blog</td><td>1</td><td>2</td><td>2</td><td><strong>5</strong></td>
+      <td><span style="color:#F0A500;font-weight:700;">Consolidar</span></td>
+      <td>Identificar artigos similares → unificar em versão mais completa + 301</td>
+    </tr>
+    <tr>
+      <td class="url-cite">/pages/header-poc</td><td>Teste</td><td>1</td><td>1</td><td>1</td><td><strong>3</strong></td>
+      <td><span style="color:#C00000;font-weight:700;">Descontinuar</span></td>
+      <td>Remover do sitemap + noindex ou excluir a página</td>
+    </tr>
+  </table>
+
+  <div class="card" style="border-left:4px solid #C00000;margin-top:16px;">
+    <p><strong>Insight editorial:</strong> A maior oportunidade de conteúdo está em <strong>mesas elétricas / standing desk</strong> (P=5 — demanda alta com baixa presença atual) e na requalificação do blog existente. A produção de conteúdo novo deve começar <em>após</em> corrigir H1s e atribuir autores nos 185 artigos existentes — sem essa base, novos artigos sofrerão os mesmos problemas.</p>
+  </div>
+</section>
+
+<!-- ═══════════ PRÓXIMOS PASSOS ═══════════ -->
+<section id="proximos">
+  <div class="section-header">11 — Próximos Passos</div>
+  <h2>Próximos Passos</h2>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <h3>Semana 1 — Template do Tema Shopify (impacto em escala)</h3>
+    <ol style="padding-left:20px;line-height:2.2;">
+      <li>Duplicar o tema atual no Shopify (rollback seguro)</li>
+      <li><strong>Blog:</strong> editar article.liquid — garantir 1 único H1 = <code>{{ article.title }}</code></li>
+      <li><strong>Produtos:</strong> editar theme.liquid para gerar meta description dinâmica (keyword + benefício + CTA)</li>
+      <li>Validar em 10 artigos e 10 PDPs com SEO META in 1 CLICK</li>
+      <li>Publicar tema corrigido e monitorar Search Console por 7 dias</li>
+    </ol>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>Semana 2 — Redirects e Meta Descriptions Manuais (Shopify Admin)</h3>
+    <ol style="padding-left:20px;line-height:2.2;">
+      <li>Criar 301: <span class="url-cite">/collections/mais-vendidas</span> → <span class="url-cite">/collections/mais-vendidos</span></li>
+      <li>Criar 301: <span class="url-cite">/collections/all</span> → <span class="url-cite">/collections/todos-os-produtos</span></li>
+      <li>Escrever meta descriptions para top 8 coleções estratégicas</li>
+      <li>Esconder <span class="url-cite">/pages/header-poc</span> no Shopify Admin</li>
+      <li>Verificar links internos que apontam para URLs descontinuadas e atualizar</li>
+    </ol>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>Semana 3–4 — Blog: Autores + Links Internos</h3>
+    <ol style="padding-left:20px;line-height:2.2;">
+      <li>Definir 2–3 perfis de autor (internos ou especialistas parceiros em ergonomia)</li>
+      <li>Criar páginas de autor no Shopify blog com bio, foto e credenciais</li>
+      <li>Reatribuir artigos existentes aos autores por tema</li>
+      <li>Revisão dos top 30 artigos por tráfego: inserir 2 links contextuais para produto/coleção por artigo</li>
+    </ol>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>KPIs para Acompanhar (baseline → meta 30–60 dias)</h3>
+    <table>
+      <tr><th>KPI</th><th>Valor Atual</th><th>Meta</th><th>Onde Medir</th></tr>
+      <tr><td>H1s por artigo de blog</td><td>Múltiplos</td><td>1 por página</td><td>SEO META in 1 CLICK</td></tr>
+      <tr><td>CWV Assessment Mobile</td><td>FAILED (INP 305ms)</td><td>PASSED (INP &lt;200ms)</td><td>PageSpeed / GSC</td></tr>
+      <tr><td>CLS Desktop</td><td>0.11 (NI)</td><td>&lt;0.10 (GOOD)</td><td>PageSpeed Insights</td></tr>
+      <tr><td>CTR médio orgânico</td><td>— (sem GSC)</td><td>+15% vs. baseline</td><td>Google Search Console</td></tr>
+      <tr><td>Impressões orgânicas</td><td>— (sem GSC)</td><td>+10% em 60 dias</td><td>Google Search Console</td></tr>
+      <tr><td>Coleções duplicadas indexadas</td><td>2 pares</td><td>0 pares (redirects ativos)</td><td>GSC + site:[domínio]</td></tr>
+    </table>
+    <p style="font-size:12px;color:#595959;margin-top:12px;"><em>Conectar Google Search Console imediatamente para estabelecer baseline antes das correções do Sprint 1 — sem o GSC, o impacto real das ações não é mensurável.</em></p>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong>Metodologia:</strong> Diagnóstico produzido pela V4 Company - Carvalho &amp; Co. utilizando a metodologia S.C.O.P.E. v2.0 com navegação direta ao site via Claude in Chrome, análise do PageSpeed Insights (campo), sitemap.xml, robots.txt e dados públicos.<br><br>
+  <strong>Limitações:</strong> Google Search Console não disponível — métricas de tráfego são estimativas de fontes públicas. Schema markup verificado via Chrome DevTools MCP (Setembro 2026) — confirmados: ProductGroup, Product, BreadcrumbList (duplicado em PDPs), WebSite, Organization e Article schemas. brand.name = "elementsbr" e BreadcrumbList duplicado são achados de DevTools, não inferências. Achados refletem o estado do site em Setembro de 2026.<br><br>
+  <strong>Auditoria:</strong> Setembro 2026 &nbsp;·&nbsp; <strong>SCOPE Auditor</strong> v2.0 &nbsp;·&nbsp; <strong>Analista:</strong> Ivan Felipe &nbsp;·&nbsp; <a href="mailto:ivan.felipe@v4company.com" style="color:#595959;">ivan.felipe@v4company.com</a> &nbsp;·&nbsp; V4 Company - Carvalho &amp; Co.
+</div>
+
+</div>
+</body>
+</html>

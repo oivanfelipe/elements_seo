@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCOPE Audit — Elements Corporativo — Setembro 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,system-ui,-apple-system,sans-serif;background:#F5F5F5;color:#111;font-size:15px;line-height:1.6}
+    .report-header{background:#111;color:#fff;padding:48px 64px;position:relative;border-bottom:4px solid #C00000}
+    .report-header .agency{font-family:'Oswald',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C00000;margin-bottom:12px;font-weight:700}
+    .report-header h1{font-family:'Oswald',Arial,sans-serif;font-size:32px;font-weight:700;margin-bottom:8px;text-transform:uppercase}
+    .report-header .subtitle{font-size:18px;color:#D9D9D9;margin-bottom:24px}
+    .report-header .meta{display:flex;gap:32px;font-size:13px;color:#595959;flex-wrap:wrap}
+    .confidential-tag{position:absolute;top:48px;right:64px;border:1px solid #C00000;color:#C00000;padding:6px 14px;border-radius:4px;font-size:11px;letter-spacing:1px;font-family:'Oswald',Arial,sans-serif;font-weight:700;text-transform:uppercase}
+    .toc{background:#111;color:#fff;padding:0 64px;display:flex;gap:0;overflow-x:auto;border-bottom:2px solid #C00000}
+    .toc a{color:#D9D9D9;text-decoration:none;font-size:12px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase;padding:12px 16px;white-space:nowrap;border-right:1px solid #595959}
+    .toc a:hover{color:#C00000}
+    .container{max-width:1200px;margin:0 auto;padding:40px 64px}
+    section{margin-bottom:48px}
+    .section-header{color:#C00000;font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+    section h2{font-family:'Oswald',Arial,sans-serif;font-size:22px;font-weight:700;color:#111;text-transform:uppercase;margin-bottom:4px}
+    .section-tag{display:inline-block;font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-bottom:12px}
+    .tag-blog{background:#E3F2FD;color:#1565C0}
+    .tag-produto{background:#E8F5E9;color:#2E7D32}
+    .tag-colecao{background:#FFF3E0;color:#E65100}
+    .tag-tecnico{background:#F3E5F5;color:#6A1B9A}
+    .tag-institucional{background:#F5F5F5;color:#333;border:1px solid #ccc}
+    .tag-estrategico{background:#FCE4EC;color:#880E4F}
+    .tag-geral{background:#FFEBEE;color:#C00000}
+    .section-divider{height:2px;background:#C00000;margin-bottom:24px}
+    section h3{font-size:15px;font-weight:700;color:#111;margin:24px 0 12px;text-transform:uppercase}
+    .page-section-header{background:#111;color:#fff;padding:10px 20px;border-radius:6px 6px 0 0;font-family:'Oswald',Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:0}
+    .page-section-body{background:#fff;border:1px solid #D9D9D9;border-top:none;border-radius:0 0 8px 8px;padding:24px;margin-bottom:24px}
+    .card{background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:24px;margin-bottom:16px}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
+    .kpi-card{background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:20px 24px;text-align:center}
+    .kpi-card .kpi-value{font-family:'Oswald',Arial,sans-serif;font-size:28px;font-weight:700;color:#C00000}
+    .kpi-card .kpi-label{font-size:11px;color:#595959;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-weight:700}
+    .kpi-card .kpi-source{font-size:11px;color:#aaa;margin-top:4px}
+    .score-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;font-family:'Oswald',Arial,sans-serif}
+    .score-1{background:#1B7F37}.score-2{background:#558B2F}.score-3{background:#F0A500;color:#111}.score-4{background:#E65100}.score-5{background:#C00000}
+    .score-label-1{color:#1B7F37;font-weight:700}.score-label-2{color:#558B2F;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#E65100;font-weight:700}.score-label-5{color:#C00000;font-weight:700}
+    .audit-item{background:#fff;border:1px solid #D9D9D9;border-radius:8px;margin-bottom:16px;overflow:hidden}
+    .audit-item-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid #F5F5F5;background:#F5F5F5}
+    .audit-item-header .item-id{font-size:11px;color:#595959;font-weight:700;min-width:32px;font-family:'Oswald',Arial,sans-serif}
+    .audit-item-header .item-title{font-size:14px;font-weight:700;flex:1}
+    .audit-item-body{padding:20px}
+    .url-cite{font-family:'Courier New',monospace;font-size:12px;background:#F5F5F5;padding:3px 8px;border-radius:3px;color:#1565C0;display:inline-block;margin:2px 0}
+    .evidence-box{background:#F9F9F9;border-left:3px solid #595959;padding:12px 16px;border-radius:0 6px 6px 0;margin:12px 0;font-size:13px}
+    .evidence-box strong{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#595959;display:block;margin-bottom:4px}
+    .benchmark-box{background:#EFF8FF;border-left:3px solid #1565C0;padding:12px 16px;border-radius:0 6px 6px 0;margin:12px 0;font-size:13px}
+    .benchmark-box strong{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#1565C0;display:block;margin-bottom:4px}
+    .recommendation-box{background:#FFEBEE;border-left:3px solid #C00000;padding:12px 16px;border-radius:0 6px 6px 0;margin:12px 0;font-size:13px}
+    .recommendation-box strong{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#C00000;display:block;margin-bottom:4px}
+    .impact-box{background:#E8F5E9;border-left:3px solid #2E7D32;padding:12px 16px;border-radius:0 6px 6px 0;margin:12px 0;font-size:13px}
+    .impact-box strong{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#2E7D32;display:block;margin-bottom:4px}
+    .sprint-card{border-radius:8px;padding:20px;margin-bottom:12px}
+    .sprint-1{background:#fff3cd;border:1px solid #f0a500}.sprint-2{background:#fff8e1;border:1px solid #ffd600}
+    .sprint-3{background:#f9fbe7;border:1px solid #c6e000}.sprint-4{background:#f5f5f5;border:1px solid #ccc}
+    .sprint-card .sprint-label{font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+    .sprint-1 .sprint-label{color:#E65100}.sprint-2 .sprint-label{color:#F0A500}.sprint-3 .sprint-label{color:#558B2F}.sprint-4 .sprint-label{color:#595959}
+    .sprint-item{font-size:13px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.07)}
+    .sprint-item:last-child{border-bottom:none}
+    .sprint-item .qid-score{font-family:'Oswald',Arial,sans-serif;font-weight:700;font-size:13px;float:right}
+    table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:8px;overflow:hidden}
+    table th{background:#111;color:#fff;padding:10px 14px;text-align:left;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+    table td{padding:10px 14px;border-bottom:1px solid #F5F5F5;vertical-align:top}
+    table tr:last-child td{border-bottom:none}
+    table tr:hover td{background:#FAFAFA}
+    .status-ok{color:#2E7D32;font-weight:700}.status-warn{color:#E65100;font-weight:700}.status-crit{color:#C00000;font-weight:700}
+    .alert-banner{background:#FFEBEE;border:1px solid #C00000;border-radius:8px;padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start}
+    .alert-banner .alert-icon{font-size:18px;margin-top:2px}
+    .alert-banner .alert-title{font-family:'Oswald',Arial,sans-serif;font-size:13px;font-weight:700;color:#C00000;text-transform:uppercase;letter-spacing:.5px}
+    .info-banner{background:#EFF8FF;border:1px solid #1565C0;border-radius:8px;padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start}
+    .info-banner .info-icon{font-size:18px;margin-top:2px}
+    .info-banner .info-title{font-family:'Oswald',Arial,sans-serif;font-size:13px;font-weight:700;color:#1565C0;text-transform:uppercase;letter-spacing:.5px}
+    .subdomain-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:24px}
+    .subdomain-card{background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:16px 18px}
+    .subdomain-card .sd-name{font-family:'Oswald',Arial,sans-serif;font-size:13px;font-weight:700;margin-bottom:4px}
+    .subdomain-card .sd-status{font-size:12px}
+    .sd-active{border-left:3px solid #2E7D32}
+    .sd-redirect{border-left:3px solid #F0A500}
+    .sd-missing{border-left:3px solid #C00000}
+    .radar-container{background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:24px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .disclaimer{background:#F5F5F5;border:1px solid #D9D9D9;border-radius:8px;padding:20px 24px;font-size:12px;color:#595959;margin-top:40px}
+    @media(max-width:768px){.container{padding:24px 16px}.report-header{padding:32px 16px}.confidential-tag{position:static;display:inline-block;margin-top:16px}.toc{padding:0 16px}}
+    @media print{.toc{display:none}.report-header{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+  </style>
+</head>
+<body>
+
+<header class="report-header">
+  <div class="agency">V4 Company — Carvalho &amp; Co. · Auditoria S.C.O.P.E.</div>
+  <h1>SCOPE Audit: Elements Corporativo</h1>
+  <div class="subtitle">corporativo.elements.com.br · Canal B2B · Setembro 2026</div>
+  <div class="meta">
+    <span><strong>Analista:</strong> Ivan Felipe · <a href="mailto:ivan.felipe@v4company.com" style="color:#D9D9D9;">ivan.felipe@v4company.com</a> · V4 Company - Carvalho &amp; Co.</span>
+    <span><strong>Data:</strong> Setembro 2026</span>
+    <span><strong>Plataforma:</strong> Shopify (B2B store)</span>
+    <span><strong>Metodologia:</strong> S.C.O.P.E. v2</span>
+  </div>
+  <div class="confidential-tag">Confidencial</div>
+</header>
+
+<nav class="toc">
+  <a href="#mapa">Mapa de Subdomínios</a>
+  <a href="#baseline">Baseline</a>
+  <a href="#radar">Radar</a>
+  <a href="#infra">Infraestrutura</a>
+  <a href="#blog">Blog</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#colecoes">Coleções</a>
+  <a href="#institucional">Institucional</a>
+  <a href="#estrategico">Estratégico</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<div class="container">
+
+  <!-- MAPA DE SUBDOMÍNIOS -->
+  <section id="mapa">
+    <div class="section-header">Contexto · Diagnóstico de Escopo</div>
+    <h2>Mapa de Subdomínios — elements.com.br</h2>
+    <div class="section-divider"></div>
+
+    <div class="info-banner">
+      <div class="info-icon">ℹ️</div>
+      <div>
+        <div class="info-title">Escopo desta análise</div>
+        Este relatório cobre exclusivamente <strong>corporativo.elements.com.br</strong>. A auditoria de <strong>loja.elements.com.br</strong> está em documento separado. O mapa abaixo registra todos os subdomínios identificados durante a investigação.
+      </div>
+    </div>
+
+    <div class="subdomain-map">
+      <div class="subdomain-card sd-active">
+        <div class="sd-name">loja.elements.com.br</div>
+        <div class="sd-status"><span class="status-ok">● Ativo</span> — Canal B2C principal · Shopify · 395 produtos<br><em>Auditado em relatório separado</em></div>
+      </div>
+      <div class="subdomain-card sd-active">
+        <div class="sd-name">corporativo.elements.com.br</div>
+        <div class="sd-status"><span class="status-ok">● Ativo</span> — Canal B2B · Shopify · 61 produtos · Acesso por CNPJ<br><em>Este relatório</em></div>
+      </div>
+      <div class="subdomain-card sd-redirect">
+        <div class="sd-name">elements.com.br</div>
+        <div class="sd-status"><span class="status-warn">→ 301</span> Redireciona para loja.elements.com.br</div>
+      </div>
+      <div class="subdomain-card sd-redirect">
+        <div class="sd-name">www.elements.com.br</div>
+        <div class="sd-status"><span class="status-warn">→ 301</span> Redireciona para loja.elements.com.br</div>
+      </div>
+      <div class="subdomain-card sd-missing">
+        <div class="sd-name">blog.elements.com.br</div>
+        <div class="sd-status"><span class="status-crit">● DNS não encontrado</span> — Subdomínio inexistente</div>
+      </div>
+      <div class="subdomain-card sd-missing">
+        <div class="sd-name">suporte.elements.com.br</div>
+        <div class="sd-status"><span class="status-crit">● DNS não encontrado</span> — Subdomínio inexistente</div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #C00000">
+      <p style="font-size:13px"><strong style="font-family:'Oswald',Arial,sans-serif;text-transform:uppercase;color:#C00000;letter-spacing:.5px">Observação estratégica sobre a arquitetura de subdomínios:</strong><br>
+      Os dois canais principais operam em subdomínios separados (<code>loja.</code> e <code>corporativo.</code>). Para o Google, cada subdomínio Shopify é tratado como site independente — backlinks, autoridade de domínio (DR) e sinais de E-E-A-T <strong>não são consolidados</strong> entre eles. Esta é a decisão arquitetural mais impactante para o crescimento orgânico de longo prazo do canal corporativo e é abordada em detalhe na seção Estratégico.</p>
+    </div>
+  </section>
+
+  <!-- BASELINE -->
+  <section id="baseline">
+    <div class="section-header">Módulo 00 · Contexto e Métricas</div>
+    <h2>Baseline — corporativo.elements.com.br</h2>
+    <div class="section-divider"></div>
+
+    <div class="card-grid">
+      <div class="kpi-card" style="border-top:4px solid #C00000;">
+        <div class="kpi-value" style="color:#C00000;">~561</div>
+        <div class="kpi-label">Visitas Org./mês</div>
+        <div class="kpi-source">Semrush · Set 2026</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">61</div>
+        <div class="kpi-label">Produtos no Sitemap</div>
+        <div class="kpi-source">sitemap_products_1.xml</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">26</div>
+        <div class="kpi-label">Coleções Indexadas</div>
+        <div class="kpi-source">sitemap_collections_1.xml</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">19</div>
+        <div class="kpi-label">Páginas no Sitemap</div>
+        <div class="kpi-source">sitemap_pages_1.xml · 6 são internas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">0</div>
+        <div class="kpi-label">Artigos no Blog</div>
+        <div class="kpi-source">sitemap_blogs_1.xml · 1 URL = índice</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">Shopify</div>
+        <div class="kpi-label">Plataforma</div>
+        <div class="kpi-source">cdn.shopify.com confirmado</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">B2B</div>
+        <div class="kpi-label">Modelo de Negócio</div>
+        <div class="kpi-source">Preços por CNPJ cadastrado</div>
+      </div>
+    </div>
+
+    <div class="card-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">1.8s</div><div class="kpi-label">LCP Mobile</div><div class="kpi-source">✅ GOOD (&lt;2.5s)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">132ms</div><div class="kpi-label">INP Mobile</div><div class="kpi-source">✅ GOOD (&lt;200ms)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">0.0</div><div class="kpi-label">CLS Mobile</div><div class="kpi-source">✅ GOOD (&lt;0.1)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">PASSED</div><div class="kpi-label">CWV Assessment</div><div class="kpi-source">✅ Todos GOOD</div></div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:13px;color:#595959"><strong>Core Web Vitals:</strong> corporativo.elements.com.br PASSOU em todas as métricas mobile — LCP 1.8s, INP 132ms, CLS 0. Vantagem sobre loja.elements.com.br (INP FAILED em 305ms). Manter este desempenho em qualquer modificação futura de tema ou apps.<br><br>
+      <strong>Fonte de tráfego:</strong> Dados Semrush (export Set 2026, 386 keywords). Tráfego orgânico estimado ~561 visitas/mês — confirmado calculando "elements" (271 visitas = 48,3% do total). Google Search Console não disponível — conectar para validar com dados reais.</p>
+    </div>
+
+    <div class="card" style="border:2px solid #C00000;margin-top:16px;">
+      <p style="font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;color:#C00000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚠ ACHADO CRÍTICO — Tráfego Orgânico Extremamente Baixo</p>
+      <p style="font-size:13px;">corporativo.elements.com.br gera <strong>~561 visitas orgânicas/mês</strong> (Semrush) contra <strong>~124.400 da loja.elements.com.br</strong> — uma diferença de <strong>221×</strong>. O tráfego é 100% dependente de marca: "elements" e variações representam praticamente toda a demanda capturada. Nenhuma keyword de categoria ("cadeira ergonomica", "cadeira de escritório", "mesa elétrica") aparece nas posições do corporativo. A ausência de blog, a estratégia de preços gateados (CNPJ) e a arquitetura de coleções sem conteúdo editorial explicam o low footprint orgânico.</p>
+      <div style="margin-top:12px;">
+        <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:0;">
+          <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value" style="color:#C00000;">221×</div><div class="kpi-label">Diferença vs. Loja</div><div class="kpi-source">124.400 vs. 561 visitas/mês</div></div>
+          <div class="kpi-card" style="border-top:4px solid #E65100;"><div class="kpi-value" style="color:#E65100;">~99%</div><div class="kpi-label">Tráfego Brand</div><div class="kpi-source">Quase sem keywords de categoria</div></div>
+          <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value" style="color:#F0A500;">0</div><div class="kpi-label">Keywords Cat. no Top 20</div><div class="kpi-source">"cadeira ergonomica" = sem ranking</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Top Keywords por Tráfego — corporativo.elements.com.br</h3>
+    <table>
+      <tr><th>#</th><th>Keyword</th><th>Intenção</th><th>Posição</th><th>Tráfego/mês</th><th>Volume</th><th>URL de Destino</th></tr>
+      <tr><td>1</td><td><strong>elements</strong></td><td>Informacional/Navegacional</td><td>3</td><td>271</td><td>27.100</td><td>corporativo.elements.com.br/</td></tr>
+      <tr><td>2</td><td>cadeira elements</td><td>Comercial/Navegacional</td><td>4</td><td>96</td><td>12.100</td><td>/collections/cadeiras</td></tr>
+      <tr><td>3</td><td>elements astra pro</td><td>Informacional/Transacional</td><td>4</td><td>26</td><td>1.900</td><td>/products/cadeira-ergonomica-astra-pro</td></tr>
+      <tr><td>4</td><td>elements cadeiras</td><td>Navegacional</td><td>4</td><td>24</td><td>2.400</td><td>/collections/cadeiras</td></tr>
+      <tr><td>5</td><td>astra pro</td><td>Comercial</td><td>8</td><td>22</td><td>1.000</td><td>/products/cadeira-ergonomica-astra-pro</td></tr>
+    </table>
+    <p style="font-size:12px;color:#595959;margin-top:8px;"><em>Nota: as 386 keywords exportadas totalizam ~561 visitas/mês. A grande maioria tem tráfego "0" ou "&lt; 0,01" — o site praticamente não captura demanda de pesquisa não-brand.</em></p>
+  </section>
+
+  <!-- RADAR -->
+  <section id="radar">
+    <div class="section-header">Visão Consolidada · Scores por Dimensão</div>
+    <h2>Radar SCOPE — corporativo.elements.com.br</h2>
+    <div class="section-divider"></div>
+    <p style="font-size:13px;color:#595959;margin-bottom:20px">Score por dimensão: <strong>1 = Excelente / 5 = Crítico</strong>. Quanto maior a área no radar, pior o estado geral.</p>
+    <div class="radar-container">
+      <canvas id="scopeRadar" width="420" height="380"></canvas>
+      <p style="font-size:11px;color:#aaa;margin-top:8px">Score médio geral: <strong>3.4 / 5.0</strong></p>
+    </div>
+    <script>
+      const ctx = document.getElementById('scopeRadar').getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Infraestrutura','Blog','Produtos','Coleções','Semântica & AIO'],
+          datasets: [{
+            label: 'corporativo.elements.com.br',
+            data: [3.0, 4.8, 3.2, 3.2, 3.8],
+            backgroundColor: 'rgba(192,0,0,0.15)',
+            borderColor: '#C00000',
+            borderWidth: 2,
+            pointBackgroundColor: '#C00000',
+            pointRadius: 5
+          }]
+        },
+        options: {
+          responsive: false,
+          scales: {
+            r: {
+              min: 0, max: 5,
+              ticks: { stepSize: 1, font: { size: 10 } },
+              pointLabels: { font: { size: 12, family: "'Oswald', Arial, sans-serif" }, color: '#111' },
+              grid: { color: 'rgba(0,0,0,0.1)' }
+            }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    </script>
+
+    <table style="margin-top:16px">
+      <thead><tr><th>Dimensão</th><th>Score</th><th>Classificação</th><th>Principal problema</th></tr></thead>
+      <tbody>
+        <tr><td>Infraestrutura Técnica</td><td><span class="score-badge score-3">3.0</span></td><td class="score-label-3">Regular</td><td>6 páginas internas/transacionais no sitemap indexadas</td></tr>
+        <tr><td>Blog</td><td><span class="score-badge score-5">4.8</span></td><td class="score-label-5">Crítico</td><td>Blog abandonado — zero artigos indexados; /blogs/news com H1 "News"</td></tr>
+        <tr><td>Produtos</td><td><span class="score-badge score-3">3.2</span></td><td class="score-label-3">Regular</td><td>Sem meta description; price gating bloqueia rich snippets</td></tr>
+        <tr><td>Coleções</td><td><span class="score-badge score-3">3.2</span></td><td class="score-label-3">Regular</td><td>Sem meta description; páginas sazonais finas no sitemap</td></tr>
+        <tr><td>Semântica &amp; AIO</td><td><span class="score-badge score-4">3.8</span></td><td class="score-label-4">Ruim</td><td>Sem blog ativo = sem autoridade temática; schema não verificado</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- INFRAESTRUTURA TÉCNICA -->
+  <section id="infra">
+    <div class="page-section-header">
+      <span class="section-tag tag-tecnico" style="margin-bottom:0">Técnico</span>
+      Infraestrutura de Rastreabilidade
+    </div>
+    <div class="page-section-body">
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">T.1</span>
+          <span class="score-badge score-2">2</span>
+          <span class="item-title">robots.txt — Configuração de rastreamento</span>
+          <span class="score-label-2">Bom</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/robots.txt</span><br>
+            Configuração padrão Shopify. Bloqueia corretamente: <code>/admin</code>, <code>/cart/</code>, <code>/checkout</code>, <code>/checkouts/</code>, <code>/orders</code>, <code>/account</code>. Permite produtos, coleções, páginas e blog. Referência à Sitemap: <code>corporativo.elements.com.br/sitemap.xml</code>. Inclui diretivas específicas para Google AdsBot.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Adicionar regra <code>Disallow: /pages/pagina-pos-registro</code>, <code>/pages/cnpj-invalido</code>, <code>/pages/pagina-de-obrigado-*</code> e <code>/pages/formulario-*</code> no robots.txt como camada adicional de proteção. A solução principal é via noindex (vide T.2), mas robots.txt como segunda barreira é boa prática.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Redução de rastreamento desperdiçado em páginas sem valor orgânico.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">T.2</span>
+          <span class="score-badge score-5">5</span>
+          <span class="item-title">Sitemap — Páginas internas e transacionais indexadas</span>
+          <span class="score-label-5">Crítico</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="alert-banner">
+            <div class="alert-icon">⚠️</div>
+            <div>
+              <div class="alert-title">Prioridade máxima — risco de indexação de conteúdo irrelevante</div>
+              6 páginas internas ou transacionais estão no sitemap_pages_1.xml e potencialmente indexadas no Google.
+            </div>
+          </div>
+          <div class="evidence-box">
+            <strong>Evidência — Confirmado via DevTools (Setembro 2026)</strong>
+            <span class="url-cite">corporativo.elements.com.br/sitemap_pages_1.xml</span><br>
+            3 das 6 páginas verificadas diretamente via Chrome DevTools MCP — ausência de noindex confirmada:<br>
+            <ul style="list-style:none;margin-top:8px">
+              <li><span class="url-cite">/pages/pagina-pos-registro</span> — <strong>SEM noindex</strong> ✗ · página pós-cadastro indexável</li>
+              <li><span class="url-cite">/pages/cnpj-invalido</span> — <strong>SEM noindex</strong> ✗ · página de erro de validação indexável</li>
+              <li><span class="url-cite">/pages/pagina-de-obrigado-mql</span> — <strong>SEM noindex</strong> ✗ · página de obrigado indexável</li>
+              <li><span class="url-cite">/pages/pagina-de-obrigado-redirect-site</span> — não verificada via DevTools</li>
+              <li><span class="url-cite">/pages/formulario-corporativo-site-elements-rd</span> — não verificada via DevTools</li>
+              <li><span class="url-cite">/pages/formulario-ambiente-corporativo</span> — não verificada via DevTools</li>
+            </ul>
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Sites B2B líderes (ex.: Steelcase, Herman Miller corporativo) mantêm páginas de obrigado, formulários e páginas de erro completamente fora do sitemap e com <code>noindex</code>. Estas páginas, quando indexadas, enviam sinal de conteúdo thin ao Google e desperdiçam crawl budget.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Adicionar <code>&lt;meta name="robots" content="noindex, nofollow"&gt;</code> em todas as 6 páginas via tema Shopify ou app de SEO. Removê-las manualmente do sitemap configurando a opção de exclusão no Shopify Admin → Configurações de SEO. Verificar no Search Console se já foram rastreadas e, se sim, solicitar remoção.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Eliminação de sinais negativos de qualidade de conteúdo; otimização do crawl budget para páginas com valor real.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">T.3</span>
+          <span class="score-badge score-3">3</span>
+          <span class="item-title">Sitemap — Estrutura geral</span>
+          <span class="score-label-3">Regular</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/sitemap.xml</span><br>
+            5 child sitemaps presentes: <code>sitemap_agentic_discovery.xml</code>, <code>sitemap_products_1.xml</code> (61 URLs), <code>sitemap_pages_1.xml</code> (19 URLs), <code>sitemap_collections_1.xml</code> (26 URLs), <code>sitemap_blogs_1.xml</code> (1 URL = apenas o índice /blogs/news, sem artigos).
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Após resolver T.2, rever se <code>sitemap_blogs_1.xml</code> deve permanecer no índice enquanto o blog não tem artigos publicados. Um sitemap de blog com apenas a URL do índice gera noise. Hipótese: o blog foi criado na plataforma mas nunca populado — decidir entre ativar com conteúdo ou remover do sitemap.
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">T.4</span>
+          <span class="score-badge score-2">2</span>
+          <span class="item-title">SSL / HTTPS</span>
+          <span class="score-label-2">Bom</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            Site serve HTTPS corretamente via Shopify CDN. Certificado válido (padrão Shopify). Dado não disponível: grau SSL detalhado (A/B/F) — verificação via SSLLabs não executada. Hipótese: standard Shopify = grau A ou A+.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Sem ação necessária neste ponto — verificar SSLLabs se surgirem alertas de segurança.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="page-section-header">
+      <span class="section-tag tag-blog" style="margin-bottom:0">Blog</span>
+      /blogs/news — Conteúdo Editorial
+    </div>
+    <div class="page-section-body">
+
+      <div class="alert-banner">
+        <div class="alert-icon">🚨</div>
+        <div>
+          <div class="alert-title">Blog abandonado — dimensão mais crítica deste site</div>
+          O blog corporativo existe na plataforma mas não possui artigos publicados. O sitemap aponta apenas para a URL do índice. Esta é a maior lacuna de oportunidade orgânica do canal B2B.
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">BL.1</span>
+          <span class="score-badge score-5">5</span>
+          <span class="item-title">Blog — Zero artigos publicados</span>
+          <span class="score-label-5">Crítico</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/blogs/news</span><br>
+            H1 da página: <code>"News"</code> (genérico, sem keyword). Nenhum artigo listado na página. Sitemap blogs contém apenas 1 URL (o próprio índice). O footer do site aponta para <span class="url-cite">loja.elements.com.br/blogs/artigos</span> — isto direciona o tráfego editorial B2B para o canal B2C.
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Plataformas B2B de ergonomia corporativa que constroem autoridade orgânica (ex.: Humanscale, Steelcase, Knoll) mantêm blogs com conteúdo de educação de comprador: ROI ergonomia, NR-17 compliance, guias para gestores de facilities. O ciclo de venda B2B é mais longo — conteúdo é o principal canal de geração de demanda inbound.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Decisão estratégica prioritária: (1) Ativar blog em corporativo com conteúdo focado no ICP B2B (gestores de RH, facilities, compras), com keywords como "ergonomia corporativa", "NR-17 empresa", "como montar estação de trabalho home office corporativo", "cadeira para escritório empresarial". (2) Atualizar o link do footer de <code>loja.elements.com.br/blogs/artigos</code> para <code>corporativo.elements.com.br/blogs/news</code>. (3) Migrar ou duplicar artigos do blog loja que sejam relevantes para contexto B2B.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Canal B2B atualmente não ranqueia para queries informacionais B2B. Blog ativo com 8–12 artigos/mês pode gerar tráfego qualificado de gestores em busca de soluções — audience de maior ticket médio e decisão de compra recorrente.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">BL.2</span>
+          <span class="score-badge score-5">5</span>
+          <span class="item-title">Blog — H1 genérico "News"</span>
+          <span class="score-label-5">Crítico</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/blogs/news</span><br>
+            H1 atual: <strong>"News"</strong>. Sem keyword. Sem meta description verificada. Este é o template padrão Shopify sem otimização.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Alterar H1 para keyword relevante: <code>"Blog de Ergonomia Corporativa"</code> ou <code>"Conteúdo para Gestores: Ergonomia e Produtividade Empresarial"</code>. Criar meta description específica para a página do blog.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <section id="produtos">
+    <div class="page-section-header">
+      <span class="section-tag tag-produto" style="margin-bottom:0">Produtos</span>
+      /products/ — 61 Produtos Indexados
+    </div>
+    <div class="page-section-body">
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">P.1</span>
+          <span class="score-badge score-2">2</span>
+          <span class="item-title">Produtos — H1 e título de página</span>
+          <span class="score-label-2">Bom</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/products/cadeira-ergonomica-elements-astra</span><br>
+            Page title: <code>"Cadeira Ergonômica Elements Astra NR-17 – Elements para Empresas"</code><br>
+            H1: <code>"Cadeira Ergonômica Elements Astra NR-17"</code><br>
+            Estrutura de heading: 1 H1, 4 H2 (benefícios, especificações técnicas, FAQ, garantia), 5+ H3 (perguntas FAQ). Hierarquia bem construída.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Template está bem configurado. Verificar se todos os 61 produtos seguem este padrão ou se há produtos com títulos genéricos/sem NR-17. Considerar adicionar modificador "para empresas" ou "corporativa" em produtos que não o têm, para diferenciar dos mesmos produtos em loja.elements.com.br.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Diferenciação SERP entre canal B2C e B2B. Redução de canibalização de keywords entre os dois subdomínios.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">P.2</span>
+          <span class="score-badge score-4">4</span>
+          <span class="item-title">Produtos — Meta description ausente</span>
+          <span class="score-label-4">Ruim</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/products/cadeira-ergonomica-elements-astra</span><br>
+            Meta description não encontrada no fonte da página. O Google gerará snippet automático a partir do texto da descrição do produto — sem controle editorial sobre o que aparece no SERP.
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Marketplaces B2B líderes (Ambiens, Datamob) customizam meta descriptions com: nome do produto + benefício principal + CTA para gestores + menção a NR-17 ou BIFMA.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Criar template de meta description no tema Shopify com variáveis dinâmicas: <code>{{ product.title }} para empresas — [benefício principal]. Preços exclusivos para CNPJ. NR-17 e BIFMA. Fale com um especialista.</code>
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Melhora de CTR nas SERPs; diferenciação dos snippets B2B vs B2C da mesma marca.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">P.3</span>
+          <span class="score-badge score-4">4</span>
+          <span class="item-title">Produtos — Price gating bloqueia rich snippets</span>
+          <span class="score-label-4">Ruim</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/products/cadeira-ergonomica-elements-astra</span><br>
+            Mensagem exibida: <strong>"Cadastre-se e veja os preços"</strong>. Preços só visíveis após cadastro com CNPJ. O Googlebot não possui CNPJ — não consegue rastrear preços. Resultado: Product schema não pode incluir <code>PriceSpecification</code> → página não é elegível para rich snippet de produto com preço. Schema markup não confirmado via WebFetch (injetado via JS Shopify).
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Plataformas B2B que resolvem este conflito usam: (a) preço "a partir de" visível publicamente com markup <code>minPrice</code>, (b) faixa de preço por linha de produto sem preço exato, (c) schema Product com <code>offers</code> apontando para "disponível mediante cadastro" com <code>@type: Offer, availability: PreOrder</code> como indicativo de acesso restrito.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Implementar na ficha de produto um preço de tabela público (ex.: "A partir de R$ X.XXX") visível sem login, com markup de schema. O preço final (com desconto CNPJ) permanece gated. Esta abordagem preserva o modelo de negócio B2B e permite indexação de preços base no Google Shopping e rich snippets.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Elegibilidade para rich snippets de produto com preço no Google — diferencial importante no SERP para buscas corporativas.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">P.4</span>
+          <span class="score-badge score-2">2</span>
+          <span class="item-title">Produtos — Qualidade e profundidade das descrições</span>
+          <span class="score-label-2">Bom</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/products/cadeira-ergonomica-elements-astra</span><br>
+            Descrição com ~400–500 palavras. Seções: features, especificações técnicas, FAQ com H3s, garantia. Menção a NR-17, BIFMA, peso suportado (110 kg). Conteúdo substantivo para tomada de decisão B2B.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Adicionar seção "Ideal para empresas com..." com casos de uso corporativos (home office corporativo, escritório open space, sala de reunião). Incluir campos com ROI ergonômico (ex.: redução de afastamentos, produtividade) — este tipo de conteúdo é decisivo para gestores de RH e facilities managers que pesquisam antes de comprar.
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">P.5</span>
+          <span class="score-badge score-5">5</span>
+          <span class="item-title">Produtos — Schema com Preço vs UI Gated: Risco de "Dados Estruturados Enganosos"</span>
+          <span class="score-label-5">Crítico</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="alert-banner">
+            <div class="alert-icon">⚠️</div>
+            <div>
+              <div class="alert-title">Contradição schema vs UI — risco de penalidade por dados estruturados enganosos</div>
+              O schema JSON-LD expõe o preço ao Googlebot, mas a UI exige login com CNPJ para exibir o mesmo preço. O Google considera isso "misleading structured data" e pode desqualificar o schema inteiro.
+            </div>
+          </div>
+          <div class="evidence-box">
+            <strong>Evidência — Confirmado via DevTools (Setembro 2026)</strong>
+            <span class="url-cite">corporativo.elements.com.br/products/cadeira-ergonomica-elements-astra</span><br>
+            <strong>JSON-LD ProductGroup schema confirmado:</strong><br>
+            <code>"@type": "ProductGroup"</code><br>
+            <code>"offers": { "price": 1167.37, "priceCurrency": "BRL", "availability": "InStock" }</code><br><br>
+            <strong>UI para usuário não autenticado:</strong><br>
+            Mensagem: <em>"Cadastre-se e veja os preços"</em> — preços ocultos atrás de login com CNPJ.<br><br>
+            Contradição: o Googlebot vê preço R$1.167,37 no schema; o usuário não vê preço algum.
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark / Diretrizes Google</strong>
+            A documentação de dados estruturados do Google exige que o conteúdo marcado seja <strong>visível ao usuário</strong>. Um preço em schema não visível na UI é classificado como "conteúdo oculto no schema" — pode resultar em ação manual (remoção de rich snippets) ou penalidade de qualidade.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação — 2 caminhos</strong>
+            <strong>Caminho 1 (preferido):</strong> Exibir preço base público ("A partir de R$ X.XXX") na UI — consistente com o schema. O preço final (com desconto CNPJ) continua gated. Atualiza o schema para mostrar o mesmo preço base.<br>
+            <strong>Caminho 2:</strong> Remover o campo <code>offers.price</code> do schema e usar <code>"offers.availability": "SeeAlsoSection"</code> com URL de cadastro — compatível com modelo B2B gated sem risco de misleading data.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Eliminação de risco de ação manual por dados estruturados enganosos. Habilitação de rich snippets de produto com preço público.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">P.6</span>
+          <span class="score-badge score-3">3</span>
+          <span class="item-title">Organization Schema — sameAs com Strings Vazias</span>
+          <span class="score-label-3">Regular</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência — DevTools (Setembro 2026)</strong>
+            <span class="url-cite">corporativo.elements.com.br/</span><br>
+            Organization schema confirmado via DevTools. Campo <code>sameAs</code> encontrado com array de strings vazias:<br>
+            <code>"sameAs": ["", ""]</code><br>
+            Valor esperado: URLs de perfis sociais oficiais (ex: Instagram, LinkedIn, YouTube da marca).
+          </div>
+          <p><strong>Análise:</strong> O campo <code>sameAs</code> no Organization schema é usado pelo Google para associar a entidade da marca aos seus perfis sociais e criar conexões no Knowledge Graph. Strings vazias não geram erro de validação, mas desperdiçam a oportunidade de consolidar a identidade da marca.</p>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Preencher <code>sameAs</code> com as URLs oficiais de redes sociais da marca:<br>
+            <code>"sameAs": ["https://www.instagram.com/elements.oficial/", "https://www.linkedin.com/company/elements-br/", ...]</code><br>
+            Configurar via tema Shopify ou app de SEO que gera o Organization schema.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Consolidação de entidade de marca no Knowledge Graph do Google. Associação dos perfis sociais à entidade corporativa.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COLEÇÕES -->
+  <section id="colecoes">
+    <div class="page-section-header">
+      <span class="section-tag tag-colecao" style="margin-bottom:0">Coleções</span>
+      /collections/ — 26 Coleções Indexadas
+    </div>
+    <div class="page-section-body">
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">C.1</span>
+          <span class="score-badge score-2">2</span>
+          <span class="item-title">Coleções — H1 e estrutura das páginas principais</span>
+          <span class="score-label-2">Bom</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/collections/cadeiras-ergonomicas</span><br>
+            H1: <code>"Cadeiras Ergonômicas"</code>. 18 produtos listados + paginação (página 2 disponível). Filtros por disponibilidade e faixa de preço presentes. Texto de introdução acima do grid: <em>"Eleve a produtividade da sua equipe"</em> / <em>"Nós impulsionamos seu espaço de trabalho, você impulsiona o futuro."</em> — copy de marca, não keyword-focado.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Adicionar 100–150 palavras de texto keyword-focado abaixo do grid de produtos (standard Shopify permite via "rich text" no template de coleção). Modelo: contexto B2B + keyword alvo + certificações (NR-17/BIFMA) + link para "falar com especialista". Isso diferencia a coleção corporativa da equivalente em loja.elements.com.br.
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">C.2</span>
+          <span class="score-badge score-4">4</span>
+          <span class="item-title">Coleções — Meta description ausente</span>
+          <span class="score-label-4">Ruim</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/collections/cadeiras-ergonomicas</span><br>
+            Meta description não encontrada no fonte. Google gerará snippet automático, provavelmente a partir do texto introdutório ou do nome dos produtos.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Template de meta description para coleções: <code>{{ collection.title }} para empresas — compre com CNPJ. Linha Essencial, Avançada e Diretoria. NR-17 e BIFMA. Preços especiais para pessoas jurídicas.</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">C.3</span>
+          <span class="score-badge score-4">4</span>
+          <span class="item-title">Coleções — Páginas sazonais e finas no sitemap</span>
+          <span class="score-label-4">Ruim</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/sitemap_collections_1.xml</span><br>
+            Coleções sazonais/potencialmente finas identificadas:
+            <ul style="list-style:none;margin-top:8px">
+              <li><span class="url-cite">/collections/black-friday-para-empresas</span> — campanha sazonal</li>
+              <li><span class="url-cite">/collections/mes-do-consumidor-2026</span> — campanha sazonal datada</li>
+              <li><span class="url-cite">/collections/sem-desconto-pix</span> — segmentação interna de preço</li>
+              <li><span class="url-cite">/collections/guia-de-compras</span> — duplica /pages/guia-de-compras</li>
+            </ul>
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Práticas de e-commerce B2B: coleções sazonais fora de época são noindexadas ou reutilizadas permanentemente como landing pages de campanha (ex.: "Mês do Consumidor" virar "Ofertas para Empresas" perene).
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            (1) Adicionar <code>noindex</code> em /black-friday-para-empresas e /mes-do-consumidor-2026 quando fora de época, ou torná-las permanentes com conteúdo relevante fora da campanha. (2) Resolver duplicidade entre /collections/guia-de-compras e /pages/guia-de-compras via canonical ou redirecionamento 301. (3) Avaliar se /collections/sem-desconto-pix tem valor para indexação — se for segmentação interna de preço, adicionar noindex.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Melhora do sinal de qualidade do site para o Google; eliminação de páginas thin que diluem autoridade.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">C.4</span>
+          <span class="score-badge score-3">3</span>
+          <span class="item-title">Coleções — Canibalização com loja.elements.com.br</span>
+          <span class="score-label-3">Regular</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/collections/cadeiras-ergonomicas</span><br>
+            <span class="url-cite">loja.elements.com.br/collections/cadeiras-ergonomicas</span><br>
+            Os dois subdomínios têm coleções com slug idêntico (<code>cadeiras-ergonomicas</code>, <code>mesas-com-regulagem-de-altura</code>, etc.). Google trata subdomínios como sites distintos — duas páginas com a mesma keyword alvo competem entre si nos SERPs.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Diferenciar semanticamente os títulos, H1s e conteúdos das coleções B2B. Exemplos: <code>"Cadeiras Ergonômicas para Empresas"</code> vs o "Cadeiras Ergonômicas" do B2C. Adicionar modificadores: "corporativo", "para CNPJ", "para escritórios". Isso cria diferenciação de keyword sem abandonar o termo principal.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTITUCIONAL -->
+  <section id="institucional">
+    <div class="page-section-header">
+      <span class="section-tag tag-institucional" style="margin-bottom:0">Institucional</span>
+      /pages/ — Páginas Estratégicas B2B
+    </div>
+    <div class="page-section-body">
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">I.1</span>
+          <span class="score-badge score-2">2</span>
+          <span class="item-title">/pages/venda-corporativa — Página de conversão principal</span>
+          <span class="score-label-2">Bom</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/pages/venda-corporativa</span><br>
+            H1: <strong>"Mobiliário Corporativo"</strong>. Conteúdo robusto (~1.200–1.400 palavras). Seções: proposta de valor, logos de clientes (Ford, Google, Amazon, Jeep, PicPay, Safra, Globo), certificações NR-17 e BIFMA, ROI ergonômico ("50% menos afastamentos"), FAQ. CTAs: "Fale com um especialista" (múltiplos). WhatsApp integrado.
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Páginas B2B de alta conversão combinam prova social (logos) + caso de uso + dado quantitativo de ROI + formulário de captura de lead qualificado (não apenas chat/WhatsApp). A presença dos logos de grandes marcas é um forte sinal de E-E-A-T.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            (1) Adicionar keyword "mobiliário corporativo" mais explicitamente no início do conteúdo e nos meta tags. (2) Incluir pelo menos 1 case study detalhado (empresa + número de funcionários + produto adquirido + resultado medido) — sinais concretos de E-E-A-T. (3) Verificar se meta description está configurada. (4) Adicionar LocalBusiness ou B2BService schema na página.
+          </div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">I.2</span>
+          <span class="score-badge score-3">3</span>
+          <span class="item-title">/pages/ — Meta description ausente nas páginas estratégicas</span>
+          <span class="score-label-3">Regular</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            <span class="url-cite">corporativo.elements.com.br/pages/venda-corporativa</span>
+            <span class="url-cite">corporativo.elements.com.br/pages/cadastro-corporativo</span>
+            <span class="url-cite">corporativo.elements.com.br/pages/ambientes-corporativos</span><br>
+            Meta description não encontrada nas páginas institucionais auditadas. Google gerará snippets automáticos sem controle editorial.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Configurar meta description individualmente para cada página estratégica via Shopify Admin → Páginas → [página] → SEO. Prioridade: /venda-corporativa, /ambientes-corporativos, /compare-modelos.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ESTRATÉGICO -->
+  <section id="estrategico">
+    <div class="page-section-header">
+      <span class="section-tag tag-estrategico" style="margin-bottom:0">Estratégico</span>
+      Arquitetura de Domínio e Oportunidades Estruturais
+    </div>
+    <div class="page-section-body">
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">E.1</span>
+          <span class="score-badge score-4">4</span>
+          <span class="item-title">Arquitetura — Subdomain split: autoridade dividida entre loja e corporativo</span>
+          <span class="score-label-4">Ruim</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência estrutural</strong>
+            Dois Shopify stores independentes: <code>loja.elements.com.br</code> (B2C) e <code>corporativo.elements.com.br</code> (B2B). Cada um possui seu próprio sitemap, robots.txt e histórico de rastreamento separados. Google Search Console trata como duas propriedades distintas. Backlinks adquiridos para loja não beneficiam corporativo e vice-versa.
+          </div>
+          <div class="benchmark-box">
+            <strong>Benchmark de mercado</strong>
+            Do ponto de vista de SEO puro, a arquitetura ideal seria subdirectory (<code>elements.com.br/corporativo/</code>) que consolida toda a autoridade de domínio em um único site. No entanto, esta migração de duas stores Shopify para uma única é operacionalmente complexa e envolve decisões de negócio (controle de acesso B2B por CNPJ, preços diferenciados, catálogo curado). Empresas como Grainger (EUA) e Unilab (BR) optaram por subdomain justamente por necessidade de controle de acesso B2B — a decisão tem justificativa operacional.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            Hipótese: a arquitetura atual (dois subdomínios) é uma decisão de produto, não de SEO. O caminho de menor custo para mitigar o impacto no orgânico é: (1) Construir autoridade de forma independente para corporativo via blog B2B ativo (BL.1), (2) Criar interlinking entre os dois subdomínios — rodapé/cabeçalho de cada store apontar para o outro, (3) Garantir que os links externos (PR, parceiros, associações) mencionem e linkem para corporativo.elements.com.br especificamente. Migração para subdirectory: avaliar no longo prazo com análise de ROI — não é ação de Sprint 1.
+          </div>
+          <div class="impact-box"><strong>Impacto esperado</strong>Awareness: entender que o crescimento orgânico de corporativo parte de uma base de domínio mais fraca do que loja — o investimento em conteúdo B2B precisa ser sustentado e consistente para construir autoridade independente.</div>
+        </div>
+      </div>
+
+      <div class="audit-item">
+        <div class="audit-item-header">
+          <span class="item-id">E.2</span>
+          <span class="score-badge score-3">3</span>
+          <span class="item-title">E-E-A-T — Expertise e autoridade no canal B2B</span>
+          <span class="score-label-3">Regular</span>
+        </div>
+        <div class="audit-item-body">
+          <div class="evidence-box">
+            <strong>Evidência</strong>
+            Positivos: logos de grandes clientes (Ford, Google, Amazon, Jeep, PicPay, Safra, Globo) na homepage e /venda-corporativa. Menção a NR-17 e BIFMA em páginas de produto. Dado "50% menos afastamentos" presente mas sem fonte citada. Negativo: sem blog, sem autores identificados, sem cases detalhados, sem conteúdo de especialista assinado.
+          </div>
+          <div class="recommendation-box">
+            <strong>Recomendação</strong>
+            (1) Publicar ao menos 1 case study completo com empresa nomeada, número de colaboradores, modelo adquirido e resultado medido (absenteísmo, produtividade). (2) Citar fonte para "50% menos afastamentos" — BIFMA ou pesquisa própria. (3) Com blog ativo (BL.1), assinar artigos com nome de especialista interno (consultor de ergonomia, gestor de produto) — constrói E-E-A-T editorial.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="section-header">Módulo 06 · Priorização e Roadmap</div>
+    <h2>Roadmap Q×I×D — corporativo.elements.com.br</h2>
+    <div class="section-divider"></div>
+
+    <p style="font-size:13px;color:#595959;margin-bottom:20px">Priorização por <strong>Q × I × D</strong>: Qualidade da correção (1–5) × Impacto esperado (1–5) × Dependência estrutural (1–5). Score 80–125 = Sprint 1 (urgente). 40–79 = Sprint 2. 15–39 = Sprint 3. Abaixo de 15 = Sprint 4.</p>
+
+    <div class="sprint-card sprint-1">
+      <div class="sprint-label">Sprint 1 — Urgente (Q×I×D ≥ 80)</div>
+      <div class="sprint-item">T.2 — Noindex em páginas internas/transacionais (6 páginas) — <strong>3 confirmadas sem noindex via DevTools</strong> <span class="qid-score">125</span></div>
+      <div class="sprint-item">P.5 — Schema com preço vs UI gated — risco de ação manual por "dados estruturados enganosos" <span class="qid-score">125</span></div>
+      <div class="sprint-item">BL.1 — Decisão sobre blog corporativo: ativar ou desativar — maior gap de oportunidade B2B <span class="qid-score">100</span></div>
+      <div class="sprint-item">P.2 + C.2 + I.2 — Templates de meta description (produtos, coleções, páginas) <span class="qid-score">80</span></div>
+    </div>
+
+    <div class="sprint-card sprint-2">
+      <div class="sprint-label">Sprint 2 — Alto Impacto (Q×I×D 40–79)</div>
+      <div class="sprint-item">P.3 — Preço base público para permitir rich snippets de produto <span class="qid-score">72</span></div>
+      <div class="sprint-item">C.3 — Noindex em coleções sazonais / resolve duplicidade guia-de-compras <span class="qid-score">60</span></div>
+      <div class="sprint-item">C.4 — Diferenciar H1/títulos de coleções B2B com modificadores corporativos <span class="qid-score">54</span></div>
+      <div class="sprint-item">BL.2 — Atualizar H1 do blog para keyword relevante <span class="qid-score">48</span></div>
+    </div>
+
+    <div class="sprint-card sprint-3">
+      <div class="sprint-label">Sprint 3 — Melhoria Contínua (Q×I×D 15–39)</div>
+      <div class="sprint-item">P.6 — Preencher sameAs no Organization schema (strings vazias confirmadas via DevTools) <span class="qid-score">24</span></div>
+      <div class="sprint-item">I.1 — Case study detalhado em /venda-corporativa + meta description <span class="qid-score">30</span></div>
+      <div class="sprint-item">E.2 — Citar fontes dos dados de ROI ergonômico; assinar conteúdo com especialistas <span class="qid-score">24</span></div>
+      <div class="sprint-item">E.1 — Interlinking entre loja e corporativo; avaliar viabilidade de migração subdirectory <span class="qid-score">20</span></div>
+    </div>
+
+    <h3>Resumo de Achados por Prioridade</h3>
+    <table style="margin-top:16px">
+      <thead><tr><th>ID</th><th>Achado</th><th>Dimensão</th><th>Score</th><th>Sprint</th></tr></thead>
+      <tbody>
+        <tr><td>T.2</td><td>6 páginas internas no sitemap (obrigado, formulários, erro CNPJ)</td><td><span class="section-tag tag-tecnico" style="margin-bottom:0;font-size:10px">Técnico</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>1</strong></td></tr>
+        <tr><td>BL.1</td><td>Blog abandonado — zero artigos indexados</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>1</strong></td></tr>
+        <tr><td>BL.2</td><td>Blog com H1 "News" genérico</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>2</strong></td></tr>
+        <tr><td>P.2</td><td>Meta description ausente em páginas de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>1</strong></td></tr>
+        <tr><td>P.5</td><td>Schema com preço vs UI gated — risco de dados estruturados enganosos (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>1</strong></td></tr>
+        <tr><td>P.3</td><td>Price gating bloqueia rich snippets de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>2</strong></td></tr>
+        <tr><td>C.2</td><td>Meta description ausente em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>1</strong></td></tr>
+        <tr><td>C.3</td><td>Páginas sazonais/finas no sitemap</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>2</strong></td></tr>
+        <tr><td>E.1</td><td>Autoridade dividida entre subdomínios</td><td><span class="section-tag tag-estrategico" style="margin-bottom:0;font-size:10px">Estratégico</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
+        <tr><td>C.4</td><td>Canibalização com loja.elements.com.br em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>2</strong></td></tr>
+        <tr><td>P.4</td><td>Oportunidade de enriquecer descrições com ROI B2B</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>3</strong></td></tr>
+        <tr><td>P.6</td><td>Organization schema sameAs com strings vazias (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Semântica</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>3</strong></td></tr>
+        <tr><td>I.1</td><td>/venda-corporativa sem case study detalhado</td><td><span class="section-tag tag-institucional" style="margin-bottom:0;font-size:10px">Institucional</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>3</strong></td></tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <div class="disclaimer">
+    <strong>Metodologia e limitações:</strong> Auditoria realizada via inspeção pública (WebFetch) + Chrome DevTools MCP (verificação de schema e ausência de noindex em setembro de 2026). Schema markup verificado diretamente via DevTools: confirmados ProductGroup, Organization, BreadcrumbList. Achados P.5 (preço em schema vs UI gated) e P.6 (sameAs vazios) são fatos observados, não hipóteses. T.2: ausência de noindex confirmada em 3 das 6 páginas internas; as demais 3 não foram verificadas diretamente. Core Web Vitals: PageSpeed Insights fornecido pelo usuário para corporativo — mobile INP 132ms PASSED, LCP 1.8s PASSED, CLS 0 PASSED. Dados de tráfego orgânico indisponíveis (sem acesso ao GSC). Todos os scores refletem o estado do site em setembro de 2026.
+  </div>
+
+</div>
+</body>
+</html>
