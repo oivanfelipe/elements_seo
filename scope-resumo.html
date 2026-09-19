@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumo Executivo SCOPE — Elements — Setembro 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0D0D0D;--bg-card:#161616;--border:#2A2A2A;
+      --red:#C00000;--text:#F0F0F0;--text-muted:#888;--text-dim:#555;
+    }
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+    .report-header{background:#111;color:#fff;padding:48px 64px;position:relative;border-bottom:4px solid var(--red)}
+    .agency{font-family:'Oswald',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;font-weight:700}
+    h1{font-family:'Oswald',Arial,sans-serif;font-size:32px;font-weight:700;margin-bottom:8px;text-transform:uppercase}
+    .subtitle{font-size:16px;color:#D9D9D9;margin-bottom:24px}
+    .meta{display:flex;gap:32px;font-size:13px;color:#595959;flex-wrap:wrap}
+    .confidential-tag{position:absolute;top:48px;right:64px;border:1px solid var(--red);color:var(--red);padding:6px 14px;border-radius:4px;font-size:11px;letter-spacing:1px;font-family:'Oswald',Arial,sans-serif;font-weight:700;text-transform:uppercase}
+    .toc{background:#111;color:#fff;padding:0 64px;display:flex;gap:0;overflow-x:auto;border-bottom:2px solid var(--red)}
+    .toc a{color:#D9D9D9;text-decoration:none;font-size:12px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase;padding:12px 16px;white-space:nowrap;border-right:1px solid #595959}
+    .toc a:hover{color:var(--red)}
+    .container{max-width:1200px;margin:0 auto;padding:40px 64px}
+    section{margin-bottom:48px}
+    .section-header{color:var(--red);font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+    section h2{font-family:'Oswald',Arial,sans-serif;font-size:22px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:4px}
+    .section-divider{height:2px;background:var(--red);margin-bottom:24px}
+    .card{background:#1A1A1A;border:1px solid var(--border);border-radius:8px;padding:24px;margin-bottom:16px}
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+    .kpi-card{background:#1A1A1A;border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center}
+    .kpi-value{font-family:'Oswald',Arial,sans-serif;font-size:28px;font-weight:700}
+    .kpi-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-weight:700}
+    .kpi-source{font-size:11px;color:#444;margin-top:4px}
+    .score-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;font-family:'Oswald',Arial,sans-serif}
+    .score-1{background:#C00000}.score-2{background:#E65100}.score-3{background:#F0A500;color:#111}.score-4{background:#558B2F}.score-5{background:#1B7F37}
+    .score-label-1{color:#C00000;font-weight:700}.score-label-2{color:#E65100;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#558B2F;font-weight:700}.score-label-5{color:#1B7F37;font-weight:700}
+    table{width:100%;border-collapse:collapse;font-size:13px;background:#1A1A1A;border-radius:8px;overflow:hidden;margin-bottom:24px}
+    table th{background:#111;color:#fff;padding:10px 14px;text-align:left;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+    table td{padding:10px 14px;border-bottom:1px solid #222;vertical-align:top;color:var(--text)}
+    table tr:last-child td{border-bottom:none}
+    table tr:hover td{background:#1F1F1F}
+    .channel-block{background:#1A1A1A;border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:20px}
+    .channel-label{font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+    .channel-loja .channel-label{color:var(--red)}
+    .channel-corp .channel-label{color:#64B5F6}
+    .channel-loja{border-top:3px solid var(--red)}
+    .channel-corp{border-top:3px solid #1565C0}
+    .channel-h2{font-family:'Oswald',Arial,sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:6px}
+    .finding-list{list-style:none;margin:12px 0}
+    .finding-list li{font-size:13px;padding:8px 0;border-bottom:1px solid #222;display:flex;align-items:flex-start;gap:10px}
+    .finding-list li:last-child{border-bottom:none}
+    .sprint-badge{font-family:'Oswald',Arial,sans-serif;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap;margin-top:1px}
+    .s1{background:rgba(192,0,0,.2);color:#FF5252}.s2{background:rgba(240,165,0,.15);color:#FFB74D}.s3{background:rgba(85,139,47,.15);color:#81C784}
+    .projection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+    .proj-card{background:#1A1A1A;border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center}
+    .proj-label{font-family:'Oswald',Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+    .proj-value{font-family:'Oswald',Arial,sans-serif;font-size:26px;font-weight:700;margin-bottom:4px}
+    .proj-sub{font-size:11px;color:var(--text-muted)}
+    .proj-s1{border-top:3px solid #E65100}.proj-s1 .proj-value{color:#FF8A65}
+    .proj-s12{border-top:3px solid #F0A500}.proj-s12 .proj-value{color:#FFB74D}
+    .proj-full{border-top:3px solid #558B2F}.proj-full .proj-value{color:#81C784}
+    .alert-card{background:#1A0000;border:1px solid var(--red);border-radius:8px;padding:16px 20px;margin-bottom:16px}
+    .alert-title{font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+    .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+    .cta-link{background:#1A1A1A;border:1px solid var(--border);border-radius:8px;padding:20px 24px;text-decoration:none;color:var(--text);display:flex;align-items:center;justify-content:space-between;transition:border-color .15s,background .15s}
+    .cta-link:hover{background:#1F1F1F;border-color:#555}
+    .cta-loja:hover{border-color:var(--red)}
+    .cta-corp:hover{border-color:#1565C0}
+    .cta-comp:hover{border-color:#F57C00}
+    .cta-link-title{font-family:'Oswald',Arial,sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;margin-bottom:2px}
+    .cta-link-sub{font-size:11px;color:var(--text-muted)}
+    .cta-arrow{font-size:20px;opacity:.5}
+    .disclaimer{background:#111;border:1px solid var(--border);border-radius:8px;padding:20px 24px;font-size:12px;color:#595959;margin-top:40px}
+    @media(max-width:768px){.container{padding:24px 16px}.report-header{padding:32px 16px}.confidential-tag{position:static;display:inline-block;margin-top:16px}.toc{padding:0 16px}.cta-grid{grid-template-columns:1fr}.projection-grid{grid-template-columns:1fr}}
+    @media print{.toc{display:none}}
+  </style>
+</head>
+<body>
+
+<header class="report-header">
+  <div class="agency">V4 Company — Carvalho &amp; Co. · Auditoria S.C.O.P.E.</div>
+  <h1>Resumo Executivo SCOPE — Elements</h1>
+  <div class="subtitle">loja.elements.com.br + corporativo.elements.com.br · Setembro 2026</div>
+  <div class="meta">
+    <span><strong>Analista:</strong> Ivan Felipe · <a href="mailto:ivan.felipe@v4company.com" style="color:#D9D9D9;">ivan.felipe@v4company.com</a> · V4 Company - Carvalho &amp; Co.</span>
+    <span><strong>Data:</strong> Setembro 2026</span>
+    <span><strong>Escopo:</strong> Dois canais Shopify — B2C e B2B</span>
+  </div>
+  <div class="confidential-tag">Confidencial</div>
+  <div style="margin-top:16px;"><a href="index.html" style="color:#888;font-family:'Oswald',Arial,sans-serif;font-size:11px;letter-spacing:1px;text-decoration:none;text-transform:uppercase;border:1px solid #444;padding:5px 14px;border-radius:3px;" onmouseover="this.style.color='#fff';this.style.borderColor='#fff'" onmouseout="this.style.color='#888';this.style.borderColor='#444'">← Voltar ao Hub</a></div>
+</header>
+
+<nav class="toc">
+  <a href="index.html" style="color:var(--red)">Hub</a>
+  <a href="#visao">Visão Geral</a>
+  <a href="#loja">Loja B2C</a>
+  <a href="#corporativo">Corporativo B2B</a>
+  <a href="#prioridades">Prioridades Sprint 1</a>
+  <a href="#projecao">Projeção</a>
+  <a href="#relatorios">Relatórios</a>
+</nav>
+
+<div class="container">
+
+  <!-- VISÃO GERAL -->
+  <section id="visao">
+    <div class="section-header">Consolidado · Ambos os Canais</div>
+    <h2>Visão Geral — Elements Digital</h2>
+    <div class="section-divider"></div>
+
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kpi-card" style="border-top:3px solid #C00000">
+        <div class="kpi-value" style="color:#C00000">~125K</div>
+        <div class="kpi-label">Visitas Org./mês (total)</div>
+        <div class="kpi-source">loja ~124.4K + corp ~561</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #F0A500">
+        <div class="kpi-value score-label-3">3.3</div>
+        <div class="kpi-label">Score Loja (1–5)</div>
+        <div class="kpi-source">5 dimensões S.C.O.P.E.</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #E65100">
+        <div class="kpi-value score-label-2">2.6</div>
+        <div class="kpi-label">Score Corporativo (1–5)</div>
+        <div class="kpi-source">5 dimensões S.C.O.P.E.</div>
+      </div>
+      <div class="kpi-card" style="border-top:3px solid #558B2F">
+        <div class="kpi-value" style="color:#81C784">~193K</div>
+        <div class="kpi-label">Potencial (SCOPE Full)</div>
+        <div class="kpi-source">Loja corrigida + blog ativo corp</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:13px;color:#ccc"><strong style="color:#fff">Diagnóstico consolidado:</strong> Os dois canais digitais da Elements operam em subdomínios Shopify independentes, com autoridade de domínio não consolidada. O canal B2C (loja) captura ~124.400 visitas orgânicas/mês e tem espaço de crescimento expressivo via correções técnicas e ativação de blog. O canal B2B (corporativo) opera em modo latente — praticamente invisível no orgânico (~561 visitas/mês, 100% brand) — com o maior gap de oportunidade não explorado em contexto B2B de ergonomia corporativa.</p>
+    </div>
+
+    <!-- KPI consolidado por dimensão -->
+    <table>
+      <thead><tr><th>Dimensão</th><th>Score Loja</th><th>Score Corporativo</th><th>Principal Gap</th></tr></thead>
+      <tbody>
+        <tr><td>Infraestrutura Técnica</td><td><span class="score-badge score-4">3.9</span></td><td><span class="score-badge score-3">3.0</span></td><td>INP mobile FAILED (loja) · sitemap com páginas internas (corp)</td></tr>
+        <tr><td>Blog / Conteúdo</td><td><span class="score-badge score-2">2.3</span></td><td><span class="score-badge score-1">1.2</span></td><td>Blog loja com oportunidades abertas · Blog corp abandonado (0 artigos)</td></tr>
+        <tr><td>Produtos</td><td><span class="score-badge score-3">3.2</span></td><td><span class="score-badge score-3">2.8</span></td><td>Schema enganoso com preços gateados (corp) · heading structure (loja)</td></tr>
+        <tr><td>Coleções</td><td><span class="score-badge score-2">2.5</span></td><td><span class="score-badge score-3">2.8</span></td><td>Páginas finas no sitemap (ambos) · canibalização entre subdomínios</td></tr>
+        <tr><td>Semântica &amp; AIO</td><td><span class="score-badge score-3">3.1</span></td><td><span class="score-badge score-2">2.2</span></td><td>sameAs vazios · sem blog = sem autoridade temática (corp)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CANAL LOJA -->
+  <section id="loja">
+    <div class="section-header">Canal B2C · E-commerce</div>
+    <h2>Elements Loja — loja.elements.com.br</h2>
+    <div class="section-divider"></div>
+
+    <div class="channel-block channel-loja">
+      <div class="channel-label">B2C · Score 3.3 / 5</div>
+      <div class="channel-h2">Loja · Diagnóstico Rápido</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin:16px 0">
+        <div class="kpi-card" style="border-top:2px solid var(--red)"><div class="kpi-value" style="color:var(--red)">~124K</div><div class="kpi-label">Visitas/mês</div></div>
+        <div class="kpi-card" style="border-top:2px solid #E65100"><div class="kpi-value" style="color:#FF8A65">FAILED</div><div class="kpi-label">INP Mobile (305ms)</div></div>
+        <div class="kpi-card" style="border-top:2px solid #558B2F"><div class="kpi-value" style="color:#81C784">185</div><div class="kpi-label">Artigos no Blog</div></div>
+        <div class="kpi-card" style="border-top:2px solid #F0A500"><div class="kpi-value" style="color:#FFB74D">395</div><div class="kpi-label">Produtos Indexados</div></div>
+      </div>
+      <p style="font-size:13px;color:#ccc;margin-bottom:16px">Canal principal da Elements com tráfego consolidado. Maior ganho imediato via correção de performance (INP mobile bloqueando ranking) e ativação das oportunidades abertas do blog — atualmente com 185 artigos mas baixo aproveitamento de keywords de cauda longa.</p>
+      <ul class="finding-list">
+        <li><span class="sprint-badge s1">Sprint 1</span> INP mobile 305ms (FAILED) — threshold Google = 200ms; impacto direto em ranking</li>
+        <li><span class="sprint-badge s1">Sprint 1</span> H1 genérico "Artigos" no blog + oportunidades de heading em coleções chave</li>
+        <li><span class="sprint-badge s1">Sprint 1</span> Estrutura de heading em PDPs com oportunidade de capturar featured snippets</li>
+        <li><span class="sprint-badge s2">Sprint 2</span> Coleções sem texto editorial keyword-focado; canibalização com corporativo</li>
+        <li><span class="sprint-badge s2">Sprint 2</span> E-E-A-T: sem autores assinando artigos do blog; expertise não demonstrada</li>
+        <li><span class="sprint-badge s3">Sprint 3</span> Schema JSON-LD: oportunidade de BreadcrumbList e AggregateRating</li>
+      </ul>
+      <div style="margin-top:16px"><a href="scope-loja.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);text-decoration:none;border:1px solid var(--red);padding:6px 14px;border-radius:3px;">Ver auditoria completa →</a></div>
+    </div>
+  </section>
+
+  <!-- CANAL CORPORATIVO -->
+  <section id="corporativo">
+    <div class="section-header">Canal B2B · Corporativo</div>
+    <h2>Elements Corporativo — corporativo.elements.com.br</h2>
+    <div class="section-divider"></div>
+
+    <div class="channel-block channel-corp">
+      <div class="channel-label">B2B · Score 2.6 / 5</div>
+      <div class="channel-h2">Corporativo · Diagnóstico Rápido</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin:16px 0">
+        <div class="kpi-card" style="border-top:2px solid #C00000"><div class="kpi-value" style="color:#C00000">~561</div><div class="kpi-label">Visitas/mês</div></div>
+        <div class="kpi-card" style="border-top:2px solid #C00000"><div class="kpi-value" style="color:#C00000">221×</div><div class="kpi-label">Diferença vs. Loja</div></div>
+        <div class="kpi-card" style="border-top:2px solid #558B2F"><div class="kpi-value" style="color:#81C784">PASSED</div><div class="kpi-label">CWV Mobile</div></div>
+        <div class="kpi-card" style="border-top:2px solid #C00000"><div class="kpi-value" style="color:#C00000">0</div><div class="kpi-label">Artigos no Blog</div></div>
+      </div>
+
+      <div class="alert-card">
+        <div class="alert-title">⚠ Achado crítico — Dados estruturados enganosos</div>
+        <p style="font-size:13px;color:#ccc">Schema JSON-LD expõe preço (R$1.167,37) ao Googlebot, mas a UI exige login com CNPJ para exibir o mesmo preço. O Google classifica isso como "misleading structured data" — risco de ação manual e remoção de rich snippets.</p>
+      </div>
+
+      <ul class="finding-list">
+        <li><span class="sprint-badge s1">Sprint 1</span> 6 páginas internas sem noindex no sitemap (pós-cadastro, formulários, erro CNPJ)</li>
+        <li><span class="sprint-badge s1">Sprint 1</span> Schema com preço vs. UI gated — risco de penalidade por dados enganosos</li>
+        <li><span class="sprint-badge s1">Sprint 1</span> Blog abandonado (0 artigos) — maior gap de oportunidade orgânica B2B</li>
+        <li><span class="sprint-badge s1">Sprint 1</span> Templates de meta description ausentes em produtos, coleções e páginas</li>
+        <li><span class="sprint-badge s2">Sprint 2</span> Price gating bloqueia rich snippets de produto com preço</li>
+        <li><span class="sprint-badge s2">Sprint 2</span> Coleções sazonais/finas no sitemap; canibalização com loja</li>
+      </ul>
+      <div style="margin-top:16px"><a href="scope-corporativo.html" style="font-family:'Oswald',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#64B5F6;text-decoration:none;border:1px solid #1565C0;padding:6px 14px;border-radius:3px;">Ver auditoria completa →</a></div>
+    </div>
+  </section>
+
+  <!-- PRIORIDADES SPRINT 1 -->
+  <section id="prioridades">
+    <div class="section-header">Ação Imediata · Q×I×D ≥ 80</div>
+    <h2>Prioridades Sprint 1 — Ambos os Canais</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Canal</th><th>Item</th><th>Achado</th><th>Q×I×D</th><th>Esforço Estimado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span style="font-size:11px;font-weight:700;color:var(--red);font-family:'Oswald',Arial,sans-serif;">LOJA</span></td>
+          <td>INP Mobile</td>
+          <td>305ms FAILED — impacto direto em ranking (threshold 200ms)</td>
+          <td><strong>125</strong></td>
+          <td>8–16h (otimização de scripts + lazy load)</td>
+        </tr>
+        <tr>
+          <td><span style="font-size:11px;font-weight:700;color:var(--red);font-family:'Oswald',Arial,sans-serif;">LOJA</span></td>
+          <td>Blog · H1 &amp; Headings</td>
+          <td>H1 genérico "Artigos"; oportunidade de captura de featured snippets</td>
+          <td><strong>100</strong></td>
+          <td>4–6h (edição de templates)</td>
+        </tr>
+        <tr>
+          <td><span style="font-size:11px;font-weight:700;color:#64B5F6;font-family:'Oswald',Arial,sans-serif;">CORP</span></td>
+          <td>T.2 · Noindex páginas internas</td>
+          <td>6 páginas (obrigado, formulários, erro CNPJ) no sitemap sem noindex</td>
+          <td><strong>125</strong></td>
+          <td>2–4h (noindex + remoção do sitemap)</td>
+        </tr>
+        <tr>
+          <td><span style="font-size:11px;font-weight:700;color:#64B5F6;font-family:'Oswald',Arial,sans-serif;">CORP</span></td>
+          <td>P.5 · Schema enganoso</td>
+          <td>Preço no schema vs. UI gated — risco de ação manual do Google</td>
+          <td><strong>125</strong></td>
+          <td>4–8h (ajuste schema + estratégia de preço público)</td>
+        </tr>
+        <tr>
+          <td><span style="font-size:11px;font-weight:700;color:#64B5F6;font-family:'Oswald',Arial,sans-serif;">CORP</span></td>
+          <td>BL.1 · Decisão sobre blog</td>
+          <td>Blog abandonado — maior gap de oportunidade B2B (0 artigos)</td>
+          <td><strong>100</strong></td>
+          <td>Decisão estratégica + 40–60h/mês para produção de conteúdo</td>
+        </tr>
+        <tr>
+          <td><span style="font-size:11px;font-weight:700;color:#64B5F6;font-family:'Oswald',Arial,sans-serif;">CORP</span></td>
+          <td>Meta descriptions</td>
+          <td>Produtos, coleções e páginas sem meta description configurada</td>
+          <td><strong>80</strong></td>
+          <td>6–10h (templates + configuração Shopify)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PROJEÇÃO -->
+  <section id="projecao">
+    <div class="section-header">Cenários de Crescimento · Loja B2C</div>
+    <h2>Projeção de Tráfego — loja.elements.com.br</h2>
+    <div class="section-divider"></div>
+
+    <p style="font-size:13px;color:#888;margin-bottom:20px">Projeção baseada em curvas de CTR por posição (Backlinko 2022), posições atuais no Semrush e impacto estimado das correções por sprint. Base: ~124.400 visitas/mês.</p>
+
+    <div class="projection-grid">
+      <div class="proj-card proj-s1">
+        <div class="proj-label">Após Sprint 1</div>
+        <div class="proj-value">~131K</div>
+        <div class="proj-sub">+6.600 visitas/mês (+5.3%)</div>
+        <div style="font-size:11px;color:#888;margin-top:8px">INP corrigido + heading optimization</div>
+      </div>
+      <div class="proj-card proj-s12">
+        <div class="proj-label">Após Sprints 1+2</div>
+        <div class="proj-value">~152K</div>
+        <div class="proj-sub">+27.600 visitas/mês (+22.2%)</div>
+        <div style="font-size:11px;color:#888;margin-top:8px">+ conteúdo blog + coleções otimizadas</div>
+      </div>
+      <div class="proj-card proj-full">
+        <div class="proj-label">SCOPE Completo</div>
+        <div class="proj-value">~193K</div>
+        <div class="proj-sub">+68.600 visitas/mês (+55.1%)</div>
+        <div style="font-size:11px;color:#888;margin-top:8px">+ semântica + schema + autoridade</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:13px;color:#888"><strong style="color:#fff">Nota sobre corporativo:</strong> Canal B2B parte de base orgânica quase nula (~561 visitas/mês). A ativação do blog corporativo com conteúdo B2B (8–12 artigos/mês) pode gerar tráfego qualificado de gestores de RH, facilities e compras em 90–180 dias. Ticket médio B2B tende a ser significativamente maior que B2C — cada lead orgânico tem valor desproporcional. Projeção quantitativa para corporativo não incluída neste ciclo por falta de dados históricos de GSC.</p>
+    </div>
+  </section>
+
+  <!-- LINKS RELATÓRIOS -->
+  <section id="relatorios">
+    <div class="section-header">Documentação Completa</div>
+    <h2>Relatórios Detalhados</h2>
+    <div class="section-divider"></div>
+
+    <div class="cta-grid">
+      <a href="scope-loja.html" class="cta-link cta-loja">
+        <div>
+          <div class="cta-link-title" style="color:var(--red)">Elements Loja · Auditoria B2C</div>
+          <div class="cta-link-sub">loja.elements.com.br · Score 3.3 · INP FAILED · 185 artigos</div>
+        </div>
+        <span class="cta-arrow">→</span>
+      </a>
+      <a href="scope-corporativo.html" class="cta-link cta-corp">
+        <div>
+          <div class="cta-link-title" style="color:#64B5F6">Elements Corporativo · Auditoria B2B</div>
+          <div class="cta-link-sub">corporativo.elements.com.br · Score 2.6 · CWV PASSED · 0 artigos</div>
+        </div>
+        <span class="cta-arrow">→</span>
+      </a>
+      <a href="scope-comparativo.html" class="cta-link cta-comp" style="grid-column:1/-1">
+        <div>
+          <div class="cta-link-title" style="color:#FFB74D">Análise Comparativa · Elements vs Concorrentes</div>
+          <div class="cta-link-sub">Benchmark vs Flexform BR, DT3 Sports, Sensetup · Batalha de keywords · Projeções por cenário</div>
+        </div>
+        <span class="cta-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Sobre este resumo:</strong> Síntese executiva das auditorias completas de loja.elements.com.br e corporativo.elements.com.br, realizadas em setembro de 2026 via inspeção pública + Chrome DevTools MCP. Scores calculados segundo metodologia S.C.O.P.E. v2 — escala 1 (Crítico) a 5 (Excelente). Projeções de tráfego são estimativas baseadas em dados Semrush e modelos de CTR publicados (Backlinko 2022). Para evidências detalhadas, acesse os relatórios completos.
+  </div>
+
+</div>
+</body>
+</html>

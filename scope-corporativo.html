@@ -41,8 +41,8 @@
     .kpi-card .kpi-label{font-size:11px;color:#595959;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-weight:700}
     .kpi-card .kpi-source{font-size:11px;color:#aaa;margin-top:4px}
     .score-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;font-family:'Oswald',Arial,sans-serif}
-    .score-1{background:#1B7F37}.score-2{background:#558B2F}.score-3{background:#F0A500;color:#111}.score-4{background:#E65100}.score-5{background:#C00000}
-    .score-label-1{color:#1B7F37;font-weight:700}.score-label-2{color:#558B2F;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#E65100;font-weight:700}.score-label-5{color:#C00000;font-weight:700}
+    .score-1{background:#C00000}.score-2{background:#E65100}.score-3{background:#F0A500;color:#111}.score-4{background:#558B2F}.score-5{background:#1B7F37}
+    .score-label-1{color:#C00000;font-weight:700}.score-label-2{color:#E65100;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#558B2F;font-weight:700}.score-label-5{color:#1B7F37;font-weight:700}
     .audit-item{background:#fff;border:1px solid #D9D9D9;border-radius:8px;margin-bottom:16px;overflow:hidden}
     .audit-item-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid #F5F5F5;background:#F5F5F5}
     .audit-item-header .item-id{font-size:11px;color:#595959;font-weight:700;min-width:32px;font-family:'Oswald',Arial,sans-serif}
@@ -103,9 +103,12 @@
     <span><strong>Metodologia:</strong> S.C.O.P.E. v2</span>
   </div>
   <div class="confidential-tag">Confidencial</div>
+  <div style="margin-top:16px;"><a href="index.html" style="color:#888;font-family:'Oswald',Arial,sans-serif;font-size:11px;letter-spacing:1px;text-decoration:none;text-transform:uppercase;border:1px solid #444;padding:5px 14px;border-radius:3px;transition:color .15s,border-color .15s;" onmouseover="this.style.color='#fff';this.style.borderColor='#fff'" onmouseout="this.style.color='#888';this.style.borderColor='#444'">← Voltar ao Hub</a></div>
 </header>
 
 <nav class="toc">
+  <a href="index.html" style="color:#C00000;border-right:1px solid #595959">Hub</a>
+  <a href="scope-comparativo.html" style="border-right:1px solid #595959">Comparativo</a>
   <a href="#mapa">Mapa de Subdomínios</a>
   <a href="#baseline">Baseline</a>
   <a href="#radar">Radar</a>
@@ -252,10 +255,10 @@
     <div class="section-header">Visão Consolidada · Scores por Dimensão</div>
     <h2>Radar SCOPE — corporativo.elements.com.br</h2>
     <div class="section-divider"></div>
-    <p style="font-size:13px;color:#595959;margin-bottom:20px">Score por dimensão: <strong>1 = Excelente / 5 = Crítico</strong>. Quanto maior a área no radar, pior o estado geral.</p>
+    <p style="font-size:13px;color:#595959;margin-bottom:20px">Score por dimensão: <strong>1 = Crítico / 5 = Excelente</strong>. Quanto maior a área no radar, melhor o estado geral.</p>
     <div class="radar-container">
       <canvas id="scopeRadar" width="420" height="380"></canvas>
-      <p style="font-size:11px;color:#aaa;margin-top:8px">Score médio geral: <strong>3.4 / 5.0</strong></p>
+      <p style="font-size:11px;color:#aaa;margin-top:8px">Score médio geral: <strong>2.6 / 5.0</strong></p>
     </div>
     <script>
       const ctx = document.getElementById('scopeRadar').getContext('2d');
@@ -265,7 +268,7 @@
           labels: ['Infraestrutura','Blog','Produtos','Coleções','Semântica & AIO'],
           datasets: [{
             label: 'corporativo.elements.com.br',
-            data: [3.0, 4.8, 3.2, 3.2, 3.8],
+            data: [3.0, 1.2, 2.8, 2.8, 2.2],
             backgroundColor: 'rgba(192,0,0,0.15)',
             borderColor: '#C00000',
             borderWidth: 2,
@@ -294,10 +297,10 @@
       <thead><tr><th>Dimensão</th><th>Score</th><th>Classificação</th><th>Principal problema</th></tr></thead>
       <tbody>
         <tr><td>Infraestrutura Técnica</td><td><span class="score-badge score-3">3.0</span></td><td class="score-label-3">Regular</td><td>6 páginas internas/transacionais no sitemap indexadas</td></tr>
-        <tr><td>Blog</td><td><span class="score-badge score-5">4.8</span></td><td class="score-label-5">Crítico</td><td>Blog abandonado — zero artigos indexados; /blogs/news com H1 "News"</td></tr>
-        <tr><td>Produtos</td><td><span class="score-badge score-3">3.2</span></td><td class="score-label-3">Regular</td><td>Sem meta description; price gating bloqueia rich snippets</td></tr>
-        <tr><td>Coleções</td><td><span class="score-badge score-3">3.2</span></td><td class="score-label-3">Regular</td><td>Sem meta description; páginas sazonais finas no sitemap</td></tr>
-        <tr><td>Semântica &amp; AIO</td><td><span class="score-badge score-4">3.8</span></td><td class="score-label-4">Ruim</td><td>Sem blog ativo = sem autoridade temática; schema não verificado</td></tr>
+        <tr><td>Blog</td><td><span class="score-badge score-1">1.2</span></td><td class="score-label-1">Crítico</td><td>Blog abandonado — zero artigos indexados; /blogs/news com H1 "News"</td></tr>
+        <tr><td>Produtos</td><td><span class="score-badge score-3">2.8</span></td><td class="score-label-3">Regular</td><td>Sem meta description; price gating bloqueia rich snippets</td></tr>
+        <tr><td>Coleções</td><td><span class="score-badge score-3">2.8</span></td><td class="score-label-3">Regular</td><td>Sem meta description; páginas sazonais finas no sitemap</td></tr>
+        <tr><td>Semântica &amp; AIO</td><td><span class="score-badge score-2">2.2</span></td><td class="score-label-2">Ruim</td><td>Sem blog ativo = sem autoridade temática; schema não verificado</td></tr>
       </tbody>
     </table>
   </section>
@@ -313,9 +316,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">T.1</span>
-          <span class="score-badge score-2">2</span>
+          <span class="score-badge score-4">4</span>
           <span class="item-title">robots.txt — Configuração de rastreamento</span>
-          <span class="score-label-2">Bom</span>
+          <span class="score-label-4">Bom</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -334,9 +337,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">T.2</span>
-          <span class="score-badge score-5">5</span>
+          <span class="score-badge score-1">1</span>
           <span class="item-title">Sitemap — Páginas internas e transacionais indexadas</span>
-          <span class="score-label-5">Crítico</span>
+          <span class="score-label-1">Crítico</span>
         </div>
         <div class="audit-item-body">
           <div class="alert-banner">
@@ -394,9 +397,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">T.4</span>
-          <span class="score-badge score-2">2</span>
+          <span class="score-badge score-4">4</span>
           <span class="item-title">SSL / HTTPS</span>
-          <span class="score-label-2">Bom</span>
+          <span class="score-label-4">Bom</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -429,9 +432,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">BL.1</span>
-          <span class="score-badge score-5">5</span>
+          <span class="score-badge score-1">1</span>
           <span class="item-title">Blog — Zero artigos publicados</span>
-          <span class="score-label-5">Crítico</span>
+          <span class="score-label-1">Crítico</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -454,9 +457,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">BL.2</span>
-          <span class="score-badge score-5">5</span>
+          <span class="score-badge score-1">1</span>
           <span class="item-title">Blog — H1 genérico "News"</span>
-          <span class="score-label-5">Crítico</span>
+          <span class="score-label-1">Crítico</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -485,9 +488,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">P.1</span>
-          <span class="score-badge score-2">2</span>
+          <span class="score-badge score-4">4</span>
           <span class="item-title">Produtos — H1 e título de página</span>
-          <span class="score-label-2">Bom</span>
+          <span class="score-label-4">Bom</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -508,9 +511,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">P.2</span>
-          <span class="score-badge score-4">4</span>
+          <span class="score-badge score-2">2</span>
           <span class="item-title">Produtos — Meta description ausente</span>
-          <span class="score-label-4">Ruim</span>
+          <span class="score-label-2">Ruim</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -533,9 +536,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">P.3</span>
-          <span class="score-badge score-4">4</span>
+          <span class="score-badge score-2">2</span>
           <span class="item-title">Produtos — Price gating bloqueia rich snippets</span>
-          <span class="score-label-4">Ruim</span>
+          <span class="score-label-2">Ruim</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -558,9 +561,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">P.4</span>
-          <span class="score-badge score-2">2</span>
+          <span class="score-badge score-4">4</span>
           <span class="item-title">Produtos — Qualidade e profundidade das descrições</span>
-          <span class="score-label-2">Bom</span>
+          <span class="score-label-4">Bom</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -578,9 +581,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">P.5</span>
-          <span class="score-badge score-5">5</span>
+          <span class="score-badge score-1">1</span>
           <span class="item-title">Produtos — Schema com Preço vs UI Gated: Risco de "Dados Estruturados Enganosos"</span>
-          <span class="score-label-5">Crítico</span>
+          <span class="score-label-1">Crítico</span>
         </div>
         <div class="audit-item-body">
           <div class="alert-banner">
@@ -653,9 +656,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">C.1</span>
-          <span class="score-badge score-2">2</span>
+          <span class="score-badge score-4">4</span>
           <span class="item-title">Coleções — H1 e estrutura das páginas principais</span>
-          <span class="score-label-2">Bom</span>
+          <span class="score-label-4">Bom</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -673,9 +676,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">C.2</span>
-          <span class="score-badge score-4">4</span>
+          <span class="score-badge score-2">2</span>
           <span class="item-title">Coleções — Meta description ausente</span>
-          <span class="score-label-4">Ruim</span>
+          <span class="score-label-2">Ruim</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -693,9 +696,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">C.3</span>
-          <span class="score-badge score-4">4</span>
+          <span class="score-badge score-2">2</span>
           <span class="item-title">Coleções — Páginas sazonais e finas no sitemap</span>
-          <span class="score-label-4">Ruim</span>
+          <span class="score-label-2">Ruim</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -756,9 +759,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">I.1</span>
-          <span class="score-badge score-2">2</span>
+          <span class="score-badge score-4">4</span>
           <span class="item-title">/pages/venda-corporativa — Página de conversão principal</span>
-          <span class="score-label-2">Bom</span>
+          <span class="score-label-4">Bom</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -813,9 +816,9 @@
       <div class="audit-item">
         <div class="audit-item-header">
           <span class="item-id">E.1</span>
-          <span class="score-badge score-4">4</span>
+          <span class="score-badge score-2">2</span>
           <span class="item-title">Arquitetura — Subdomain split: autoridade dividida entre loja e corporativo</span>
-          <span class="score-label-4">Ruim</span>
+          <span class="score-label-2">Ruim</span>
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
@@ -892,19 +895,19 @@
     <table style="margin-top:16px">
       <thead><tr><th>ID</th><th>Achado</th><th>Dimensão</th><th>Score</th><th>Sprint</th></tr></thead>
       <tbody>
-        <tr><td>T.2</td><td>6 páginas internas no sitemap (obrigado, formulários, erro CNPJ)</td><td><span class="section-tag tag-tecnico" style="margin-bottom:0;font-size:10px">Técnico</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>1</strong></td></tr>
-        <tr><td>BL.1</td><td>Blog abandonado — zero artigos indexados</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>1</strong></td></tr>
-        <tr><td>BL.2</td><td>Blog com H1 "News" genérico</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>2</strong></td></tr>
-        <tr><td>P.2</td><td>Meta description ausente em páginas de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>1</strong></td></tr>
-        <tr><td>P.5</td><td>Schema com preço vs UI gated — risco de dados estruturados enganosos (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-5" style="width:24px;height:24px;font-size:11px">5</span></td><td><strong>1</strong></td></tr>
-        <tr><td>P.3</td><td>Price gating bloqueia rich snippets de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>2</strong></td></tr>
-        <tr><td>C.2</td><td>Meta description ausente em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>1</strong></td></tr>
-        <tr><td>C.3</td><td>Páginas sazonais/finas no sitemap</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>2</strong></td></tr>
-        <tr><td>E.1</td><td>Autoridade dividida entre subdomínios</td><td><span class="section-tag tag-estrategico" style="margin-bottom:0;font-size:10px">Estratégico</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
+        <tr><td>T.2</td><td>6 páginas internas no sitemap (obrigado, formulários, erro CNPJ)</td><td><span class="section-tag tag-tecnico" style="margin-bottom:0;font-size:10px">Técnico</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
+        <tr><td>BL.1</td><td>Blog abandonado — zero artigos indexados</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
+        <tr><td>BL.2</td><td>Blog com H1 "News" genérico</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>2</strong></td></tr>
+        <tr><td>P.2</td><td>Meta description ausente em páginas de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>1</strong></td></tr>
+        <tr><td>P.5</td><td>Schema com preço vs UI gated — risco de dados estruturados enganosos (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
+        <tr><td>P.3</td><td>Price gating bloqueia rich snippets de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>2</strong></td></tr>
+        <tr><td>C.2</td><td>Meta description ausente em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>1</strong></td></tr>
+        <tr><td>C.3</td><td>Páginas sazonais/finas no sitemap</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>2</strong></td></tr>
+        <tr><td>E.1</td><td>Autoridade dividida entre subdomínios</td><td><span class="section-tag tag-estrategico" style="margin-bottom:0;font-size:10px">Estratégico</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>3</strong></td></tr>
         <tr><td>C.4</td><td>Canibalização com loja.elements.com.br em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>2</strong></td></tr>
-        <tr><td>P.4</td><td>Oportunidade de enriquecer descrições com ROI B2B</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>3</strong></td></tr>
+        <tr><td>P.4</td><td>Oportunidade de enriquecer descrições com ROI B2B</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
         <tr><td>P.6</td><td>Organization schema sameAs com strings vazias (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Semântica</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>3</strong></td></tr>
-        <tr><td>I.1</td><td>/venda-corporativa sem case study detalhado</td><td><span class="section-tag tag-institucional" style="margin-bottom:0;font-size:10px">Institucional</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>3</strong></td></tr>
+        <tr><td>I.1</td><td>/venda-corporativa sem case study detalhado</td><td><span class="section-tag tag-institucional" style="margin-bottom:0;font-size:10px">Institucional</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
       </tbody>
     </table>
 
