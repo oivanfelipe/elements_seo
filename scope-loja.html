@@ -40,8 +40,8 @@
     .kpi-card .kpi-label{font-size:11px;color:#595959;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-weight:700}
     .kpi-card .kpi-source{font-size:11px;color:#aaa;margin-top:4px}
     .score-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:13px;font-weight:700;color:#fff;font-family:'Oswald',Arial,sans-serif}
-    .score-1{background:#1B7F37}.score-2{background:#558B2F}.score-3{background:#F0A500;color:#111}.score-4{background:#E65100}.score-5{background:#C00000}
-    .score-label-1{color:#1B7F37;font-weight:700}.score-label-2{color:#558B2F;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#E65100;font-weight:700}.score-label-5{color:#C00000;font-weight:700}
+    .score-1{background:#C00000}.score-2{background:#E65100}.score-3{background:#F0A500;color:#111}.score-4{background:#558B2F}.score-5{background:#1B7F37}
+    .score-label-1{color:#C00000;font-weight:700}.score-label-2{color:#E65100;font-weight:700}.score-label-3{color:#F0A500;font-weight:700}.score-label-4{color:#558B2F;font-weight:700}.score-label-5{color:#1B7F37;font-weight:700}
     .audit-item{background:#fff;border:1px solid #D9D9D9;border-radius:8px;margin-bottom:16px;overflow:hidden}
     .audit-item-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid #F5F5F5;background:#F5F5F5}
     .audit-item-header .item-id{font-size:11px;color:#595959;font-weight:700;min-width:32px;font-family:'Oswald',Arial,sans-serif}
@@ -70,6 +70,20 @@
     .sprint-card h4{font-family:'Oswald',Arial,sans-serif;font-size:14px;font-weight:700;margin-bottom:12px;text-transform:uppercase}
     .sprint-1 h4{color:#C00000}.sprint-2 h4{color:#F0A500}.sprint-3 h4{color:#595959}.sprint-4 h4{color:#1B7F37}
     .disclaimer{background:#F5F5F5;border:1px solid #D9D9D9;border-top:3px solid #C00000;border-radius:8px;padding:20px 24px;font-size:12px;color:#595959;margin-top:48px}
+
+    /* ── TAB BAR ── */
+    .tab-bar{background:#111;display:flex;gap:0;border-bottom:3px solid #C00000;position:sticky;top:0;z-index:100}
+    .tab-btn{color:#D9D9D9;text-decoration:none;font-size:12px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase;padding:13px 24px;white-space:nowrap;border:none;background:none;cursor:pointer;border-right:1px solid #333;transition:background .15s}
+    .tab-btn:hover{background:#1F1F1F;color:#fff}
+    .tab-btn.active{background:#C00000;color:#fff}
+    .tab-pane{display:none}
+    .tab-pane.active{display:block}
+    .tab-toolbar{background:#111;padding:10px 64px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #333}
+    .tab-toolbar a{color:#888;font-size:12px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;text-decoration:none}
+    .tab-toolbar a:hover{color:#fff}
+    .iframe-wrap{background:#F5F5F5}
+    .iframe-wrap iframe{display:block;width:100%;border:none;min-height:100vh}
+    @media(max-width:768px){.tab-btn{padding:11px 14px;font-size:11px}}
     @media print{.toc{display:none}section{page-break-inside:avoid}body{background:#fff}.container{padding:20px 32px}}
     @media(max-width:768px){.report-header{padding:32px 24px}.container{padding:24px}.toc{padding:0 16px}.confidential-tag{display:none}}
   </style>
@@ -77,19 +91,30 @@
 <body>
 
 <header class="report-header">
+  <div style="margin-bottom:16px;"><a href="index.html" style="color:#888;text-decoration:none;font-size:13px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;">← Voltar ao Hub</a></div>
   <div class="agency">V4 Company — Carvalho &amp; Co. · Auditoria S.C.O.P.E.</div>
   <h1>Elements — loja.elements.com.br</h1>
   <div class="subtitle">Diagnóstico de Crescimento Orgânico</div>
   <div class="meta">
     <span>📅 Setembro 2026</span>
     <span>🌐 loja.elements.com.br</span>
-    <span>📊 Score Geral: 2.7/5.0</span>
+    <span>📊 Score Geral: 3.3/5.0</span>
     <span>🏷️ E-commerce Shopify — Móveis Ergonômicos &amp; Home Office</span>
   </div>
   <div class="confidential-tag">Confidencial</div>
 </header>
 
+<div class="tab-bar" role="tablist">
+  <button class="tab-btn active" data-tab="tab-auditoria" onclick="switchTab('tab-auditoria')" role="tab" aria-selected="true">Auditoria</button>
+  <button class="tab-btn" data-tab="tab-comparativo" onclick="switchTab('tab-comparativo')" role="tab" aria-selected="false">Comparativo</button>
+  <button class="tab-btn" data-tab="tab-resumo" onclick="switchTab('tab-resumo')" role="tab" aria-selected="false">Resumo Executivo</button>
+</div>
+
+<div id="tab-auditoria" class="tab-pane active" role="tabpanel">
+
 <nav class="toc">
+  <a href="index.html" style="color:#595959;border-right:1px solid #333;">← Hub</a>
+  <a href="scope-comparativo.html" style="color:#595959;border-right:1px solid #333;">Comparativo</a>
   <a href="#sumario">Diagnóstico</a>
   <a href="#baseline">Baseline</a>
   <a href="#radar">Maturidade</a>
@@ -116,28 +141,28 @@
   </div>
 
   <div class="card-grid">
-    <div class="kpi-card" style="border-top:4px solid #1B7F37;">
-      <div class="kpi-value score-label-2">2.1</div>
+    <div class="kpi-card" style="border-top:4px solid #558B2F;">
+      <div class="kpi-value score-label-4">3.9</div>
       <div class="kpi-label">Infraestrutura Técnica</div>
     </div>
-    <div class="kpi-card" style="border-top:4px solid #C00000;">
-      <div class="kpi-value score-label-5">3.7</div>
+    <div class="kpi-card" style="border-top:4px solid #E65100;">
+      <div class="kpi-value score-label-2">2.3</div>
       <div class="kpi-label">Blog</div>
     </div>
-    <div class="kpi-card" style="border-top:4px solid #558B2F;">
-      <div class="kpi-value score-label-3">2.8</div>
+    <div class="kpi-card" style="border-top:4px solid #F0A500;">
+      <div class="kpi-value score-label-3">3.2</div>
       <div class="kpi-label">Produtos</div>
     </div>
     <div class="kpi-card" style="border-top:4px solid #E65100;">
-      <div class="kpi-value score-label-4">3.5</div>
+      <div class="kpi-value score-label-2">2.5</div>
       <div class="kpi-label">Coleções</div>
     </div>
     <div class="kpi-card" style="border-top:4px solid #595959;">
-      <div class="kpi-value score-label-3">2.9</div>
+      <div class="kpi-value score-label-3">3.1</div>
       <div class="kpi-label">Semântica &amp; AIO</div>
     </div>
     <div class="kpi-card" style="border-top:4px solid #C00000;">
-      <div class="kpi-value score-label-3">2.7</div>
+      <div class="kpi-value score-label-3">3.3</div>
       <div class="kpi-label">Score Geral</div>
     </div>
   </div>
@@ -296,7 +321,7 @@
     <div class="radar-container">
       <canvas id="radarChart"></canvas>
     </div>
-    <p style="font-size:12px;color:#595959;text-align:center;margin-top:12px;">Escala invertida: externo = excelente (score 1) · interno = crítico (score 5)</p>
+    <p style="font-size:12px;color:#595959;text-align:center;margin-top:12px;">Escala invertida: interno = crítico (score 1) · externo = excelente (score 5)</p>
   </div>
   <script>
     new Chart(document.getElementById('radarChart').getContext('2d'), {
@@ -330,7 +355,7 @@
 
   <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #558B2F;margin-bottom:24px;">
     <div style="text-align:center;flex-shrink:0;">
-      <div class="score-badge score-2" style="width:56px;height:56px;font-size:20px;">2.1</div>
+      <div class="score-badge score-4" style="width:56px;height:56px;font-size:20px;">3.9</div>
       <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Bom</div>
     </div>
     <div>
@@ -345,19 +370,19 @@
     <table>
       <tr><th>Item</th><th>Score</th><th>URL Verificada</th><th>Status</th></tr>
       <tr>
-        <td>HTTPS / SSL</td><td><span class="score-badge score-1">1</span></td>
+        <td>HTTPS / SSL</td><td><span class="score-badge score-5">5</span></td>
         <td class="url-cite">loja.elements.com.br/</td>
-        <td><span class="score-label-1">Excelente</span> — HTTPS ativo em todo o site, HTTP→HTTPS 301 funcional, certificado Shopify gerenciado</td>
+        <td><span class="score-label-5">Excelente</span> — HTTPS ativo em todo o site, HTTP→HTTPS 301 funcional, certificado Shopify gerenciado</td>
       </tr>
       <tr>
-        <td>robots.txt</td><td><span class="score-badge score-2">2</span></td>
+        <td>robots.txt</td><td><span class="score-badge score-4">4</span></td>
         <td class="url-cite">loja.elements.com.br/robots.txt</td>
-        <td><span class="score-label-2">Bom</span> — Disallow em /admin, /cart, /checkout, /account e <code>/collections/*sort_by*</code>. Estrutura padrão Shopify adequada</td>
+        <td><span class="score-label-4">Bom</span> — Disallow em /admin, /cart, /checkout, /account e <code>/collections/*sort_by*</code>. Estrutura padrão Shopify adequada</td>
       </tr>
       <tr>
-        <td>Sitemap XML</td><td><span class="score-badge score-2">2</span></td>
+        <td>Sitemap XML</td><td><span class="score-badge score-4">4</span></td>
         <td class="url-cite">loja.elements.com.br/sitemap.xml</td>
-        <td><span class="score-label-2">Bom</span> — Sitemap index com 6 filhos (produtos, coleções, páginas, blog, metaobjects). <strong>Problema:</strong> /pages/header-poc incluído</td>
+        <td><span class="score-label-4">Bom</span> — Sitemap index com 6 filhos (produtos, coleções, páginas, blog, metaobjects). <strong>Problema:</strong> /pages/header-poc incluído</td>
       </tr>
     </table>
 
@@ -403,7 +428,7 @@
       <div class="audit-item-header">
         <span class="item-id">3.3</span>
         <span class="item-title">INP Mobile 304ms — Core Web Vitals FAILED (todo o site)</span>
-        <span class="score-badge score-4">4</span>
+        <span class="score-badge score-2">2</span>
       </div>
       <div class="audit-item-body">
         <div class="evidence-box">
@@ -483,7 +508,7 @@
 
     <div class="conclusion-block">
       <div class="conclusion-label">Conclusão — Técnico</div>
-      <p>A infraestrutura da Elements é a mais saudável do site (score 2.1). O LCP excelente de 1.5s mobile é uma vantagem real. Quatro itens de correção rápida: H1 da homepage (heading de seção em vez de brand + categoria), página de teste no sitemap, INP 304ms mobile e BreadcrumbList duplicado em PDPs. Todos têm caminhos de correção diretos no Shopify.</p>
+      <p>A infraestrutura da Elements é a mais saudável do site (score 3.9). O LCP excelente de 1.5s mobile é uma vantagem real. Quatro itens de correção rápida: H1 da homepage (heading de seção em vez de brand + categoria), página de teste no sitemap, INP 304ms mobile e BreadcrumbList duplicado em PDPs. Todos têm caminhos de correção diretos no Shopify.</p>
     </div>
   </div>
 </section>
@@ -494,9 +519,9 @@
   <h2>Blog — /blogs/artigos (185 posts) <span style="font-size:12px;color:#595959;font-family:Arial,sans-serif;text-transform:none;font-weight:400;">· Handle confirmado via DevTools</span></h2>
   <div class="section-divider"></div>
 
-  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #C00000;margin-bottom:24px;">
+  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #E65100;margin-bottom:24px;">
     <div style="text-align:center;flex-shrink:0;">
-      <div class="score-badge score-4" style="width:56px;height:56px;font-size:20px;">3.7</div>
+      <div class="score-badge score-2" style="width:56px;height:56px;font-size:20px;">2.3</div>
       <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Ruim</div>
     </div>
     <div>
@@ -508,19 +533,19 @@
   <table style="margin-bottom:24px;">
     <tr><th>Item</th><th>Score</th><th>URL de Referência</th><th>Status</th></tr>
     <tr>
-      <td>Heading Structure (H1–H3)</td><td><span class="score-badge score-5">5</span></td>
+      <td>Heading Structure (H1–H3)</td><td><span class="score-badge score-1">1</span></td>
       <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
-      <td><span class="score-label-5">Crítico</span> — H1s múltiplos em artigos do blog (padrão sistêmico do template)</td>
+      <td><span class="score-label-1">Crítico</span> — H1s múltiplos em artigos do blog (padrão sistêmico do template)</td>
     </tr>
     <tr>
-      <td>E-E-A-T / Autoria</td><td><span class="score-badge score-4">4</span></td>
+      <td>E-E-A-T / Autoria</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/blogs/artigos</td>
-      <td><span class="score-label-4">Ruim</span> — 184/185 artigos atribuídos a "Atendimento Elements"; 1 artigo com autor real (Frank Escalante, 25.02.2026) — inconsistência confirmada via DevTools</td>
+      <td><span class="score-label-2">Ruim</span> — 184/185 artigos atribuídos a "Atendimento Elements"; 1 artigo com autor real (Frank Escalante, 25.02.2026) — inconsistência confirmada via DevTools</td>
     </tr>
     <tr>
-      <td>Links Internos → Produtos/Coleções</td><td><span class="score-badge score-4">4</span></td>
+      <td>Links Internos → Produtos/Coleções</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
-      <td><span class="score-label-4">Ruim</span> — Artigos não linkam contextualmente para produtos ou coleções</td>
+      <td><span class="score-label-2">Ruim</span> — Artigos não linkam contextualmente para produtos ou coleções</td>
     </tr>
     <tr>
       <td>Estrutura de Cluster / Página Pilar</td><td><span class="score-badge score-3">3</span></td>
@@ -539,7 +564,7 @@
     <div class="audit-item-header">
       <span class="item-id">B.1</span>
       <span class="item-title">Heading Structure — H1 Múltiplos em Artigos do Blog</span>
-      <span class="score-badge score-5">5</span>
+      <span class="score-badge score-1">1</span>
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
@@ -574,7 +599,7 @@
     <div class="audit-item-header">
       <span class="item-id">B.2</span>
       <span class="item-title">E-E-A-T — 184/185 Artigos com Autoria Genérica; Inconsistência Confirmada via DevTools</span>
-      <span class="score-badge score-4">4</span>
+      <span class="score-badge score-2">2</span>
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
@@ -605,7 +630,7 @@
     <div class="audit-item-header">
       <span class="item-id">B.3</span>
       <span class="item-title">Links Internos — Blog Não Linka Produtos nem Coleções</span>
-      <span class="score-badge score-4">4</span>
+      <span class="score-badge score-2">2</span>
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
@@ -669,7 +694,7 @@
 
   <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #F0A500;margin-bottom:24px;">
     <div style="text-align:center;flex-shrink:0;">
-      <div class="score-badge score-3" style="width:56px;height:56px;font-size:20px;">2.8</div>
+      <div class="score-badge score-3" style="width:56px;height:56px;font-size:20px;">3.2</div>
       <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Regular</div>
     </div>
     <div>
@@ -681,9 +706,9 @@
   <table style="margin-bottom:24px;">
     <tr><th>Item</th><th>Score</th><th>URL de Referência</th><th>Status</th></tr>
     <tr>
-      <td>Meta Descriptions (Produtos)</td><td><span class="score-badge score-4">4</span></td>
+      <td>Meta Descriptions (Produtos)</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/products/[produto]</td>
-      <td><span class="score-label-4">Ruim</span> — Auto-geradas pelo Shopify; sem keyword principal nem CTA</td>
+      <td><span class="score-label-2">Ruim</span> — Auto-geradas pelo Shopify; sem keyword principal nem CTA</td>
     </tr>
     <tr>
       <td>Alt Texts de Imagem</td><td><span class="score-badge score-3">3</span></td>
@@ -706,14 +731,14 @@
       <td><span class="score-label-3">Regular</span> — Títulos descritivos, mas sem keyword + atributo (material, modelo, cor) no padrão ideal</td>
     </tr>
     <tr>
-      <td>Reviews / Avaliações</td><td><span class="score-badge score-2">2</span></td>
+      <td>Reviews / Avaliações</td><td><span class="score-badge score-4">4</span></td>
       <td class="url-cite">loja.elements.com.br/products/[produto]</td>
-      <td><span class="score-label-2">Bom</span> — Reviews presentes; verificar se Review schema gera estrelas na SERP</td>
+      <td><span class="score-label-4">Bom</span> — Reviews presentes; verificar se Review schema gera estrelas na SERP</td>
     </tr>
     <tr>
-      <td>Breadcrumbs (PDPs)</td><td><span class="score-badge score-2">2</span></td>
+      <td>Breadcrumbs (PDPs)</td><td><span class="score-badge score-4">4</span></td>
       <td class="url-cite">loja.elements.com.br/products/[produto]</td>
-      <td><span class="score-label-2">Bom</span> — Home &gt; Coleção &gt; Produto — padrão Shopify correto</td>
+      <td><span class="score-label-4">Bom</span> — Home &gt; Coleção &gt; Produto — padrão Shopify correto</td>
     </tr>
   </table>
 
@@ -721,7 +746,7 @@
     <div class="audit-item-header">
       <span class="item-id">P.1</span>
       <span class="item-title">Meta Descriptions — Ausentes / Auto-geradas em 395 PDPs</span>
-      <span class="score-badge score-4">4</span>
+      <span class="score-badge score-2">2</span>
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
@@ -835,9 +860,9 @@
   <h2>Páginas de Coleção — /collections/</h2>
   <div class="section-divider"></div>
 
-  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #C00000;margin-bottom:24px;">
+  <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #E65100;margin-bottom:24px;">
     <div style="text-align:center;flex-shrink:0;">
-      <div class="score-badge score-4" style="width:56px;height:56px;font-size:20px;">3.5</div>
+      <div class="score-badge score-2" style="width:56px;height:56px;font-size:20px;">2.5</div>
       <div style="font-size:11px;color:#595959;margin-top:4px;text-transform:uppercase;font-weight:700;">Ruim</div>
     </div>
     <div>
@@ -849,19 +874,19 @@
   <table style="margin-bottom:24px;">
     <tr><th>Item</th><th>Score</th><th>URL Afetada</th><th>Status</th></tr>
     <tr>
-      <td>Coleções Duplicadas</td><td><span class="score-badge score-4">4</span></td>
+      <td>Coleções Duplicadas</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/collections/mais-vendidas<br>loja.elements.com.br/collections/mais-vendidos</td>
-      <td><span class="score-label-4">Ruim</span> — Dois slugs para o mesmo conteúdo; autoridade dividida</td>
+      <td><span class="score-label-2">Ruim</span> — Dois slugs para o mesmo conteúdo; autoridade dividida</td>
     </tr>
     <tr>
-      <td>Coleção Padrão Shopify Duplicada</td><td><span class="score-badge score-4">4</span></td>
+      <td>Coleção Padrão Shopify Duplicada</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/collections/all<br>loja.elements.com.br/collections/todos-os-produtos</td>
-      <td><span class="score-label-4">Ruim</span> — /all (padrão Shopify) duplica a coleção em português</td>
+      <td><span class="score-label-2">Ruim</span> — /all (padrão Shopify) duplica a coleção em português</td>
     </tr>
     <tr>
-      <td>Meta Descriptions (Coleções)</td><td><span class="score-badge score-4">4</span></td>
+      <td>Meta Descriptions (Coleções)</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/collections/cadeiras-ergonomicas</td>
-      <td><span class="score-label-4">Ruim</span> — Ausentes nas coleções estratégicas verificadas</td>
+      <td><span class="score-label-2">Ruim</span> — Ausentes nas coleções estratégicas verificadas</td>
     </tr>
     <tr>
       <td>Copy de Categoria (texto SEO)</td><td><span class="score-badge score-3">3</span></td>
@@ -879,7 +904,7 @@
     <div class="audit-item-header">
       <span class="item-id">C.1</span>
       <span class="item-title">Coleções Duplicadas — 2 Pares de URLs para o Mesmo Conteúdo</span>
-      <span class="score-badge score-4">4</span>
+      <span class="score-badge score-2">2</span>
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
@@ -973,19 +998,19 @@
   <table>
     <tr><th>Página</th><th>Score</th><th>URL</th><th>Observação</th></tr>
     <tr>
-      <td>Sobre / Institucional</td><td><span class="score-badge score-2">2</span></td>
+      <td>Sobre / Institucional</td><td><span class="score-badge score-4">4</span></td>
       <td class="url-cite">loja.elements.com.br/pages/sobre</td>
       <td>Presente e funcional. Oportunidade: enriquecer com história da marca e team para fortalecer E-E-A-T institucional</td>
     </tr>
     <tr>
-      <td>Contato</td><td><span class="score-badge score-2">2</span></td>
+      <td>Contato</td><td><span class="score-badge score-4">4</span></td>
       <td class="url-cite">loja.elements.com.br/pages/contato</td>
       <td>Presente. Verificar consistência de NAP (Nome, Endereço, Telefone) com perfil Google Business se aplicável</td>
     </tr>
     <tr>
       <td>header-poc (teste)</td><td><span class="score-badge score-3">3</span></td>
       <td class="url-cite">loja.elements.com.br/pages/header-poc</td>
-      <td><span class="score-label-5">Remover do sitemap</span> — página de desenvolvimento exposta publicamente e enviada ao Google</td>
+      <td><span class="score-label-1">Remover do sitemap</span> — página de desenvolvimento exposta publicamente e enviada ao Google</td>
     </tr>
   </table>
 </section>
@@ -1254,5 +1279,75 @@
 </div>
 
 </div>
+</div><!-- /tab-auditoria -->
+
+<div id="tab-resumo" class="tab-pane" role="tabpanel">
+  <div class="container">
+    <div class="card" style="border-left:4px solid #C00000;margin-bottom:32px;">
+      <p style="font-size:15px;line-height:1.8;"><strong>Diagnóstico síntese:</strong> A Elements lidera "cadeira ergonomica" (110K vol, #1) com ~124K visitas orgânicas/mês, mas três vetores críticos limitam o crescimento: blog com heading structure quebrada (185 artigos, H1 múltiplos), coleções duplicadas fragmentando autoridade de link e INP mobile 304ms com CWV FAILED. Correções diretas no Shopify Admin e no template do tema podem ser executadas em 2 semanas com impacto estimado de +5–8% no tráfego orgânico apenas no Sprint 1.</p>
+    </div>
+
+    <div class="section-header">Scores por Dimensão</div>
+    <div class="section-divider"></div>
+    <div class="card-grid">
+      <div class="kpi-card" style="border-top:4px solid #558B2F;"><div class="kpi-value score-label-4" style="font-size:32px;">3.9</div><div class="kpi-label">Infraestrutura</div></div>
+      <div class="kpi-card" style="border-top:4px solid #E65100;"><div class="kpi-value score-label-2" style="font-size:32px;">2.3</div><div class="kpi-label">Blog</div></div>
+      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value score-label-3" style="font-size:32px;">3.2</div><div class="kpi-label">Produtos</div></div>
+      <div class="kpi-card" style="border-top:4px solid #E65100;"><div class="kpi-value score-label-2" style="font-size:32px;">2.5</div><div class="kpi-label">Coleções</div></div>
+      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value score-label-3" style="font-size:32px;">3.1</div><div class="kpi-label">Semântica</div></div>
+      <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value score-label-3" style="font-size:32px;">3.3</div><div class="kpi-label">Score Geral</div></div>
+    </div>
+
+    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:#111;">Sprint 1 — Ações Críticas (30 dias)</h3>
+    <table>
+      <tr><th>Ação</th><th>Área</th><th>Q×I×D</th><th>Prazo</th></tr>
+      <tr><td><strong>Corrigir H1s múltiplos no blog</strong> — editar article.liquid para 1 único H1</td><td><span class="section-tag tag-blog">Blog</span></td><td><strong>125</strong></td><td>Semana 1</td></tr>
+      <tr><td><strong>301 redirects coleções duplicadas</strong> — /mais-vendidas → /mais-vendidos; /all → /todos-os-produtos</td><td><span class="section-tag tag-colecao">Coleções</span></td><td><strong>80</strong></td><td>Semana 2</td></tr>
+      <tr><td><strong>Template meta description produtos</strong> — keyword + benefício + CTA no theme.liquid</td><td><span class="section-tag tag-produto">Produtos</span></td><td><strong>80</strong></td><td>Semana 1</td></tr>
+      <tr><td><strong>Meta descriptions top 8 coleções</strong> — /cadeiras-ergonomicas, /mesas-com-motorizado e mais</td><td><span class="section-tag tag-colecao">Coleções</span></td><td><strong>80</strong></td><td>Semana 2</td></tr>
+      <tr><td><strong>Corrigir H1 homepage</strong> — substituir "Mais vendidas" por H1 brand + categoria</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td><strong>80</strong></td><td>Semana 1</td></tr>
+    </table>
+
+    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:#111;">Top 3 Oportunidades</h3>
+    <table>
+      <tr><th>Oportunidade</th><th>Potencial Estimado</th><th>Esforço</th></tr>
+      <tr><td>Requalificar 185 artigos com autoria + links internos para produtos</td><td>Alto — ativo existente, sem criar conteúdo novo</td><td>Médio</td></tr>
+      <tr><td>Expandir clusters cadeiras ergonômicas e mesas elétricas com copy de coleção + pilares</td><td>Alto — demanda de 74K–201K vol mensal sem captura plena</td><td>Médio-Alto</td></tr>
+      <tr><td>Meta descriptions em PDPs: aumento de CTR 15–30% nas posições já ranqueadas</td><td>Médio — sem mudança de posição</td><td>Baixo</td></tr>
+    </table>
+
+    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:#111;">Projeção de Tráfego</h3>
+    <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value">~131K</div><div class="kpi-label">Sprint 1 (Quick Wins)</div><div class="kpi-source">+6.600 visitas/mês (+5.3%)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #558B2F;"><div class="kpi-value">~152K</div><div class="kpi-label">Sprints 1+2</div><div class="kpi-source">+27.600 visitas/mês (+22.2%)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value">~193K</div><div class="kpi-label">SCOPE Completo</div><div class="kpi-source">+68.600 visitas/mês (+55.2%)</div></div>
+    </div>
+
+    <div class="card" style="border-left:4px solid #F0A500;margin-top:24px;">
+      <p style="font-size:13px;"><strong>Próximo passo imediato:</strong> Conectar Google Search Console para estabelecer baseline antes do Sprint 1. Sem GSC, o impacto real das ações não é mensurável. Ver análise comparativa completa na aba <strong>Comparativo</strong> ou em <a href="scope-comparativo.html" style="color:#C00000;">scope-comparativo.html</a>.</p>
+    </div>
+  </div>
+</div>
+
+<div id="tab-comparativo" class="tab-pane" role="tabpanel">
+  <div class="tab-toolbar">
+    <span style="color:#D9D9D9;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;">ANÁLISE COMPARATIVA · Elements vs Concorrentes</span>
+    <a href="scope-comparativo.html" target="_blank" style="margin-left:auto;">↗ Abrir em tela cheia</a>
+  </div>
+  <div class="iframe-wrap">
+    <iframe src="scope-comparativo.html" title="Análise Comparativa Elements vs Concorrentes" loading="lazy"></iframe>
+  </div>
+</div>
+
+<script>
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-pane').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  document.getElementById(tabId).classList.add('active');
+  var btn = document.querySelector('[data-tab="' + tabId + '"]');
+  if(btn){ btn.classList.add('active'); btn.setAttribute('aria-selected','true'); }
+}
+</script>
+
 </body>
 </html>
