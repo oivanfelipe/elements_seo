@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>O que é E-E-A-T no SEO</title>
+  <meta name="description" content="E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) é o conjunto de sinais que o Google usa para avaliar a qualidade de um conteúdo. Entenda o que é, por que importa e como aplicar.">
+  <link rel="canonical" href="https://loja.elements.com.br/blogs/artigos/o-que-e-eeat-seo">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C00000;
+    --green: #1B7F37;
+    --orange: #F0A500;
+    --blue: #1565C0;
+    --bg: #F5F5F5;
+    --bg-card: #FFFFFF;
+    --border: #E0E0E0;
+    --text: #1A1A1A;
+    --text-dim: #595959;
+    --text-light: #999;
+    --font: 'Inter', system-ui, sans-serif;
+    --font-display: 'Oswald', Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D0D0D; --bg-card: #181818; --border: #2A2A2A;
+      --text: #F0F0F0; --text-dim: #A0A0A0; --text-light: #666;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D0D0D; --bg-card: #181818; --border: #2A2A2A;
+    --text: #F0F0F0; --text-dim: #A0A0A0; --text-light: #666;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+  /* SITE HEADER */
+  .site-header {
+    background: #111;
+    color: #fff;
+    padding: 0 clamp(16px, 5vw, 64px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    border-bottom: 3px solid var(--red);
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 100;
+  }
+  .site-header .logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .site-header .logo span { color: var(--red); }
+  .breadcrumb {
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .breadcrumb a { color: #888; text-decoration: none; }
+  .breadcrumb a:hover { color: #ccc; }
+
+  /* HERO */
+  .article-hero {
+    background: #111;
+    color: #fff;
+    padding: clamp(40px, 6vw, 72px) clamp(16px, 5vw, 64px) clamp(32px, 5vw, 56px);
+    border-bottom: 1px solid #222;
+  }
+  .article-category {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+  .article-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.15;
+    text-wrap: balance;
+    max-width: 820px;
+    margin-bottom: 20px;
+  }
+  .article-hero .lead {
+    font-size: clamp(15px, 2vw, 18px);
+    color: #C8C8C8;
+    max-width: 680px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #888;
+    border-top: 1px solid #2A2A2A;
+    padding-top: 20px;
+  }
+  .author-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), #870000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .author-info { display: flex; flex-direction: column; gap: 1px; }
+  .author-name { font-size: 13px; font-weight: 600; color: #ddd; }
+  .author-role { font-size: 11px; color: #888; }
+  .meta-sep { color: #444; }
+  .reading-time { display: flex; align-items: center; gap: 5px; }
+
+  /* LAYOUT */
+  .article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 740px) 280px;
+    gap: 48px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(32px, 5vw, 56px) clamp(16px, 5vw, 64px);
+    align-items: start;
+  }
+
+  /* ARTICLE BODY */
+  .article-body { min-width: 0; }
+
+  .article-body h2 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 40px 0 12px;
+    padding-top: 8px;
+    border-top: 2px solid var(--red);
+  }
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 28px 0 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .article-body p { margin-bottom: 18px; color: var(--text); }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-body ul, .article-body ol {
+    padding-left: 20px;
+    margin-bottom: 18px;
+  }
+  .article-body li { margin-bottom: 8px; color: var(--text); }
+
+  .article-body strong { color: var(--text); font-weight: 600; }
+
+  .article-body a { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* CALLOUT BOXES */
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .callout.green { border-left-color: var(--green); }
+  .callout.orange { border-left-color: var(--orange); }
+  .callout.blue { border-left-color: var(--blue); }
+  .callout-label {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  .callout p { margin-bottom: 0; font-size: 14px; }
+  .callout ul { margin-bottom: 0; font-size: 14px; }
+
+  /* PILLAR CARDS */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .pillar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .pillar-card.exp::before { background: var(--red); }
+  .pillar-card.exp2::before { background: var(--orange); }
+  .pillar-card.auth::before { background: var(--blue); }
+  .pillar-card.trust::before { background: var(--green); }
+  .pillar-letter {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.12;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+  }
+  .pillar-card.exp .pillar-letter { color: var(--red); }
+  .pillar-card.exp2 .pillar-letter { color: var(--orange); }
+  .pillar-card.auth .pillar-letter { color: var(--blue); }
+  .pillar-card.trust .pillar-letter { color: var(--green); }
+  .pillar-tag {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .pillar-card.exp .pillar-tag { color: var(--red); }
+  .pillar-card.exp2 .pillar-tag { color: var(--orange); }
+  .pillar-card.auth .pillar-tag { color: var(--blue); }
+  .pillar-card.trust .pillar-tag { color: var(--green); }
+  .pillar-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pillar-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* CHECKLIST */
+  .checklist {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .checklist-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .check-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .check-icon.ok { background: rgba(27,127,55,.15); color: var(--green); }
+  .check-icon.warn { background: rgba(240,165,0,.15); color: var(--orange); }
+  .check-icon.bad { background: rgba(192,0,0,.12); color: var(--red); }
+
+  /* QUOTE */
+  .article-quote {
+    border-left: 3px solid var(--red);
+    padding: 16px 24px;
+    margin: 32px 0;
+    background: var(--bg-card);
+    border-radius: 0 8px 8px 0;
+  }
+  .article-quote p {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .article-quote cite {
+    font-size: 12px;
+    color: var(--text-light);
+    font-style: normal;
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* SIDEBAR */
+  .article-sidebar {
+    position: sticky;
+    top: calc(56px + env(safe-area-inset-top, 0px) + 24px);
+  }
+  .sidebar-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 20px;
+    margin-bottom: 20px;
+  }
+  .sidebar-block-title {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .toc-link {
+    display: block;
+    font-size: 12px;
+    font-family: var(--font-display);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: background .15s, color .15s;
+  }
+  .toc-link:hover { background: rgba(192,0,0,.08); color: var(--red); }
+  .toc-link.active { background: rgba(192,0,0,.1); color: var(--red); font-weight: 700; }
+
+  .author-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+  }
+  .author-box .author-avatar-lg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), #870000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .author-box .author-name-lg {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .author-box .author-bio {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .author-box .author-cred {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+  .cred-item {
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg);
+    border-radius: 4px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cred-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  /* RELATED */
+  .related-articles { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .related-articles h3 {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .related-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+    transition: border-color .15s;
+  }
+  .related-card:hover { border-color: var(--red); }
+  .related-cat { font-family: var(--font-display); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+  .related-title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .pillar-grid { grid-template-columns: 1fr; }
+    .article-hero { padding: 32px 16px 24px; }
+    .breadcrumb { display: none; }
+    .related-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="/" class="logo">Elements<span>.</span></a>
+  <nav class="breadcrumb">
+    <a href="/blogs/artigos">Blog</a>
+    <span>›</span>
+    <span>SEO</span>
+    <span>›</span>
+    <span>E-E-A-T</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="article-hero">
+  <div class="article-category">SEO · Autoridade de Conteúdo</div>
+  <h1>O que é E-E-A-T e por que o Google usa para decidir quem rankeia</h1>
+  <p class="lead">Experience, Expertise, Authoritativeness, Trustworthiness — os quatro pilares que o Google usa para avaliar se o seu conteúdo merece aparecer no topo. Entenda cada um, o que mudou em 2022 e como aplicar na prática.</p>
+  <div class="article-meta">
+    <div class="author-chip">
+      <div class="author-avatar">IC</div>
+      <div class="author-info">
+        <span class="author-name">Ivan Carvalho</span>
+        <span class="author-role">Head de SEO · Elements</span>
+      </div>
+    </div>
+    <span class="meta-sep">·</span>
+    <span>Atualizado em Set 2026</span>
+    <span class="meta-sep">·</span>
+    <span class="reading-time">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      8 min de leitura
+    </span>
+  </div>
+</div>
+
+<!-- LAYOUT PRINCIPAL -->
+<div class="article-layout">
+
+  <!-- ARTIGO -->
+  <article class="article-body">
+
+    <h2 id="o-que-e">O que é E-E-A-T</h2>
+
+    <p>E-E-A-T é a sigla para <strong>Experience</strong> (Experiência), <strong>Expertise</strong> (Conhecimento), <strong>Authoritativeness</strong> (Autoridade) e <strong>Trustworthiness</strong> (Confiabilidade). É o conjunto de critérios descritos no documento interno do Google chamado <em>Search Quality Rater Guidelines</em> — o manual que avaliadores humanos usam para julgar a qualidade de páginas e alimentar os modelos de machine learning do buscador.</p>
+
+    <p>Não é um fator de ranking direto com uma variável numérica. É um <strong>framework de qualidade</strong> que influencia como o algoritmo interpreta sinais — links, menções, estrutura de conteúdo, dados do autor — para decidir quais páginas merecem visibilidade.</p>
+
+    <div class="callout blue">
+      <div class="callout-label">Contexto histórico</div>
+      <p>O conceito surgiu como E-A-T (sem o primeiro E) nas primeiras versões do Quality Rater Guidelines. Em dezembro de 2022, o Google adicionou o "E" de <em>Experience</em>, reconhecendo que experiência prática vivida — não só credencial acadêmica — é um sinal válido de qualidade.</p>
+    </div>
+
+    <h2 id="quatro-pilares">Os quatro pilares</h2>
+
+    <div class="pillar-grid">
+      <div class="pillar-card exp">
+        <div class="pillar-letter">E</div>
+        <div class="pillar-tag">Experience</div>
+        <h3>Experiência</h3>
+        <p>O autor teve experiência real e direta com o assunto? Testou o produto, visitou o local, viveu a situação? Evidências concretas — fotos originais, dados de uso, relatos em primeira pessoa — sinalizam experiência genuína.</p>
+      </div>
+      <div class="pillar-card exp2">
+        <div class="pillar-letter">E</div>
+        <div class="pillar-tag">Expertise</div>
+        <h3>Conhecimento</h3>
+        <p>O autor tem domínio técnico sobre o tema? Formação, certificações, histórico profissional documentado. Para temas de saúde, finanças e jurídico (os "YMYL"), o Google eleva o nível de exigência.</p>
+      </div>
+      <div class="pillar-card auth">
+        <div class="pillar-letter">A</div>
+        <div class="pillar-tag">Authoritativeness</div>
+        <h3>Autoridade</h3>
+        <p>O site e o autor são reconhecidos como referência no setor? Menções em veículos relevantes, backlinks editoriais, citações por outros especialistas — a autoridade é construída externamente, não declarada internamente.</p>
+      </div>
+      <div class="pillar-card trust">
+        <div class="pillar-letter">T</div>
+        <div class="pillar-tag">Trustworthiness</div>
+        <h3>Confiabilidade</h3>
+        <p>O mais importante dos quatro. HTTPS, políticas claras de privacidade, informações de contato verificáveis, transparência sobre quem é o responsável pelo conteúdo. Sem confiança, os outros três não sustentam.</p>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">Ponto de atenção</div>
+      <p>O Google deixou claro no QRG que <strong>Trustworthiness é o pilar central</strong>. Um site pode ter expertise e autoridade, mas se não for confiável (erros factuais, falta de transparência, HTTPS ausente), a avaliação geral cai.</p>
+    </div>
+
+    <h2 id="por-que-importa">Por que E-E-A-T importa para SEO</h2>
+
+    <p>O E-E-A-T ganhou peso depois de atualizações específicas do algoritmo. As <strong>Core Updates</strong> — grandes revisões algorítmicas que o Google lança periodicamente — frequentemente redistribuem tráfego entre sites com base em sinais de qualidade. Sites que perderam posições nessas atualizações, em geral, tinham conteúdo genérico, autoria opaca e poucos sinais externos de autoridade.</p>
+
+    <p>Para <strong>e-commerces e marcas</strong>, o E-E-A-T se manifesta principalmente em:</p>
+
+    <ul>
+      <li><strong>Blog e conteúdo educacional</strong> — artigos assinados por especialistas identificáveis, com fontes citadas e dados verificáveis</li>
+      <li><strong>Páginas de produto</strong> — descrições detalhadas que evidenciam conhecimento técnico sobre o que se vende</li>
+      <li><strong>Avaliações e UGC</strong> — reviews reais de clientes, com fotos e uso real, são sinais de <em>experience</em> coletiva</li>
+      <li><strong>Sobre a empresa</strong> — informações claras sobre quem está por trás da marca, com história verificável</li>
+    </ul>
+
+    <div class="article-quote">
+      <p>"Think about what makes a high quality page. It should be created by an expert or enthusiast who knows the topic well. High quality pages exist for almost any beneficial purpose — to share information, to entertain, to sell products or services."</p>
+      <cite>Google Search Quality Rater Guidelines, versão 2024</cite>
+    </div>
+
+    <h2 id="o-erro-mais-comum">O erro mais comum: autoria genérica</h2>
+
+    <p>A maioria dos blogs corporativos publica artigos assinados como "Equipe [Marca]", "Redação" ou sem qualquer assinatura. Para o Google, isso é um sinal negativo — não há pessoa verificável por trás do conteúdo, logo não há como avaliar expertise ou experiência.</p>
+
+    <p>O impacto é direto: conteúdo sem autoria identificável compete em desvantagem contra conteúdo assinado por especialistas reconhecíveis — mesmo que o texto seja tecnicamente superior.</p>
+
+    <div class="checklist">
+      <div class="checklist-title">Sinais de autoria que o Google valoriza</div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Nome real do autor com link para página de perfil dedicada</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Página de autor com bio, formação, links para redes profissionais (LinkedIn, perfil institucional)</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Schema markup <code>Person</code> + <code>Article</code> com <code>author</code> apontando para a entidade do autor</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Foto real do autor (não stock photo) na página de perfil e no artigo</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon warn">!</div>
+        <div>Byline genérico "Equipe Marca" sem link para perfil — sinal fraco, melhor do que nada</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">✗</div>
+        <div>Sem assinatura de autoria — sem nenhum sinal de quem criou o conteúdo</div>
+      </div>
+    </div>
+
+    <h2 id="como-implementar">Como implementar E-E-A-T na prática</h2>
+
+    <h3>1. Crie páginas de autor reais</h3>
+    <p>Cada pessoa que escreve para o blog precisa de uma página própria com: nome completo, foto real, cargo, área de especialização, credenciais relevantes e links verificáveis (LinkedIn, perfis externos). Essa página é a âncora de autoridade para todos os artigos assinados por ela.</p>
+
+    <h3>2. Implemente Schema markup correto</h3>
+    <p>O JSON-LD do artigo deve incluir o bloco <code>author</code> com <code>@type: Person</code>, <code>name</code> e idealmente <code>url</code> apontando para o perfil do autor e <code>sameAs</code> com o LinkedIn ou outro perfil verificável. Isso conecta o conteúdo à entidade real no Knowledge Graph do Google.</p>
+
+    <div class="callout">
+      <div class="callout-label">Exemplo de Schema — Author</div>
+      <p><code>"author": { "@type": "Person", "name": "Ivan Carvalho", "url": "https://loja.elements.com.br/blogs/autores/ivan-carvalho", "sameAs": "https://www.linkedin.com/in/ivancarvalho" }</code></p>
+    </div>
+
+    <h3>3. Cite fontes e dados reais</h3>
+    <p>Afirmações sustentadas por fontes confiáveis — estudos, dados públicos, referências de autoridade no segmento — aumentam a percepção de expertise. Links externos para fontes de qualidade não prejudicam SEO; pelo contrário, contextualizam o conteúdo dentro de um ecossistema de informação confiável.</p>
+
+    <h3>4. Demonstre experiência prática</h3>
+    <p>Para produtos físicos como cadeiras e mesas ergonômicas, experiência real significa: fotos originais de uso, dados de performance coletados internamente, relatos de clientes reais (com nome e contexto), e comparativos baseados em testes — não apenas especificações do fabricante.</p>
+
+    <h3>5. Construa autoridade externamente</h3>
+    <p>Autoridade não se declara, se conquista. Menções editoriais em veículos do setor, participação em eventos, entrevistas — esses sinais externos reforçam o E-E-A-T de forma que nenhuma otimização on-page substitui. O conteúdo de qualidade é o que gera essas menções organicamente.</p>
+
+    <h2 id="eeat-para-ecommerce">E-E-A-T específico para e-commerce</h2>
+
+    <p>E-commerces têm uma camada adicional de exigência: o Google classifica páginas de venda como <strong>YMYL adjacente</strong> (Your Money or Your Life) porque envolvem transações financeiras. Isso eleva o nível de confiabilidade esperado.</p>
+
+    <p>Os principais sinais para lojas online:</p>
+
+    <ul>
+      <li><strong>Política de devolução clara e acessível</strong> — encontrável em menos de dois cliques</li>
+      <li><strong>CNPJ e dados da empresa visíveis</strong> no rodapé ou na página "Sobre"</li>
+      <li><strong>Avaliações verificadas de clientes</strong> — plataformas terceiras (Reclame Aqui, Trustpilot, Google Reviews) com respostas da empresa</li>
+      <li><strong>Certificados de segurança</strong> — SSL válido, selos de pagamento reconhecidos</li>
+      <li><strong>Conteúdo de suporte técnico</strong> — guias de uso, FAQ detalhado, instruções de montagem — que demonstram conhecimento real sobre os produtos</li>
+    </ul>
+
+    <div class="callout green">
+      <div class="callout-label">Ação de alto impacto</div>
+      <p>Se você tem apenas uma ação para fazer hoje: crie uma página de autor real para cada pessoa que escreve no seu blog, adicione o Schema markup de <code>Person</code> + <code>Article</code>, e re-publique os artigos existentes com essa autoria atribuída. O impacto começa a aparecer nas próximas crawls.</p>
+    </div>
+
+    <h2 id="conclusao">Conclusão</h2>
+
+    <p>E-E-A-T não é uma checklist técnica — é um compromisso com qualidade real. O Google está cada vez mais sofisticado em distinguir conteúdo genuíno de conteúdo produzido em escala sem substância. Sites que investem em autoria verificável, experiência demonstrável e confiança construída consistentemente tendem a manter posições mesmo nas Core Updates mais agressivas.</p>
+
+    <p>Para marcas como a Elements, que já têm expertise genuína no segmento de ergonomia, o desafio não é criar autoridade do zero — é tornar essa autoridade <strong>visível e verificável</strong> para os algoritmos e para os usuários.</p>
+
+    <!-- ARTIGOS RELACIONADOS -->
+    <div class="related-articles">
+      <h3>Continue lendo</h3>
+      <div class="related-grid">
+        <a class="related-card" href="#">
+          <div class="related-cat">SEO Técnico</div>
+          <div class="related-title">Core Web Vitals: o que são e como melhorar LCP, CLS e INP</div>
+        </a>
+        <a class="related-card" href="#">
+          <div class="related-cat">Conteúdo</div>
+          <div class="related-title">Como estruturar uma estratégia de blog para e-commerce de nicho</div>
+        </a>
+        <a class="related-card" href="#">
+          <div class="related-cat">Schema Markup</div>
+          <div class="related-title">Dados estruturados para lojas: quais implementar primeiro</div>
+        </a>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="article-sidebar">
+
+    <div class="sidebar-block">
+      <div class="sidebar-block-title">Neste artigo</div>
+      <a class="toc-link" href="#o-que-e">O que é E-E-A-T</a>
+      <a class="toc-link" href="#quatro-pilares">Os quatro pilares</a>
+      <a class="toc-link" href="#por-que-importa">Por que importa</a>
+      <a class="toc-link" href="#o-erro-mais-comum">O erro mais comum</a>
+      <a class="toc-link" href="#como-implementar">Como implementar</a>
+      <a class="toc-link" href="#eeat-para-ecommerce">E-E-A-T para e-commerce</a>
+      <a class="toc-link" href="#conclusao">Conclusão</a>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-block-title">Sobre o autor</div>
+      <div class="author-box">
+        <div class="author-avatar-lg">IC</div>
+        <div class="author-name-lg">Ivan Carvalho</div>
+        <div class="author-bio">Head de SEO na Elements. Mais de 8 anos em crescimento orgânico para e-commerce, com foco em ergonomia e home office.</div>
+        <div class="author-cred">
+          <div class="cred-item"><div class="cred-dot"></div> Google Search Central</div>
+          <div class="cred-item"><div class="cred-dot"></div> Semrush Certified</div>
+          <div class="cred-item"><div class="cred-dot"></div> +8 anos em SEO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-block-title">Referências</div>
+      <a class="toc-link" href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">Google: Helpful Content</a>
+      <a class="toc-link" href="https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf" target="_blank" rel="noopener">Quality Rater Guidelines</a>
+    </div>
+
+  </aside>
+
+</div>
+
+<script>
+  // TOC scroll spy
+  const sections = document.querySelectorAll('article [id]');
+  const tocLinks = document.querySelectorAll('.toc-link[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
