@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCOPE Audit — Elements Corporativo — Setembro 2026</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Elements · Auditoria de SEO — Corporativo B2B</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
@@ -16,8 +17,8 @@
     --bg-card: #FFFFFF;
     --border: #E0E0E0;
     --text: #1A1A1A;
-    --text-dim: #595959;
-    --text-light: #888;
+    --text-dim: #3D3D3D;
+    --text-light: #666;
     --font: 'Inter', system-ui, sans-serif;
     --font-display: 'Oswald', Arial, sans-serif;
   }
@@ -25,11 +26,12 @@
   body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
 
   /* HEADER */
-  .report-header { background: var(--bg-card); color: var(--text); padding: 48px 64px; position: relative; border-bottom: 4px solid var(--red); }
+  .report-header { background: #0D0D0D; color: #FFFFFF; padding: 48px 64px; position: relative; border-bottom: 4px solid var(--red); }
   .report-header .agency { font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; font-weight: 700; }
-  .report-header h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,36px); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: var(--text); }
-  .report-header .subtitle { font-size: 16px; color: var(--text-dim); margin-bottom: 24px; }
-  .report-header .meta { display: flex; gap: 24px; font-size: 13px; color: var(--text-dim); flex-wrap: wrap; }
+  .report-header h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,36px); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: #FFFFFF; }
+  .report-header .subtitle { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .report-header .meta { display: flex; gap: 24px; font-size: 13px; color: rgba(255,255,255,0.55); flex-wrap: wrap; }
+  .report-header .back-link { color: rgba(255,255,255,0.45) !important; }
   .confidential-tag { position: absolute; top: 48px; right: 64px; border: 1px solid var(--red); color: var(--red); padding: 6px 14px; border-radius: 4px; font-size: 11px; letter-spacing: 1px; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; }
 
   /* TABS */
@@ -181,17 +183,20 @@
 <body>
 
 <header class="report-header">
-  <div style="margin-bottom:16px;"><a href="index.html" style="color:#888;text-decoration:none;font-size:13px;font-family:var(--font-display);letter-spacing:.5px;">← Voltar ao Hub</a></div>
-  <div class="agency">V4 Company — Carvalho &amp; Co. · Auditoria S.C.O.P.E.</div>
-  <h1>SCOPE Audit: Elements Corporativo</h1>
+  <div style="margin-bottom:16px;"><a href="index.html" class="back-link" style="text-decoration:none;font-size:13px;font-family:var(--font-display);letter-spacing:.5px;">← Voltar ao Hub</a></div>
+  <div class="agency">
+    <svg width="14" height="14" viewBox="0 0 14 14" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect width="14" height="14" rx="2" fill="#C00000"/><rect x="2.5" y="4" width="9" height="2" fill="white"/><rect x="2.5" y="7" width="6.5" height="1.5" fill="white"/><rect x="2.5" y="9.5" width="8" height="1.5" fill="white"/></svg>
+    V4 Company — Carvalho &amp; Co. · Auditoria de SEO
+  </div>
+  <h1>Elements — corporativo.elements.com.br</h1>
   <div class="subtitle">corporativo.elements.com.br · Canal B2B · Setembro 2026</div>
   <div class="meta">
     <span><strong>Analista:</strong> Ivan Felipe · <a href="mailto:ivan.felipe@v4company.com" style="color:#D9D9D9;">ivan.felipe@v4company.com</a> · V4 Company - Carvalho &amp; Co.</span>
     <span><strong>Data:</strong> Setembro 2026</span>
     <span><strong>Plataforma:</strong> Shopify (B2B store)</span>
-    <span><strong>Metodologia:</strong> S.C.O.P.E. v2</span>
+    <span><strong>Metodologia:</strong> S.C.O.P.E.</span>
   </div>
-  <div class="confidential-tag">Confidencial</div>
+  
 </header>
 
 <div class="tab-bar" role="tablist">
@@ -205,16 +210,16 @@
 <div class="audit-layout">
 <nav class="audit-sidebar">
   <div class="audit-sidebar-title">Seções</div>
-  <a href="#mapa">01 · Subdomínios</a>
-  <a href="#baseline">02 · Baseline</a>
-  <a href="#radar">03 · Maturidade</a>
-  <a href="#infra">04 · Infraestrutura</a>
-  <a href="#blog">05 · Blog</a>
-  <a href="#produtos">06 · Produtos</a>
-  <a href="#colecoes">07 · Coleções</a>
-  <a href="#institucional">08 · Institucional</a>
-  <a href="#estrategico">09 · Estratégico</a>
-  <a href="#roadmap">10 · Roadmap</a>
+  <a href="#mapa"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="8" r="1.5" stroke="currentColor" stroke-width="1.5"/><line x1="5.5" y1="5.5" x2="7.5" y2="6.5" stroke="currentColor" stroke-width="1.2"/></svg>Subdomínios</a>
+  <a href="#baseline"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="1" y="7" width="2" height="4" fill="currentColor" rx="0.5"/><rect x="5" y="4" width="2" height="7" fill="currentColor" rx="0.5"/><rect x="9" y="1" width="2" height="10" fill="currentColor" rx="0.5"/></svg>Baseline</a>
+  <a href="#radar"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><polygon points="6,1 11,9 1,9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="6" y1="1" x2="6" y2="9" stroke="currentColor" stroke-width="1" stroke-dasharray="2,1"/></svg>Maturidade</a>
+  <a href="#infra"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><path d="M2 9l3-3 2 2 3-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Infraestrutura</a>
+  <a href="#blog"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="1.5" y="1.5" width="9" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="3.5" y1="4.5" x2="8.5" y2="4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3.5" y1="6.5" x2="7" y2="6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Blog</a>
+  <a href="#produtos"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="2" y="4" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4 4V3a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Produtos</a>
+  <a href="#colecoes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="1" y="1" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="1" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="6.5" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="6.5" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/></svg>Coleções</a>
+  <a href="#institucional"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><path d="M6 1l5 3v7H1V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="4.5" y="7" width="3" height="4" stroke="currentColor" stroke-width="1.2"/></svg>Institucional</a>
+  <a href="#estrategico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="6" r="2" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r="0.8" fill="currentColor"/></svg>Estratégico</a>
+  <a href="#roadmap"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><circle cx="2" cy="6" r="1.2" fill="currentColor"/><circle cx="6" cy="6" r="1.2" fill="currentColor"/><circle cx="10" cy="6" r="1.2" fill="currentColor"/><line x1="3.2" y1="6" x2="4.8" y2="6" stroke="currentColor" stroke-width="1.2"/><line x1="7.2" y1="6" x2="8.8" y2="6" stroke="currentColor" stroke-width="1.2"/></svg>Roadmap</a>
 </nav>
 <div class="audit-main">
 <div class="container">
@@ -446,16 +451,16 @@
             </div>
           </div>
           <div class="evidence-box">
-            <strong>Evidência — Confirmado via DevTools (Setembro 2026)</strong>
+            <strong>Evidência — Verificado diretamente (Setembro 2026)</strong>
             <span class="url-cite">corporativo.elements.com.br/sitemap_pages_1.xml</span><br>
-            3 das 6 páginas verificadas diretamente via Chrome DevTools MCP — ausência de noindex confirmada:<br>
+            3 das 6 páginas verificadas diretamente — ausência de noindex confirmada:<br>
             <ul style="list-style:none;margin-top:8px">
               <li><span class="url-cite">/pages/pagina-pos-registro</span> — <strong>SEM noindex</strong> ✗ · página pós-cadastro indexável</li>
               <li><span class="url-cite">/pages/cnpj-invalido</span> — <strong>SEM noindex</strong> ✗ · página de erro de validação indexável</li>
               <li><span class="url-cite">/pages/pagina-de-obrigado-mql</span> — <strong>SEM noindex</strong> ✗ · página de obrigado indexável</li>
-              <li><span class="url-cite">/pages/pagina-de-obrigado-redirect-site</span> — não verificada via DevTools</li>
-              <li><span class="url-cite">/pages/formulario-corporativo-site-elements-rd</span> — não verificada via DevTools</li>
-              <li><span class="url-cite">/pages/formulario-ambiente-corporativo</span> — não verificada via DevTools</li>
+              <li><span class="url-cite">/pages/pagina-de-obrigado-redirect-site</span> — não verificada nesta auditoria</li>
+              <li><span class="url-cite">/pages/formulario-corporativo-site-elements-rd</span> — não verificada nesta auditoria</li>
+              <li><span class="url-cite">/pages/formulario-ambiente-corporativo</span> — não verificada nesta auditoria</li>
             </ul>
           </div>
           <div class="benchmark-box">
@@ -690,7 +695,7 @@
             </div>
           </div>
           <div class="evidence-box">
-            <strong>Evidência — Confirmado via DevTools (Setembro 2026)</strong>
+            <strong>Evidência — Verificado diretamente (Setembro 2026)</strong>
             <span class="url-cite">corporativo.elements.com.br/products/cadeira-ergonomica-elements-astra</span><br>
             <strong>JSON-LD ProductGroup schema confirmado:</strong><br>
             <code>"@type": "ProductGroup"</code><br>
@@ -721,9 +726,9 @@
         </div>
         <div class="audit-item-body">
           <div class="evidence-box">
-            <strong>Evidência — DevTools (Setembro 2026)</strong>
+            <strong>Evidência — Verificado diretamente (Setembro 2026)</strong>
             <span class="url-cite">corporativo.elements.com.br/</span><br>
-            Organization schema confirmado via DevTools. Campo <code>sameAs</code> encontrado com array de strings vazias:<br>
+            Organization schema verificado. Campo <code>sameAs</code> encontrado com array de strings vazias:<br>
             <code>"sameAs": ["", ""]</code><br>
             Valor esperado: URLs de perfis sociais oficiais (ex: Instagram, LinkedIn, YouTube da marca).
           </div>
@@ -965,7 +970,7 @@
 
     <div class="sprint-card sprint-1">
       <div class="sprint-label">Sprint 1 — Urgente (Q×I×D ≥ 80)</div>
-      <div class="sprint-item">T.2 — Noindex em páginas internas/transacionais (6 páginas) — <strong>3 confirmadas sem noindex via DevTools</strong> <span class="qid-score">125</span></div>
+      <div class="sprint-item">T.2 — Noindex em páginas internas/transacionais (6 páginas) — <strong>3 confirmadas sem noindex</strong> <span class="qid-score">125</span></div>
       <div class="sprint-item">P.5 — Schema com preço vs UI gated — risco de ação manual por "dados estruturados enganosos" <span class="qid-score">125</span></div>
       <div class="sprint-item">BL.1 — Decisão sobre blog corporativo: ativar ou desativar — maior gap de oportunidade B2B <span class="qid-score">100</span></div>
       <div class="sprint-item">P.2 + C.2 + I.2 — Templates de meta description (produtos, coleções, páginas) <span class="qid-score">80</span></div>
@@ -981,7 +986,7 @@
 
     <div class="sprint-card sprint-3">
       <div class="sprint-label">Sprint 3 — Melhoria Contínua (Q×I×D 15–39)</div>
-      <div class="sprint-item">P.6 — Preencher sameAs no Organization schema (strings vazias confirmadas via DevTools) <span class="qid-score">24</span></div>
+      <div class="sprint-item">P.6 — Preencher sameAs no Organization schema (strings vazias identificadas na auditoria) <span class="qid-score">24</span></div>
       <div class="sprint-item">I.1 — Case study detalhado em /venda-corporativa + meta description <span class="qid-score">30</span></div>
       <div class="sprint-item">E.2 — Citar fontes dos dados de ROI ergonômico; assinar conteúdo com especialistas <span class="qid-score">24</span></div>
       <div class="sprint-item">E.1 — Interlinking entre loja e corporativo; avaliar viabilidade de migração subdirectory <span class="qid-score">20</span></div>
@@ -995,14 +1000,14 @@
         <tr><td>BL.1</td><td>Blog abandonado — zero artigos indexados</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
         <tr><td>BL.2</td><td>Blog com H1 "News" genérico</td><td><span class="section-tag tag-blog" style="margin-bottom:0;font-size:10px">Blog</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>2</strong></td></tr>
         <tr><td>P.2</td><td>Meta description ausente em páginas de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>1</strong></td></tr>
-        <tr><td>P.5</td><td>Schema com preço vs UI gated — risco de dados estruturados enganosos (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
+        <tr><td>P.5</td><td>Schema expõe preços ao Googlebot enquanto UI exige login — risco de dados estruturados enganosos</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
         <tr><td>P.3</td><td>Price gating bloqueia rich snippets de produto</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>2</strong></td></tr>
         <tr><td>C.2</td><td>Meta description ausente em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>1</strong></td></tr>
         <tr><td>C.3</td><td>Páginas sazonais/finas no sitemap</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>2</strong></td></tr>
         <tr><td>E.1</td><td>Autoridade dividida entre subdomínios</td><td><span class="section-tag tag-estrategico" style="margin-bottom:0;font-size:10px">Estratégico</span></td><td><span class="score-badge score-2" style="width:24px;height:24px;font-size:11px">2</span></td><td><strong>3</strong></td></tr>
         <tr><td>C.4</td><td>Canibalização com loja.elements.com.br em coleções</td><td><span class="section-tag tag-colecao" style="margin-bottom:0;font-size:10px">Coleção</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>2</strong></td></tr>
         <tr><td>P.4</td><td>Oportunidade de enriquecer descrições com ROI B2B</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Produto</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
-        <tr><td>P.6</td><td>Organization schema sameAs com strings vazias (confirmado via DevTools)</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Semântica</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>3</strong></td></tr>
+        <tr><td>P.6</td><td>Organization schema sameAs com strings vazias — campo sem conteúdo indexável</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Semântica</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>3</strong></td></tr>
         <tr><td>I.1</td><td>/venda-corporativa sem case study detalhado</td><td><span class="section-tag tag-institucional" style="margin-bottom:0;font-size:10px">Institucional</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
       </tbody>
     </table>
@@ -1010,7 +1015,7 @@
   </section>
 
   <div class="disclaimer">
-    <strong>Metodologia e limitações:</strong> Auditoria realizada via inspeção pública (WebFetch) + Chrome DevTools MCP (verificação de schema e ausência de noindex em setembro de 2026). Schema markup verificado diretamente via DevTools: confirmados ProductGroup, Organization, BreadcrumbList. Achados P.5 (preço em schema vs UI gated) e P.6 (sameAs vazios) são fatos observados, não hipóteses. T.2: ausência de noindex confirmada em 3 das 6 páginas internas; as demais 3 não foram verificadas diretamente. Core Web Vitals: PageSpeed Insights fornecido pelo usuário para corporativo — mobile INP 132ms PASSED, LCP 1.8s PASSED, CLS 0 PASSED. Dados de tráfego orgânico indisponíveis (sem acesso ao GSC). Todos os scores refletem o estado do site em setembro de 2026.
+    <strong>Metodologia e limitações:</strong> Auditoria realizada via inspeção pública das páginas e verificação direta de schema markup (Setembro 2026). Confirmados: ProductGroup, Organization, BreadcrumbList. Achados P.5 (preço em schema vs UI gated) e P.6 (sameAs vazios) são fatos observados, não hipóteses. T.2: ausência de noindex confirmada em 3 das 6 páginas internas; as demais 3 não foram acessadas nesta auditoria. Core Web Vitals: PageSpeed Insights fornecido pelo usuário para corporativo — mobile INP 132ms PASSED, LCP 1.8s PASSED, CLS 0 PASSED. Dados de tráfego orgânico indisponíveis (sem acesso ao GSC). Todos os scores refletem o estado do site em setembro de 2026.
   </div>
 
 </div><!-- /container -->
@@ -1770,7 +1775,7 @@
     <p style="font-size:14px;line-height:1.8;"><strong>Síntese do diagnóstico:</strong> corporativo.elements.com.br está tecnicamente sólido — infraestrutura aprovada, CWV excelente, subdomínio indexado. O problema não é técnico: é de <strong>conteúdo e posicionamento</strong>. O canal é invisível para o comprador corporativo porque não há nenhuma página ou artigo otimizado para as buscas que esse comprador faz. Toda a audiência atual chegou via busca de marca — nenhum cliente novo chegou pelo produto.</p>
   </div>
 
-  <h3 style="font-family:var(--font-display);font-size:14px;text-transform:uppercase;margin:0 0 12px;">Pontuação S.C.O.P.E. — Corporativo</h3>
+  <h3 style="font-family:var(--font-display);font-size:14px;text-transform:uppercase;margin:0 0 12px;">Score da Auditoria de SEO — Corporativo</h3>
   <div class="card" style="overflow-x:auto;">
     <table>
       <thead>
