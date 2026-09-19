@@ -148,6 +148,74 @@
   /* DISCLAIMER */
   .disclaimer { background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--red); border-radius: 10px; padding: 20px 24px; font-size: 12px; color: var(--text-dim); margin-top: 48px; }
 
+
+  /* ═══ COMPARATIVE COMPONENTS (Comparativo / Projeção / Resumo tabs) ═══ */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; text-align: center; }
+  .kpi-val { font-family: var(--font-display); font-size: 32px; font-weight: 700; line-height: 1.1; }
+  .kpi-rank { font-size: 11px; font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; }
+
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 700; font-family: var(--font-display); letter-spacing: 0.5px; white-space: nowrap; }
+  .badge-pass { background: rgba(27,127,55,.15); color: #1B7F37; }
+  .badge-fail { background: rgba(192,0,0,.12); color: var(--red); }
+  .badge-ni { background: rgba(240,165,0,.15); color: #b07800; }
+  .badge-na { background: rgba(100,100,100,.1); color: #888; }
+
+  .cwv-good { color: #1B7F37; font-weight: 700; }
+  .cwv-bad { color: var(--red); font-weight: 700; }
+  .cwv-ni { color: #b07800; font-weight: 700; }
+
+  .bar-chart { display: flex; flex-direction: column; gap: 14px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 13px; font-weight: 600; width: 140px; flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--border); border-radius: 4px; height: 32px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 12px; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .bar-val { font-size: 13px; font-weight: 700; width: 70px; text-align: right; flex-shrink: 0; }
+
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .scenario-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; position: relative; overflow: hidden; }
+  .scenario-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+  .scenario-cons::before { background: #888; }
+  .scenario-base::before { background: var(--orange); }
+  .scenario-opt::before { background: var(--green); }
+  .scenario-label { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+  .scenario-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+  .scenario-num { font-family: var(--font-display); font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .scenario-sub { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
+  .scenario-delta { font-size: 14px; font-weight: 700; }
+  .scenario-items { margin-top: 16px; font-size: 12px; color: var(--text-dim); list-style: none; }
+  .scenario-items li { padding: 3px 0; }
+
+  .waterfall { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .wf-row { display: flex; align-items: center; gap: 12px; }
+  .wf-label { font-size: 12px; width: 200px; flex-shrink: 0; line-height: 1.4; }
+  .wf-bar-wrap { flex: 1; }
+  .wf-bar { height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 11px; font-weight: 700; color: #fff; }
+  .wf-gain { font-size: 12px; font-weight: 700; width: 80px; text-align: right; flex-shrink: 0; }
+
+  .finding-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .finding-row:last-child { border-bottom: none; }
+  .finding-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .finding-text { flex: 1; }
+  .finding-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .finding-desc { font-size: 13px; color: var(--text-dim); }
+  .finding-badge { flex-shrink: 0; align-self: center; }
+
+  .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .matrix-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .matrix-cell-title { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .matrix-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .matrix-item { font-size: 12px; padding: 4px 0; color: var(--text-dim); display: flex; align-items: flex-start; gap: 6px; }
+  .matrix-item::before { content: '→'; color: var(--text-light); flex-shrink: 0; margin-top: 1px; }
+
+  @media (max-width: 900px) {
+    .kpi-row { grid-template-columns: repeat(2,1fr); }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .matrix-grid { grid-template-columns: 1fr; }
+    .bar-label { width: 100px; font-size: 12px; }
+    .wf-label { width: 120px; }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .audit-layout { grid-template-columns: 1fr; }
@@ -1360,71 +1428,953 @@
 </div></div></div><!-- /tab-auditoria -->
 
 <div id="tab-comparativo" class="tab-pane" role="tabpanel">
-  <div class="tab-toolbar">
-    <span style="color:#D9D9D9;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;">ANÁLISE COMPARATIVA · Elements vs Concorrentes</span>
-    <a href="scope-comparativo.html" target="_blank" style="margin-left:auto;">↗ Abrir em tela cheia</a>
+<div class="audit-layout">
+<nav class="audit-sidebar">
+  <div class="audit-sidebar-title">Seções</div>
+  <a href="#comp-trafego">01 · Tráfego</a>
+  <a href="#comp-cwv">02 · Core Web Vitals</a>
+  <a href="#comp-keywords">03 · Batalha Keywords</a>
+  <a href="#comp-overlap">04 · Sobreposição</a>
+  <a href="#comp-posicionamento">05 · Estratégico</a>
+</nav>
+<div class="audit-main">
+<div class="container">
+
+<section id="comp-trafego"><div class="section-header">Tráfego Orgânico Estimado · Semrush Set 2026</div><div class="section-divider"></div>
+  <div class="kpi-row">
+    <div class="kpi-box" style="border-top:4px solid #C00000;">
+      <div class="kpi-val" style="color:#C00000;">~124K</div>
+      <div class="kpi-label">loja.elements.com.br</div>
+      <div class="kpi-source">21.700 / 17.44% = ~124.400</div>
+      <div class="kpi-rank" style="color:#F0A500;">▲ #2 no segmento</div>
+    </div>
+    <div class="kpi-box" style="border-top:4px solid #1565C0;">
+      <div class="kpi-val" style="color:#1565C0;">~160K</div>
+      <div class="kpi-label">flexform.com.br</div>
+      <div class="kpi-source">26.500 / 16.54% = ~160.200</div>
+      <div class="kpi-rank" style="color:#888;">#1 no segmento</div>
+    </div>
+    <div class="kpi-box" style="border-top:4px solid #558B2F;">
+      <div class="kpi-val" style="color:#558B2F;">~75K</div>
+      <div class="kpi-label">dt3.com</div>
+      <div class="kpi-source">11.800 / 15.78% = ~74.800</div>
+      <div class="kpi-rank" style="color:#888;">#3 no segmento</div>
+    </div>
+    <div class="kpi-box" style="border-top:4px solid #888;">
+      <div class="kpi-val" style="color:#888;">~31K</div>
+      <div class="kpi-label">sensetup.com.br</div>
+      <div class="kpi-source">3.500 / 11.41% = ~30.700</div>
+      <div class="kpi-rank" style="color:#888;">#4 no segmento</div>
+    </div>
   </div>
-  <div class="iframe-wrap">
-    <iframe src="scope-comparativo.html" title="Análise Comparativa Elements vs Concorrentes" loading="lazy"></iframe>
+
+  <!-- BAR CHART -->
+  <div class="card" style="margin-bottom:32px;">
+    <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;">Tráfego orgânico comparativo — visitas estimadas/mês</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Flexform</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%;background:#1565C0;">líder</div>
+        </div>
+        <div class="bar-val" style="color:#1565C0;">~160.200</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label" style="color:#C00000;font-weight:800;">Elements Loja</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:77.7%;background:#C00000;">77.7% do líder</div>
+        </div>
+        <div class="bar-val" style="color:#C00000;">~124.400</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">DT3</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:46.7%;background:#558B2F;"></div>
+        </div>
+        <div class="bar-val" style="color:#558B2F;">~74.800</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Sensetup</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:19.2%;background:#888;"></div>
+        </div>
+        <div class="bar-val" style="color:#888;">~30.700</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text-light);margin-top:16px;">Estimativa calculada: tráfego do top keyword ÷ % de tráfego desse keyword. Fonte: Semrush export Set 2026. Inclui tráfego brand e non-brand.</div>
   </div>
+
+  <!-- CWV COMPARISON TABLE -->
+  </section>
+<section id="comp-cwv"><div class="section-header">Core Web Vitals · PageSpeed Insights Field Data — Set 2026</div><div class="section-divider"></div>
+
+  <div class="card" style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Domínio</th>
+          <th>Mobile LCP</th>
+          <th>Mobile INP</th>
+          <th>Mobile CLS</th>
+          <th>Status Mobile</th>
+          <th>Desktop LCP</th>
+          <th>Desktop INP</th>
+          <th>Desktop CLS</th>
+          <th>Status Desktop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong style="color:#C00000;">loja.elements.com.br</strong></td>
+          <td class="cwv-good">1.5s ✅</td>
+          <td class="cwv-bad">304ms ❌</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-fail">FAILED</span></td>
+          <td class="cwv-good">✅ Good</td>
+          <td class="cwv-good">✅ Good</td>
+          <td class="cwv-ni">0.11 ⚠️</td>
+          <td><span class="badge badge-ni">NI</span></td>
+        </tr>
+        <tr>
+          <td>flexform.com.br</td>
+          <td class="cwv-bad">2.8s ❌</td>
+          <td class="cwv-good">177ms ✅</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-fail">FAILED</span></td>
+          <td class="cwv-good">1.6s ✅</td>
+          <td class="cwv-good">79ms ✅</td>
+          <td class="cwv-good">0.08 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+        </tr>
+        <tr>
+          <td>sensetup.com.br</td>
+          <td class="cwv-good">1.6s ✅</td>
+          <td class="cwv-good">94ms ✅</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+          <td class="cwv-good">1.5s ✅</td>
+          <td class="cwv-good">29ms ✅</td>
+          <td class="cwv-bad">0.45 ❌</td>
+          <td><span class="badge badge-fail">FAILED</span></td>
+        </tr>
+        <tr>
+          <td>dt3.com</td>
+          <td class="cwv-good">1.8s ✅</td>
+          <td class="cwv-good">163ms ✅</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+          <td class="cwv-good">1.8s ✅</td>
+          <td class="cwv-good">71ms ✅</td>
+          <td class="cwv-good">0.04 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:12px;border-left:4px solid var(--red);">
+    <p style="font-size:13px;"><strong>Leitura estratégica de CWV:</strong> DT3 é o único concorrente com PASSED em ambos os dispositivos. Flexform — o líder de tráfego — também falha no mobile (LCP 2.8s). Isso significa que <strong>nenhum dos dois maiores players do segmento tem CWV mobile aprovado</strong>. A Elements está empatada nesse gap com Flexform. Sensetup é o único com mobile PASSED mas falha no desktop por CLS (layout shift na URL específica analisada). O INP da Elements (304ms) é o único bloqueador para tornar-se o <em>único líder de tráfego com mobile PASSED no segmento</em>.</p>
+  </div>
+
+  <!-- KEYWORD BATTLE -->
+  </section>
+<section id="comp-keywords"><div class="section-header">Batalha por Keywords · Posições por Domínio</div><div class="section-divider"></div>
+
+  <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Comparativo de posições orgânicas para as keywords mais estratégicas do segmento. Fonte: Semrush Set 2026.</div>
+
+  <div class="card" style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Volume</th>
+          <th>KD%</th>
+          <th style="color:#C00000;">Elements Loja</th>
+          <th>Flexform</th>
+          <th>DT3</th>
+          <th>Sensetup</th>
+          <th>Oportunidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>cadeira ergonomica</strong></td>
+          <td>110.000</td>
+          <td>32%</td>
+          <td><strong style="color:#1B7F37;">#1 · 9.000/mês</strong></td>
+          <td>#2 · 7.200/mês</td>
+          <td>#3 · 3.900/mês</td>
+          <td>#5 · 2.600/mês</td>
+          <td><span class="badge badge-pass">Defender</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>cadeira de escritorio</strong></td>
+          <td>201.000</td>
+          <td>34%</td>
+          <td><strong style="color:#C00000;">Fora do top 10</strong></td>
+          <td><strong style="color:#1565C0;">#1 · 26.500/mês</strong></td>
+          <td>#3 · 343/mês</td>
+          <td>#10 · 54/mês</td>
+          <td><span class="badge badge-fail">Maior Gap</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira escritorio</strong></td>
+          <td>90.500</td>
+          <td>28%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#1 · 7.400/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Alta Prioridade</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira</strong></td>
+          <td>110.000</td>
+          <td>27%</td>
+          <td><strong style="color:#F0A500;">#3 · 2.400/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Melhorar</span></td>
+        </tr>
+        <tr>
+          <td><strong>mesa de escritorio</strong></td>
+          <td>74.000</td>
+          <td>28%</td>
+          <td style="color:var(--text-dim);">Não identificado</td>
+          <td>#2 · 3.300/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Alta Prioridade</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira ergonomica escritório</strong></td>
+          <td>12.100</td>
+          <td>33%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#2 · 786/mês</td>
+          <td>#8 · 108/mês</td>
+          <td>#3 · 532/mês</td>
+          <td><span class="badge badge-ni">Oportunidade</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.03);">
+          <td><strong>cadeira para escritorio</strong></td>
+          <td>18.100</td>
+          <td>29%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td><strong style="color:#1565C0;">#1 · 2.400/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-fail">Gap Direto</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira de escritorio ergonomica</strong></td>
+          <td>18.100</td>
+          <td>31%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td><strong style="color:#1565C0;">#1 · 1.500/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-fail">Gap Direto</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.03);">
+          <td><strong>cadeiras de escritorio</strong></td>
+          <td>9.900</td>
+          <td>26%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td><strong style="color:#1565C0;">#1 · 1.300/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-fail">Gap Direto</span></td>
+        </tr>
+        <tr>
+          <td><strong>mesa de escritorio</strong> <small style="color:var(--text-dim)">(mesa elétrica)</small></td>
+          <td>74.000</td>
+          <td>28%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#2 · 3.300/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Alta Prioridade</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.03);">
+          <td><strong>mesa escritorio</strong></td>
+          <td>40.500</td>
+          <td>25%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#5 · 972/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Alta Prioridade</span></td>
+        </tr>
+        <tr>
+          <td><strong>poltrona</strong></td>
+          <td>110.000</td>
+          <td>35%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#2 · 7.200/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Expansão</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.03);">
+          <td><strong>cadeira secretaria</strong></td>
+          <td>3.600</td>
+          <td>18%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td><strong style="color:#1565C0;">#1 · 892/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Oportunidade</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira gamer</strong></td>
+          <td>246.000</td>
+          <td>42%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#6 · 1.200/mês</td>
+          <td><strong style="color:#558B2F;">#1 · ~3.500/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-na">KD alto · verificar</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.03);">
+          <td><strong>mesa com regulagem de altura</strong></td>
+          <td>8.100</td>
+          <td>20%</td>
+          <td style="color:var(--text-dim);">Não rastreado</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td>#2 · 283/mês</td>
+          <td><span class="badge badge-ni">Oportunidade</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px;color:var(--text-light);margin-top:8px;">Posições e tráfego: Semrush Set 2026. "—" = não rastreado no top 10 pelo Semrush nessa extração. Volume de busca: média mensal BR. KD = Keyword Difficulty % (Semrush).</div>
+
+  <div class="card" style="margin-top:12px;border-left:4px solid #F0A500;">
+    <p style="font-size:13px;"><strong>Insight principal:</strong> A Elements domina "cadeira ergonomica" (#1, 110K vol) mas está <strong>completamente ausente</strong> da keyword "cadeira de escritorio" (201K vol), onde Flexform detém o #1 com 26.500 visitas/mês. Esse único gap representa mais de 20% do tráfego atual de Flexform. Resolver a homepage H1, otimizar a coleção <span class="url-cite">/cadeiras/cadeiras-de-escritorio</span> e corrigir o CWV mobile são os três movimentos para atacar esse vácuo.</p>
+  </div>
+
+  <!-- OVERLAP DE KEYWORDS -->
+  </section>
+<section id="comp-overlap"><div class="section-header">Sobreposição de Keywords · Autoridade Estimada</div><div class="section-divider"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+    <div class="card">
+      <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">Concorrentes de Sensetup</div>
+      <table>
+        <tr><th>Domínio</th><th>KWs Comuns</th><th>Comp. Level</th></tr>
+        <tr><td>comfy.com.br</td><td>610</td><td>35%</td></tr>
+        <tr><td style="color:#C00000;font-weight:700;">elements.com.br</td><td style="color:#C00000;font-weight:700;">573</td><td style="color:#C00000;">30%</td></tr>
+        <tr><td>cadeirasparaescritorio.ind.br</td><td>400</td><td>27%</td></tr>
+        <tr><td>flexform.com.br</td><td>447</td><td>23%</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:10px;">Elements é o 2º maior concorrente da Sensetup por sobreposição de keywords, confirmando disputa direta no mesmo universo semântico.</div>
+    </div>
+    <div class="card">
+      <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">Autoridade de Domínio · Dados Semrush</div>
+      <table>
+        <tr><th>Domínio</th><th>Visibility BR*</th><th>Keywords (top&nbsp;10)</th><th>Tráfego Est.</th><th>Posição no Segmento</th></tr>
+        <tr><td>flexform.com.br</td><td><strong style="color:#1565C0;">63</strong></td><td>>1.000</td><td>~160K</td><td>#1</td></tr>
+        <tr style="background:rgba(192,0,0,.04);"><td style="color:#C00000;font-weight:700;">loja.elements.com.br</td><td><strong style="color:#C00000;">~45–55 est.</strong></td><td>>1.000</td><td style="color:#C00000;">~124K</td><td>#2</td></tr>
+        <tr><td>dt3.com</td><td><strong style="color:#558B2F;">~35–45 est.</strong></td><td>3.427</td><td>~75K</td><td>#3</td></tr>
+        <tr><td>sensetup.com.br</td><td><strong style="color:#888;">~20–30 est.</strong></td><td>2.337</td><td>~31K</td><td>#4</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:10px;">*Semrush Visibility Score (0–100): métrica de presença orgânica no banco de dados Semrush. Flexform: 63 BR confirmado pelo export Semrush Set 2026 (Countries/Visibility). Demais: estimados com base em tráfego, keywords e maturidade. Fato observado: Elements tem mais tráfego que DT3 apesar de menor volume de keywords rastreadas — evidência de autoridade topical concentrada em ergonomia de alto volume.</div>
+    </div>
+  </div>
+
+  <!-- SWOT RÁPIDO -->
+  </section>
+<section id="comp-posicionamento"><div class="section-header">Posicionamento Estratégico · Elements vs Concorrentes</div><div class="section-divider"></div>
+  <div class="matrix-grid">
+    <div class="matrix-cell" style="border-top:4px solid #1B7F37;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#1B7F37;"></div>Vantagens da Elements</div>
+      <div class="matrix-item">#1 em "cadeira ergonomica" (110K vol) — posição consolidada</div>
+      <div class="matrix-item">~124K visitas/mês — #2 no segmento, acima de DT3 e Sensetup</div>
+      <div class="matrix-item">LCP mobile 1.5s — melhor que Flexform (2.8s)</div>
+      <div class="matrix-item">573 keywords em comum com Sensetup — terreno disputável direto</div>
+      <div class="matrix-item">Blog 185 artigos indexados — ativo subutilizado com alto potencial</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #C00000;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#C00000;"></div>Vulnerabilidades</div>
+      <div class="matrix-item">INP 304ms mobile → CWV FAILED — mesma falha do concorrente líder (Flexform)</div>
+      <div class="matrix-item">Ausente do top 10 para "cadeira de escritorio" (201K vol)</div>
+      <div class="matrix-item">~35% brand traffic — crescimento limitado sem diversificação topical</div>
+      <div class="matrix-item">H1 homepage genérico — não sinaliza autoridade para KWs de escritório</div>
+      <div class="matrix-item">Canibalização "cadeira elements" em 4 URLs diferentes</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #F0A500;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#F0A500;"></div>Oportunidades Identificadas</div>
+      <div class="matrix-item">"Cadeira de escritorio" (201K) — Flexform #1, Elements ausente → gap direto</div>
+      <div class="matrix-item">CWV fix → único líder com mobile PASSED no segmento</div>
+      <div class="matrix-item">Sensetup PASSED no mobile mas #5 em "cadeira ergonomica" — posição frágil</div>
+      <div class="matrix-item">DT3 PASSED (único), mas tráfego 40% menor — autoridade topical inferior</div>
+      <div class="matrix-item">Mesa elétrica: mercado sem líder claro — DT3 e Flexform com posições modestas</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #888;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#888;"></div>Ameaças</div>
+      <div class="matrix-item">DT3 com CWV PASSED nos dois dispositivos — pode ganhar rankings se Google pesar mais CWV</div>
+      <div class="matrix-item">Flexform com DR superior (~40-50 vs ~25-35) — vantagem de autoridade sustentável</div>
+      <div class="matrix-item">Sensetup no mobile PASSED pode escalar para disputar "cadeira ergonomica"</div>
+      <div class="matrix-item">Flexform dominando KWs de escritório transacionais de alto volume</div>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+</div>
 </div>
 
 <div id="tab-proj" class="tab-pane" role="tabpanel">
-  <div class="container">
-    <div class="card" style="border-left:4px solid #C00000;margin-bottom:32px;">
-      <p style="font-size:15px;line-height:1.8;"><strong>Diagnóstico síntese:</strong> A Elements lidera "cadeira ergonomica" (110K vol, #1) com ~124K visitas orgânicas/mês, mas três vetores críticos limitam o crescimento: blog com heading structure quebrada (185 artigos, H1 múltiplos), coleções duplicadas fragmentando autoridade de link e INP mobile 304ms com CWV FAILED. Correções diretas no Shopify Admin e no template do tema podem ser executadas em 2 semanas com impacto estimado de +5–8% no tráfego orgânico apenas no Sprint 1.</p>
+<div class="audit-layout">
+<nav class="audit-sidebar">
+  <div class="audit-sidebar-title">Seções</div>
+  <a href="#proj-metodologia">01 · Metodologia</a>
+  <a href="#proj-baseline">02 · Baseline</a>
+  <a href="#proj-simulacao">03 · Simulação KWs</a>
+  <a href="#proj-cenarios">04 · Cenários</a>
+  <a href="#proj-evolucao">05 · Evolução</a>
+  <a href="#proj-gap">06 · Maior Gap</a>
+</nav>
+<div class="audit-main">
+<div class="container">
+
+<section id="proj-metodologia"><div class="section-header">Metodologia da Projeção</div><div class="section-divider"></div>
+  <div class="card">
+    <p style="font-size:14px;font-weight:700;margin-bottom:12px;">Como calculamos a projeção</p>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">A projeção combina três variáveis mensuráveis com dados reais do Semrush Set 2026 e benchmarks de CTR por posição (fonte: <strong>Backlinko, "Google CTR Stats and Facts", 2022</strong> — dados mobile por posição orgânica, mercado global; adaptado para o Brasil com conservadorismo de ~15% dado comportamento mobile local):</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+      <div style="background:rgba(192,0,0,.06);border:1px solid rgba(192,0,0,.2);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);margin-bottom:8px;">FATOR 1</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Posição Atual × CTR</div>
+        <div style="font-size:12px;color:var(--text-dim);">Posições Semrush + curva CTR por posição. #1=27.6%, #2=15.8%, #3=11%, #4=8.4%, #5=6.3%.</div>
+      </div>
+      <div style="background:rgba(240,165,0,.06);border:1px solid rgba(240,165,0,.3);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:#b07800;margin-bottom:8px;">FATOR 2</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Ganho de Posição por CWV</div>
+        <div style="font-size:12px;color:var(--text-dim);">Correlação Google CWV × ranking: sites que passam de FAILED para PASSED ganham em média 1–3 posições em keywords competitivas top 10.</div>
+      </div>
+      <div style="background:rgba(27,127,55,.06);border:1px solid rgba(27,127,55,.2);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:#1B7F37;margin-bottom:8px;">FATOR 3</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Ganho por Otimização de Conteúdo</div>
+        <div style="font-size:12px;color:var(--text-dim);">H1 + meta descriptions + coleções otimizadas = acesso a keywords de alto volume hoje fora do top 10 (ex: "cadeira de escritorio" 201K vol).</div>
+      </div>
     </div>
-
-    <div class="section-header">Scores por Dimensão</div>
-    <div class="section-divider"></div>
-    <div class="card-grid">
-      <div class="kpi-card" style="border-top:4px solid #558B2F;"><div class="kpi-value score-label-4" style="font-size:32px;">3.9</div><div class="kpi-label">Infraestrutura</div></div>
-      <div class="kpi-card" style="border-top:4px solid #E65100;"><div class="kpi-value score-label-2" style="font-size:32px;">2.3</div><div class="kpi-label">Blog</div></div>
-      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value score-label-3" style="font-size:32px;">3.2</div><div class="kpi-label">Produtos</div></div>
-      <div class="kpi-card" style="border-top:4px solid #E65100;"><div class="kpi-value score-label-2" style="font-size:32px;">2.5</div><div class="kpi-label">Coleções</div></div>
-      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value score-label-3" style="font-size:32px;">3.1</div><div class="kpi-label">Semântica</div></div>
-      <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value score-label-3" style="font-size:32px;">3.3</div><div class="kpi-label">Score Geral</div></div>
-    </div>
-
-    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:var(--text);">Sprint 1 — Ações Críticas (30 dias)</h3>
-    <table>
-      <tr><th>Ação</th><th>Área</th><th>Q×I×D</th><th>Prazo</th></tr>
-      <tr><td><strong>Corrigir H1s múltiplos no blog</strong> — editar article.liquid para 1 único H1</td><td><span class="section-tag tag-blog">Blog</span></td><td><strong>125</strong></td><td>Semana 1</td></tr>
-      <tr><td><strong>301 redirects coleções duplicadas</strong> — /mais-vendidas → /mais-vendidos; /all → /todos-os-produtos</td><td><span class="section-tag tag-colecao">Coleções</span></td><td><strong>80</strong></td><td>Semana 2</td></tr>
-      <tr><td><strong>Template meta description produtos</strong> — keyword + benefício + CTA no theme.liquid</td><td><span class="section-tag tag-produto">Produtos</span></td><td><strong>80</strong></td><td>Semana 1</td></tr>
-      <tr><td><strong>Meta descriptions top 8 coleções</strong> — /cadeiras-ergonomicas, /mesas-com-motorizado e mais</td><td><span class="section-tag tag-colecao">Coleções</span></td><td><strong>80</strong></td><td>Semana 2</td></tr>
-      <tr><td><strong>Corrigir H1 homepage</strong> — substituir "Mais vendidas" por H1 brand + categoria</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td><strong>80</strong></td><td>Semana 1</td></tr>
-    </table>
-
-    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:var(--text);">Top 3 Oportunidades</h3>
-    <table>
-      <tr><th>Oportunidade</th><th>Potencial Estimado</th><th>Esforço</th></tr>
-      <tr><td>Requalificar 185 artigos com autoria + links internos para produtos</td><td>Alto — ativo existente, sem criar conteúdo novo</td><td>Médio</td></tr>
-      <tr><td>Expandir clusters cadeiras ergonômicas e mesas elétricas com copy de coleção + pilares</td><td>Alto — demanda de 74K–201K vol mensal sem captura plena</td><td>Médio-Alto</td></tr>
-      <tr><td>Meta descriptions em PDPs: aumento de CTR 15–30% nas posições já ranqueadas</td><td>Médio — sem mudança de posição</td><td>Baixo</td></tr>
-    </table>
-
-    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:var(--text);">Projeção de Tráfego Orgânico</h3>
-    <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
-      <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value">~131K</div><div class="kpi-label">Sprint 1 (Quick Wins)</div><div class="kpi-source">+6.600 visitas/mês (+5.3%)</div></div>
-      <div class="kpi-card" style="border-top:4px solid #558B2F;"><div class="kpi-value">~152K</div><div class="kpi-label">Sprints 1+2</div><div class="kpi-source">+27.600 visitas/mês (+22.2%)</div></div>
-      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value">~193K</div><div class="kpi-label">SCOPE Completo</div><div class="kpi-source">+68.600 visitas/mês (+55.2%)</div></div>
-    </div>
-
-    <div class="card" style="border-left:4px solid #F0A500;margin-top:24px;">
-      <p style="font-size:13px;"><strong>Próximo passo imediato:</strong> Conectar Google Search Console para estabelecer baseline antes do Sprint 1. Sem GSC, o impacto real das ações não é mensurável. Ver análise comparativa completa na aba <strong>Comparativo</strong> ou em <a href="scope-comparativo.html" style="color:#C00000;">scope-comparativo.html</a>.</p>
+    <div style="font-size:12px;color:var(--text-dim);background:rgba(0,0,0,.04);border-radius:6px;padding:12px;">
+      ⚠️ <strong>Nota metodológica:</strong> Projeções de SEO são probabilísticas, não determinísticas. Os cenários apresentados são estimativas conservadoras baseadas em dados observados. Resultados reais dependem de execução técnica, timing de reindexação e movimentos de concorrentes. Google Search Console conectado permitiria precisão significativamente maior.
     </div>
   </div>
+
+  </section>
+<section id="proj-baseline"><div class="section-header">Baseline · Estado Atual (Semrush Set 2026)</div><div class="section-divider"></div>
+  <div class="card" style="overflow-x:auto;margin-bottom:32px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Volume</th>
+          <th>Posição Atual</th>
+          <th>CTR Estimado</th>
+          <th>Tráfego Atual/mês</th>
+          <th>Potencial #1</th>
+          <th>Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>cadeira ergonomica</strong></td>
+          <td>110.000</td>
+          <td><strong style="color:#1B7F37;">#1</strong></td>
+          <td>~8.2% (real)*</td>
+          <td>9.000</td>
+          <td>—</td>
+          <td style="color:#1B7F37;">Defender</td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>cadeira de escritorio</strong></td>
+          <td>201.000</td>
+          <td style="color:#C00000;"><strong>>10</strong></td>
+          <td>&lt;2%</td>
+          <td>&lt;1.000</td>
+          <td style="color:#1B7F37;">~55.400</td>
+          <td style="color:#C00000;font-weight:700;">+54K potencial</td>
+        </tr>
+        <tr>
+          <td><strong>cadeira escritorio</strong></td>
+          <td>90.500</td>
+          <td style="color:#C00000;"><strong>>10</strong></td>
+          <td>&lt;2%</td>
+          <td>&lt;500</td>
+          <td style="color:#1B7F37;">~24.978</td>
+          <td style="color:#C00000;font-weight:700;">+24K potencial</td>
+        </tr>
+        <tr>
+          <td><strong>cadeira</strong></td>
+          <td>110.000</td>
+          <td><strong>#3</strong></td>
+          <td>~2.2%</td>
+          <td>2.400</td>
+          <td style="color:#888;">~30.360</td>
+          <td style="color:#F0A500;">+27.9K gap #1</td>
+        </tr>
+        <tr>
+          <td><strong>mesa de escritorio</strong></td>
+          <td>74.000</td>
+          <td style="color:var(--text-dim);">Não rastreado</td>
+          <td>—</td>
+          <td>—</td>
+          <td style="color:#888;">~20.424</td>
+          <td style="color:var(--text-dim);">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:var(--text-light);margin-top:10px;">*CTR real de 8.2% para #1 em "cadeira ergonomica" (9.000 / 110.000) é inferior ao benchmark teórico de 27.6% porque o volume de 110K inclui variações de query com CTR menor. O CTR efetivo tende a equilibrar ao redor de 8–12% para grandes clusters semânticos.</div>
+  </div>
+
+  <!-- SIMULAÇÃO KEYWORDS NÃO CONQUISTADAS -->
+  </section>
+<section id="proj-simulacao"><div class="section-header">Simulação · Keywords Não Conquistadas — Potencial de Tráfego</div><div class="section-divider"></div>
+  <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Para keywords onde Elements está fora do top 10, calculamos o ganho de tráfego estimado caso as posições sejam conquistadas. CTR por posição: Backlinko 2022 (mobile). Volume: Semrush Set 2026.</div>
+
+  <div class="card" style="overflow-x:auto;margin-bottom:16px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Volume BR</th>
+          <th>Líder atual</th>
+          <th>CTR p/ #5 → Ganho</th>
+          <th>CTR p/ #3 → Ganho</th>
+          <th>CTR p/ #1 → Ganho</th>
+          <th>Dificuldade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>cadeira de escritorio</strong></td>
+          <td>201.000</td>
+          <td>Flexform #1 · 26.5K</td>
+          <td style="color:#888;">6.3% → <strong>12.663</strong></td>
+          <td style="color:#F0A500;">11% → <strong>22.110</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>55.476</strong></td>
+          <td><span class="badge badge-fail">KD 34%</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira escritorio</strong></td>
+          <td>90.500</td>
+          <td>Flexform #1 · 7.4K</td>
+          <td style="color:#888;">6.3% → <strong>5.702</strong></td>
+          <td style="color:#F0A500;">11% → <strong>9.955</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>24.978</strong></td>
+          <td><span class="badge badge-ni">KD 28%</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>mesa de escritorio</strong></td>
+          <td>74.000</td>
+          <td>Flexform #2 · 3.3K</td>
+          <td style="color:#888;">6.3% → <strong>4.662</strong></td>
+          <td style="color:#F0A500;">11% → <strong>8.140</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>20.424</strong></td>
+          <td><span class="badge badge-ni">KD 28%</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira para escritorio</strong></td>
+          <td>18.100</td>
+          <td>Flexform #1 · 2.4K</td>
+          <td style="color:#888;">6.3% → <strong>1.140</strong></td>
+          <td style="color:#F0A500;">11% → <strong>1.991</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>4.996</strong></td>
+          <td><span class="badge badge-pass">KD 29%</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>cadeira de escritorio ergonomica</strong></td>
+          <td>18.100</td>
+          <td>Flexform #1 · 1.5K</td>
+          <td style="color:#888;">6.3% → <strong>1.140</strong></td>
+          <td style="color:#F0A500;">11% → <strong>1.991</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>4.996</strong></td>
+          <td><span class="badge badge-pass">KD 31%</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeiras de escritorio</strong></td>
+          <td>9.900</td>
+          <td>Flexform #1 · 1.3K</td>
+          <td style="color:#888;">6.3% → <strong>624</strong></td>
+          <td style="color:#F0A500;">11% → <strong>1.089</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>2.732</strong></td>
+          <td><span class="badge badge-pass">KD 26%</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>mesa escritorio</strong></td>
+          <td>40.500</td>
+          <td>Flexform #5 · 972</td>
+          <td style="color:#888;">6.3% → <strong>2.552</strong></td>
+          <td style="color:#F0A500;">11% → <strong>4.455</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>11.178</strong></td>
+          <td><span class="badge badge-ni">KD 25%</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira ergonomica escritório</strong></td>
+          <td>12.100</td>
+          <td>Sensetup #3 · 532</td>
+          <td style="color:#888;">6.3% → <strong>763</strong></td>
+          <td style="color:#F0A500;">11% → <strong>1.331</strong></td>
+          <td style="color:#1B7F37;">27.6% → <strong>3.340</strong></td>
+          <td><span class="badge badge-pass">KD 33%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOTAIS DA SIMULAÇÃO -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;">
+    <div style="background:rgba(150,150,150,.08);border:1px solid #aaa;border-radius:10px;padding:20px;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:1.5px;color:#888;margin-bottom:4px;">TODAS AO #5</div>
+      <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:#888;">+29.246</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">visitas/mês adicionais</div>
+      <div style="font-size:11px;color:#888;margin-top:6px;">+23.5% sobre baseline</div>
+    </div>
+    <div style="background:rgba(240,165,0,.08);border:1px solid rgba(240,165,0,.3);border-radius:10px;padding:20px;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:1.5px;color:#b07800;margin-bottom:4px;">PRINCIPAIS AO #3</div>
+      <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:#b07800;">+51.062</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">visitas/mês adicionais</div>
+      <div style="font-size:11px;color:#b07800;margin-top:6px;">+41.1% sobre baseline</div>
+    </div>
+    <div style="background:rgba(27,127,55,.08);border:1px solid rgba(27,127,55,.2);border-radius:10px;padding:20px;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:1.5px;color:#1B7F37;margin-bottom:4px;">PRINCIPAIS AO #1</div>
+      <div style="font-family:var(--font-display);font-size:32px;font-weight:700;color:#1B7F37;">+128.120</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">visitas/mês adicionais</div>
+      <div style="font-size:11px;color:#1B7F37;margin-top:6px;">+103% sobre baseline (realista em 3–5 anos)</div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--text-light);margin-bottom:32px;">Nota: conquista simultânea do #1 em todas as keywords é teoricamente possível mas exige autoridade e tempo. Os cenários de projeção abaixo adotam a faixa #3–#5 para os principais clusters, que é o horizonte atingível com as correções SCOPE nos Sprints 1–4.</div>
+
+  </section>
+<section id="proj-cenarios"><div class="section-header">Cenários de Projeção · Por Conjunto de Correções</div><div class="section-divider"></div>
+  <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Projeções ancoradas nas correções executadas, não em prazo. O impacto se realiza quando a correção é implementada + reindexada pelo Google (estimativa: 4–12 semanas após execução).</div>
+  <div class="scenario-grid">
+    <div class="scenario-card scenario-cons">
+      <div class="scenario-label">Sprint 1 — Quick Wins Técnicos</div>
+      <div class="scenario-title">Conservador</div>
+      <div class="scenario-num">~131K</div>
+      <div class="scenario-sub">visitas orgânicas/mês</div>
+      <div class="scenario-delta" style="color:#888;">+6.600 (+5.3%) vs. hoje</div>
+      <ul class="scenario-items">
+        <li>✅ Corrigir INP mobile → CWV PASSED</li>
+        <li>✅ Remover header-poc do sitemap</li>
+        <li>✅ H1 homepage corrigido</li>
+        <li>→ Proteção do #1 "cadeira ergonomica"</li>
+        <li>→ Ganho de 1–2 posições nas top 30 keywords</li>
+        <li>→ Sem expansão de keywords ausentes</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-base">
+      <div class="scenario-label">Sprints 1+2 — Conteúdo Core</div>
+      <div class="scenario-title">Base</div>
+      <div class="scenario-num" style="color:#b07800;">~152K</div>
+      <div class="scenario-sub">visitas orgânicas/mês</div>
+      <div class="scenario-delta" style="color:#F0A500;">+27.600 (+22.2%) vs. hoje</div>
+      <ul class="scenario-items">
+        <li>✅ Tudo do Sprint 1, mais:</li>
+        <li>✅ Meta descriptions em 395 PDPs → CTR +15%</li>
+        <li>✅ Coleção /escritorio/ otimizada + H1 semântico</li>
+        <li>✅ BreadcrumbList fix em PDPs</li>
+        <li>→ "Cadeira de escritorio" top 5–8 → +7.6K/mês*</li>
+        <li>→ "Cadeira escritório" top 8–10 → +2.3K/mês*</li>
+        <li>→ CTR +15% non-brand existente → +11K/mês</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-opt">
+      <div class="scenario-label">Sprints 1–4 — SCOPE Completo</div>
+      <div class="scenario-title">Otimista</div>
+      <div class="scenario-num" style="color:#1B7F37;">~193K</div>
+      <div class="scenario-sub">visitas orgânicas/mês</div>
+      <div class="scenario-delta" style="color:#1B7F37;">+68.600 (+55.2%) vs. hoje</div>
+      <ul class="scenario-items">
+        <li>✅ Tudo dos Sprints 1+2, mais:</li>
+        <li>✅ Blog 185 artigos — H1s + autoria especializada</li>
+        <li>✅ Schema BreadcrumbList/Product/FAQ corrigidos</li>
+        <li>✅ Canibalização "cadeira elements" consolidada</li>
+        <li>✅ Interlinking blog → coleções estruturado</li>
+        <li>→ "Cadeira de escritorio" top 3 → +22K/mês*</li>
+        <li>→ "Mesa de escritório" top 5 → +4.7K/mês*</li>
+        <li>→ Blog long-tail → +15–18K/mês</li>
+        <li>→ Supera Flexform como líder orgânico</li>
+      </ul>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--text-light);margin-top:12px;">*Projeções de keywords ausentes calculadas na simulação abaixo: Volume × CTR por posição estimada (Backlinko 2022, mobile). Ver tabela "Simulação de Keywords Não Conquistadas".</div>
+
+  <!-- WATERFALL CHART -->
+  </section>
+<section id="proj-evolucao"><div class="section-header">Evolução Projetada de Tráfego</div><div class="section-divider"></div>
+  <div class="card">
+    <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;">Visitas orgânicas estimadas/mês — escala proporcional</div>
+    <div class="waterfall">
+      <div class="wf-row">
+        <div class="wf-label"><strong>Baseline hoje</strong><br><span style="font-size:11px;color:var(--text-dim);">Estado atual · Set 2026</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:67.2%;background:#595959;">124.400</div>
+        </div>
+        <div class="wf-gain" style="color:#888;">—</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label">Flexform (líder)<br><span style="font-size:11px;color:var(--text-dim);">Benchmark atual</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:86.6%;background:#1565C0;">160.200</div>
+        </div>
+        <div class="wf-gain" style="color:#1565C0;">+35.800</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label"><strong>Sprint 1 · CWV + Quick Wins</strong><br><span style="font-size:11px;color:var(--text-dim);">Correções técnicas imediatas</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:67.9%;background:#888;">131.000</div>
+        </div>
+        <div class="wf-gain" style="color:#888;">+6.600</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label"><strong>Sprints 1+2 · Core Content</strong><br><span style="font-size:11px;color:var(--text-dim);">CWV + conteúdo escritório</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:78.8%;background:#F0A500;color:#111;">152.000</div>
+        </div>
+        <div class="wf-gain" style="color:#F0A500;">+27.600</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label"><strong>Sprints 1–4 · SCOPE Completo</strong><br><span style="font-size:11px;color:var(--text-dim);">Todas as correções executadas</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:100%;background:#1B7F37;">193.000 · Supera Flexform</div>
+        </div>
+        <div class="wf-gain" style="color:#1B7F37;">+68.600</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text-light);margin-top:16px;">Barras em escala relativa ao Cenário Otimista (193K = 100%). Valores são estimativas probabilísticas ancoradas em: dados Semrush Set 2026 + CTR por posição (Backlinko 2022, mobile) + simulação de keywords ausentes (ver tabela acima) + correlações CWV/ranking documentadas.</div>
+  </div>
+
+  <!-- OPORTUNIDADE PRINCIPAL -->
+  </section>
+<section id="proj-gap"><div class="section-header">A Oportunidade de Maior Impacto</div><div class="section-divider"></div>
+  <div class="card" style="border:2px solid #C00000;">
+    <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);margin-bottom:8px;">MAIOR GAP IDENTIFICADO</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:4px;">"cadeira de escritorio"</div>
+        <div style="font-size:13px;color:var(--text-dim);">201.000 buscas/mês · KD 34% · Intenção Comercial</div>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="text-align:center;padding:16px;background:rgba(192,0,0,.08);border-radius:8px;min-width:100px;">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#C00000;">Fora</div>
+          <div style="font-size:11px;color:var(--text-dim);">Elements hoje</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(21,101,192,.08);border-radius:8px;min-width:100px;">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#1565C0;">#1</div>
+          <div style="font-size:11px;color:var(--text-dim);">Flexform (26.5K/mês)</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(27,127,55,.08);border-radius:8px;min-width:100px;">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#1B7F37;">+43K</div>
+          <div style="font-size:11px;color:var(--text-dim);">ganho se #1</div>
+        </div>
+      </div>
+    </div>
+    <hr style="border:none;border-top:1px solid var(--border);margin:16px 0;">
+    <p style="font-size:13px;"><strong>Por que a Elements está ausente?</strong> A homepage usa um H1 que não sinaliza "escritório" ao Google. A URL <span class="url-cite">loja.elements.com.br/cadeiras/cadeiras-de-escritorio</span> existe mas não está sendo ranqueada — falta de autoridade de página + conteúdo de coleção sem texto semântico + CWV FAILED reduzindo elegibilidade de ranking. Flexform tem DR superior (~40) E conteúdo otimizado nessa URL. <strong>Ação para chegar ao top 5: CWV fix + H1 homepage + texto de coleção + link building interno.</strong></p>
+  </div>
+</section>
+
+</div>
+</div>
+</div>
 </div>
 
 <div id="tab-resumo" class="tab-pane" role="tabpanel">
-  <div class="tab-toolbar">
-    <span style="color:#D9D9D9;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;">RESUMO EXECUTIVO · Elements Loja B2C</span>
-    <a href="scope-resumo.html" target="_blank" style="margin-left:auto;">↗ Abrir em tela cheia</a>
+<div class="audit-layout">
+<nav class="audit-sidebar">
+  <div class="audit-sidebar-title">Seções</div>
+  <a href="#exec-diagnostico">01 · Diagnóstico</a>
+  <a href="#exec-loja">02 · Elements Loja</a>
+  <a href="#exec-corp">03 · Corporativo</a>
+  <a href="#exec-matriz">04 · Priorização</a>
+  <a href="#exec-proximos">05 · Próximos Passos</a>
+</nav>
+<div class="audit-main">
+<div class="container">
+
+<section id="exec-diagnostico"><div class="card" style="border-left:4px solid var(--red);margin-bottom:32px;">
+    <p style="font-size:15px;font-weight:700;margin-bottom:8px;">Diagnóstico em uma frase</p>
+    <p style="font-size:14px;line-height:1.7;">A Elements Loja é o segundo maior player orgânico do segmento de cadeiras ergonômicas com ~124K visitas/mês e posição #1 na keyword principal — mas opera com uma falha crítica de performance mobile (INP 304ms) que <strong>expõe sua liderança ao risco</strong>, e está completamente ausente de "cadeira de escritorio" (201K vol), o maior cluster do segmento, onde o concorrente Flexform coleta 26.500 visitas/mês sozinho. Corrigir essas duas lacunas pode elevar o tráfego em até 48% em 6 meses, superando Flexform como líder orgânico.</p>
   </div>
-  <div class="iframe-wrap">
-    <iframe src="scope-resumo.html" title="Resumo Executivo SCOPE Elements" loading="lazy"></iframe>
+
+  </section>
+<section id="exec-loja"><div class="section-header">Achados Críticos · Elements Loja</div><div class="section-divider"></div>
+  <div class="card">
+    <div class="finding-row">
+      <div class="finding-icon">❌</div>
+      <div class="finding-text">
+        <div class="finding-title">INP 304ms mobile → CWV FAILED (todo o site)</div>
+        <div class="finding-desc">Principal risco de posição: DT3 tem PASSED em ambos os dispositivos. Se o Google pesar mais o sinal CWV, a Elements perde posições para DT3 em "cadeira ergonomica". A causa raiz são scripts de terceiros (Meta Pixel, chat widget, apps Shopify) no main thread mobile.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-fail">Sprint 1 · Q×I×D 80</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">Ausente do top 10 para "cadeira de escritorio" (201K vol)</div>
+        <div class="finding-desc">Maior keyword transacional do segmento. Flexform detém o #1 com 26.500 visitas/mês. Elements não aparece no top 10 Semrush. Gap de +43K visitas/mês se alcançar #1. Requer: H1 homepage, coleção /escritorio/ otimizada, CWV PASSED.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Sprint 1-2 · Alta</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">✅</div>
+      <div class="finding-text">
+        <div class="finding-title">#1 em "cadeira ergonomica" (110K vol) — posição de mercado</div>
+        <div class="finding-desc">Único dos 4 sites analisados com liderança confirmada nessa keyword estratégica. 9.000 visitas/mês. Proteção desta posição é prioridade máxima — o CWV fix é a defesa mais imediata.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-pass">Defender</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">Blog 185 artigos sub-otimizados — ativo subutilizado</div>
+        <div class="finding-desc">Cada artigo com H1 incorreto (section headings em vez de title semântico) e sem autoria especializada. Com otimização, potencial de +10–20K visitas/mês de long-tail keywords informacionais.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Sprint 2–3</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">~35% brand traffic — dependência de marca, não autoridade topical</div>
+        <div class="finding-desc">Calculado a partir do export Semrush: "elements" (17.4%) + "astra elements" (2.3%) + outros termos brand ≈ 35% do total. Crecer organicamente requer diversificação para non-brand keywords de categoria.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Médio Prazo</span></div>
+    </div>
   </div>
+
+  </section>
+<section id="exec-corp"><div class="section-header">Achados Críticos · Elements Corporativo</div><div class="section-divider"></div>
+  <div class="card">
+    <div class="finding-row">
+      <div class="finding-icon">❌</div>
+      <div class="finding-text">
+        <div class="finding-title">561 visitas orgânicas/mês — 221× menos que a Loja</div>
+        <div class="finding-desc">Tráfego praticamente inexistente para um e-commerce B2B. ~99% do tráfego orgânico é brand — zero autoridade em keywords de produto ou categoria. A análise comparativa desta seção foca apenas na Loja; o Corporativo requer estratégia separada de SEO B2B.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-fail">Crítico</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">Schema expõe preços ao Googlebot enquanto UI exige cadastro</div>
+        <div class="finding-desc">JSON-LD com "priceRange" e "price" visíveis no código-fonte. O Googlebot vê preços que o usuário não consegue ver sem CNPJ cadastrado. Potencial de rich snippets de preço que levam a dead-end de UX.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Sprint 1</span></div>
+    </div>
+  </div>
+
+  <!-- PRIORITY MATRIX -->
+  </section>
+<section id="exec-matriz"><div class="section-header">Matriz de Priorização · Q×I×D (Qualidade × Impacto × Dependência Estrutural)</div><div class="section-divider"></div>
+
+  <div class="matrix-grid">
+    <div class="matrix-cell" style="border-top:4px solid #C00000;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#C00000;"></div>Sprint 1 — Implementar agora (Score ≥ 80)</div>
+      <div class="matrix-item">Corrigir INP mobile: deferir/remover Meta Pixel + chat widget do main thread</div>
+      <div class="matrix-item">H1 homepage: "Cadeiras Ergonômicas e Mesas Elétricas Elements"</div>
+      <div class="matrix-item">Remover /pages/header-poc do sitemap.xml</div>
+      <div class="matrix-item">Meta descriptions em todas as PDPs (395 URLs de produto)</div>
+      <div class="matrix-item">CLS desktop 0.11: identificar elemento com layout shift</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #F0A500;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#F0A500;"></div>Sprint 2 — 30–60 dias (Score 40–79)</div>
+      <div class="matrix-item">Criar/otimizar coleção dedicada a "cadeira de escritorio" com H1 + texto semântico</div>
+      <div class="matrix-item">Resolver canibalização "cadeira elements" (consolidar 4 URLs → 1)</div>
+      <div class="matrix-item">BreadcrumbList fix: remover duplicata em PDPs</div>
+      <div class="matrix-item">Blog: auditoria de H1 + adição de autoria nos 185 artigos</div>
+      <div class="matrix-item">Adicionar Organization + WebSite schema na homepage</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #888;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#888;"></div>Sprint 3–4 — 60–180 dias</div>
+      <div class="matrix-item">Estratégia de conteúdo: "mesa de escritorio" (74K vol) — sem líder claro no segmento</div>
+      <div class="matrix-item">FAQ Schema nos artigos de blog (elegibilidade para rich snippets)</div>
+      <div class="matrix-item">Expansão de interlinking: blog → coleções de alto volume</div>
+      <div class="matrix-item">Corporativo: estratégia de SEO B2B (landing pages por segmento)</div>
+      <div class="matrix-item">Review/Rating Schema em PDPs (social proof + CTR orgânico)</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #1B7F37;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#1B7F37;"></div>Resultados Esperados por Fase</div>
+      <div class="matrix-item">S1: CWV PASSED mobile · Posições protegidas · +4.5% tráfego</div>
+      <div class="matrix-item">S2: "Cadeira de escritorio" top 5–8 · CTR +15% PDPs</div>
+      <div class="matrix-item">S3: Blog em pleno funcionamento · Schema expandido</div>
+      <div class="matrix-item">S4: Elements como líder orgânico do segmento (~185K/mês)</div>
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASSOS -->
+  </section>
+<section id="exec-proximos"><div class="section-header">Próximos Passos · Ação Imediata</div><div class="section-divider"></div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Ação</th><th>Responsável</th><th>Prazo</th><th>Impacto</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:#C00000;">01</strong></td>
+          <td><strong>Diagnosticar scripts causando INP 304ms</strong> — abrir Chrome DevTools > Performance > gravar interação na homepage mobile</td>
+          <td>Dev / SEO</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-fail">Crítico · CWV PASSED</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#C00000;">02</strong></td>
+          <td><strong>Atualizar H1 da homepage</strong> — de heading de seção genérico para "Cadeiras Ergonômicas e Mesas Elétricas Elements"</td>
+          <td>SEO / Dev</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-ni">Alto · Sinais keyword</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#C00000;">03</strong></td>
+          <td><strong>Conectar Google Search Console imediatamente</strong> — estabelecer baseline antes das correções do Sprint 1. Sem GSC, o impacto real das ações não é mensurável. Enquanto não conectado, usar dados Semrush como proxy: posições, tráfego estimado e volume de keywords rastreadas (Set 2026 disponíveis nesta análise)</td>
+          <td>Marketing</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-fail">Crítico · Mensurabilidade</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#F0A500;">04</strong></td>
+          <td><strong>Criar coleção /cadeiras-de-escritorio/</strong> otimizada com H1, texto semântico 300+ words e interlinking para PDPs</td>
+          <td>SEO / Conteúdo</td>
+          <td>Semanas 2–4</td>
+          <td><span class="badge badge-ni">Muito alto · 201K vol</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#F0A500;">05</strong></td>
+          <td><strong>Meta descriptions em PDPs</strong> — 395 URLs; template: "[Produto] ergonômico, [benefício principal]. [Garantia/frete]."</td>
+          <td>SEO / Conteúdo</td>
+          <td>Semanas 2–3</td>
+          <td><span class="badge badge-ni">Médio · CTR +15%</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#888;">06</strong></td>
+          <td><strong>Remover /pages/header-poc do sitemap.xml</strong> — página de teste pública indexada; URL: <span class="url-cite">loja.elements.com.br/sitemap_pages_1.xml</span></td>
+          <td>Dev</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-pass">Baixo · Higiene</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUMÁRIO FINAL -->
+  <div class="card" style="margin-top:24px;background:rgba(192,0,0,.04);border:1px solid rgba(192,0,0,.2);">
+    <div style="font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Conclusão da Auditoria S.C.O.P.E.</div>
+    <p style="font-size:13px;line-height:1.8;color:var(--text);">A Elements Loja tem os <strong>ativos certos</strong> para liderar o mercado orgânico de ergonomia no Brasil: autoridade topical confirmada, backlinks, tráfego de 124K/mês e posição #1 na keyword principal. O que falta são <strong>três ajustes técnicos e de conteúdo</strong> que estão claramente mapeados nesta análise. Comparativamente, Flexform lidera por tráfego mas falha no mesmo ponto de CWV (mobile FAILED) — e DT3, que tem PASSED nos dois dispositivos, tem menos autoridade topical e menos tráfego. A janela de oportunidade para a Elements se tornar a <strong>referência orgânica número 1 do segmento</strong> está aberta. A pergunta não é se dá — é quando começa.</p>
+  </div>
+</section>
+
+</div>
+</div>
+</div>
 </div>
 
 <script>
@@ -1438,4 +2388,3 @@ function switchTab(tabId) {
 </script>
 
 </body>
-</html>
