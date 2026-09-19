@@ -112,7 +112,7 @@
   <div class="section-divider"></div>
 
   <div class="card" style="border-left:4px solid #C00000;">
-    <p><strong>Diagnóstico em uma frase:</strong> A Elements tem infraestrutura técnica sólida e boa velocidade de carregamento, mas perde visibilidade orgânica por três vetores distintos: o blog (185 posts com H1s múltiplos e sem autoria especializada), o e-commerce (meta descriptions ausentes e coleções duplicadas fragmentando autoridade) e a performance mobile (INP 305ms causando status FAILED no CWV). Os três têm caminhos de correção claros e independentes que podem ser executados em paralelo.</p>
+    <p><strong>Diagnóstico em uma frase:</strong> A Elements tem infraestrutura técnica sólida e boa velocidade de carregamento, mas perde visibilidade orgânica por três vetores distintos: o blog (185 posts com H1s múltiplos e sem autoria especializada), o e-commerce (meta descriptions ausentes e coleções duplicadas fragmentando autoridade) e a performance mobile (INP 304ms causando status FAILED no CWV). Os três têm caminhos de correção claros e independentes que podem ser executados em paralelo.</p>
   </div>
 
   <div class="card-grid">
@@ -171,7 +171,7 @@
     </tr>
     <tr>
       <td><span class="section-tag tag-tecnico">Técnico</span></td>
-      <td>INP mobile 305ms — Core Web Vitals com status FAILED</td>
+      <td>INP mobile 304ms — Core Web Vitals com status FAILED</td>
       <td class="url-cite">loja.elements.com.br/ (todo o site)</td>
       <td><strong>80</strong></td>
     </tr>
@@ -221,9 +221,9 @@
   <table>
     <tr><th>Tecnologia</th><th>Confirmado em</th><th>Implicação SEO</th></tr>
     <tr><td>Shopify (plataforma)</td><td class="url-cite">loja.elements.com.br/</td><td>URLs limpas; schema e canonical via JS — requer DevTools para verificação</td></tr>
-    <tr><td>CDN Shopify / Fastly</td><td>Todos os assets</td><td>LCP excelente (1.4s mobile) — vantagem real vs. concorrentes sem CDN</td></tr>
+    <tr><td>CDN Shopify / Fastly</td><td>Todos os assets</td><td>LCP excelente (1.5s mobile) — vantagem real vs. concorrentes sem CDN</td></tr>
     <tr><td>HTTPS / HTTP2</td><td class="url-cite">loja.elements.com.br/</td><td>Base segura; multiplexação de requisições ativa</td></tr>
-    <tr><td>Meta Pixel + chat widget + apps Shopify</td><td>Análise PageSpeed</td><td>Principal causa do INP 305ms — scripts bloqueando main thread no mobile</td></tr>
+    <tr><td>Meta Pixel + chat widget + apps Shopify</td><td>Análise PageSpeed</td><td>Principal causa do INP 304ms — scripts bloqueando main thread no mobile</td></tr>
     <tr><td>Sitemap Index (6 filhos)</td><td class="url-cite">loja.elements.com.br/sitemap.xml</td><td>Estrutura correta; contém página de teste (/pages/header-poc)</td></tr>
   </table>
 
@@ -335,7 +335,7 @@
     </div>
     <div>
       <strong>Base técnica sólida — dois pontos de atenção prioritários: INP mobile e página de teste no sitemap.</strong><br>
-      <span style="font-size:13px;color:#595959;">HTTPS, sitemap index e robots.txt corretos. O INP 305ms no mobile causa status CWV FAILED e é fator de ranking direto. A página /pages/header-poc no sitemap oficial é correção imediata.</span>
+      <span style="font-size:13px;color:#595959;">HTTPS, sitemap index e robots.txt corretos. O INP 304ms no mobile causa status CWV FAILED e é fator de ranking direto. A página /pages/header-poc no sitemap oficial é correção imediata.</span>
     </div>
   </div>
 
@@ -389,12 +389,12 @@
   <div class="page-section-header"><span class="section-tag tag-tecnico" style="margin:0;">Performance</span> Core Web Vitals · PageSpeed Insights</div>
   <div class="page-section-body">
     <p style="font-size:13px;color:#595959;margin-bottom:16px;">
-      Fonte: <span class="url-cite">pagespeed.web.dev/analysis/https-loja-elements-com-br/66es7humz1</span> (análise de campo — dados reais de usuários)
+      Fonte: <span class="url-cite">pagespeed.web.dev/analysis/https-loja-elements-com-br/xizbksxsa2</span> (análise de campo — dados reais de usuários · Set 19, 2026)
     </p>
 
     <div class="card-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">1.4s</div><div class="kpi-label">LCP Mobile</div><div class="kpi-source">✅ GOOD (&lt;2.5s)</div></div>
-      <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value" style="color:#C00000;">305ms</div><div class="kpi-label">INP Mobile</div><div class="kpi-source">❌ FAILED (&gt;200ms)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">1.5s</div><div class="kpi-label">LCP Mobile</div><div class="kpi-source">✅ GOOD (&lt;2.5s)</div></div>
+      <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value" style="color:#C00000;">304ms</div><div class="kpi-label">INP Mobile</div><div class="kpi-source">❌ FAILED (&gt;200ms)</div></div>
       <div class="kpi-card" style="border-top:4px solid #1B7F37;"><div class="kpi-value" style="color:#1B7F37;">0.0</div><div class="kpi-label">CLS Mobile</div><div class="kpi-source">✅ GOOD (&lt;0.1)</div></div>
       <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value" style="color:#F0A500;">0.11</div><div class="kpi-label">CLS Desktop</div><div class="kpi-source">⚠️ NI (&gt;0.1)</div></div>
     </div>
@@ -402,20 +402,20 @@
     <div class="audit-item">
       <div class="audit-item-header">
         <span class="item-id">3.3</span>
-        <span class="item-title">INP Mobile 305ms — Core Web Vitals FAILED (todo o site)</span>
+        <span class="item-title">INP Mobile 304ms — Core Web Vitals FAILED (todo o site)</span>
         <span class="score-badge score-4">4</span>
       </div>
       <div class="audit-item-body">
         <div class="evidence-box">
           <div class="evidence-label">// Fato Observado — PageSpeed Insights (field data, dados reais de usuário)</div>
           URL analisada: https://loja.elements.com.br/<br>
-          INP mobile: 305ms → NEEDS IMPROVEMENT / status geral: FAILED<br>
+          INP mobile: 304ms → NEEDS IMPROVEMENT / status geral: FAILED<br>
           Threshold Google: &lt;200ms = Good · 200–500ms = Needs Improvement · &gt;500ms = Poor<br>
-          LCP mobile: 1.4s → GOOD ✅<br>
+          LCP mobile: 1.5s → GOOD ✅<br>
           CLS mobile: 0.0 → GOOD ✅<br>
           Causa raiz identificada: scripts de terceiros (Meta Pixel, chat widget, apps Shopify) bloqueando main thread durante interações do usuário.
         </div>
-        <p><strong>Análise:</strong> O INP mede o tempo de resposta a interações (clique, toque). Com 305ms, o site está na zona "Needs Improvement" — basta esse único valor fora do threshold para o assessment ser FAILED. O Google usa CWV como fator de ranking em mobile-first indexing; concorrentes com PASSED têm vantagem direta de posicionamento para as mesmas keywords.</p>
+        <p><strong>Análise:</strong> O INP mede o tempo de resposta a interações (clique, toque). Com 304ms, o site está na zona "Needs Improvement" — basta esse único valor fora do threshold para o assessment ser FAILED. O Google usa CWV como fator de ranking em mobile-first indexing; concorrentes com PASSED têm vantagem direta de posicionamento para as mesmas keywords.</p>
         <div class="benchmark-box">
           <div class="benchmark-label">Benchmark</div>
           E-commerces líderes no segmento mantêm INP &lt;150ms mobile. Verificar Flexform e Sidiz com PageSpeed Insights — se estiverem PASSED, a Elements está em desvantagem de ranking direto.
@@ -440,7 +440,7 @@
       <div class="audit-item-body">
         <div class="evidence-box">
           <div class="evidence-label">// Fato Observado — PageSpeed Insights (desktop)</div>
-          URL: https://pagespeed.web.dev/analysis/https-loja-elements-com-br/66es7humz1?form_factor=desktop<br>
+          URL: https://pagespeed.web.dev/analysis/https-loja-elements-com-br/xizbksxsa2?form_factor=desktop<br>
           CLS desktop: 0.11 → NEEDS IMPROVEMENT (threshold: &lt;0.10)
         </div>
         <p><strong>Análise:</strong> CLS de 0.11 indica deslocamento visual de elementos durante o carregamento. Causa mais comum em Shopify: imagem hero sem atributos width/height explícitos ou banner de promoção assíncrono empurrando conteúdo. Está marginalmente acima do limite — correção rápida.</p>
@@ -483,7 +483,7 @@
 
     <div class="conclusion-block">
       <div class="conclusion-label">Conclusão — Técnico</div>
-      <p>A infraestrutura da Elements é a mais saudável do site (score 2.1). O LCP excelente de 1.4s mobile é uma vantagem real. Quatro itens de correção rápida: H1 da homepage (heading de seção em vez de brand + categoria), página de teste no sitemap, INP 305ms mobile e BreadcrumbList duplicado em PDPs. Todos têm caminhos de correção diretos no Shopify.</p>
+      <p>A infraestrutura da Elements é a mais saudável do site (score 2.1). O LCP excelente de 1.5s mobile é uma vantagem real. Quatro itens de correção rápida: H1 da homepage (heading de seção em vez de brand + categoria), página de teste no sitemap, INP 304ms mobile e BreadcrumbList duplicado em PDPs. Todos têm caminhos de correção diretos no Shopify.</p>
     </div>
   </div>
 </section>
@@ -1051,7 +1051,7 @@
       <tr>
         <td><strong>Diferir scripts de terceiros</strong> — Meta Pixel lazy, chat widget pós-scroll, apps não essenciais desativados</td>
         <td><span class="section-tag tag-tecnico">Técnico</span></td>
-        <td class="url-cite">Todo o site (INP 305ms)</td>
+        <td class="url-cite">Todo o site (INP 304ms)</td>
         <td>48</td><td>Dev</td>
       </tr>
       <tr>
@@ -1236,7 +1236,7 @@
     <table>
       <tr><th>KPI</th><th>Valor Atual</th><th>Meta</th><th>Onde Medir</th></tr>
       <tr><td>H1s por artigo de blog</td><td>Múltiplos</td><td>1 por página</td><td>SEO META in 1 CLICK</td></tr>
-      <tr><td>CWV Assessment Mobile</td><td>FAILED (INP 305ms)</td><td>PASSED (INP &lt;200ms)</td><td>PageSpeed / GSC</td></tr>
+      <tr><td>CWV Assessment Mobile</td><td>FAILED (INP 304ms)</td><td>PASSED (INP &lt;200ms)</td><td>PageSpeed / GSC</td></tr>
       <tr><td>CLS Desktop</td><td>0.11 (NI)</td><td>&lt;0.10 (GOOD)</td><td>PageSpeed Insights</td></tr>
       <tr><td>CTR médio orgânico</td><td>— (sem GSC)</td><td>+15% vs. baseline</td><td>Google Search Console</td></tr>
       <tr><td>Impressões orgânicas</td><td>— (sem GSC)</td><td>+10% em 60 dias</td><td>Google Search Console</td></tr>
