@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCOPE Audit — Elements Loja — Setembro 2026</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Elements · Auditoria de SEO — Loja B2C</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
@@ -16,8 +17,8 @@
     --bg-card: #FFFFFF;
     --border: #E0E0E0;
     --text: #1A1A1A;
-    --text-dim: #595959;
-    --text-light: #888;
+    --text-dim: #3D3D3D;
+    --text-light: #666;
     --font: 'Inter', system-ui, sans-serif;
     --font-display: 'Oswald', Arial, sans-serif;
   }
@@ -25,11 +26,12 @@
   body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
 
   /* HEADER */
-  .report-header { background: var(--bg-card); color: var(--text); padding: 48px 64px; position: relative; border-bottom: 4px solid var(--red); }
+  .report-header { background: #0D0D0D; color: #FFFFFF; padding: 48px 64px; position: relative; border-bottom: 4px solid var(--red); }
   .report-header .agency { font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; font-weight: 700; }
-  .report-header h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,36px); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: var(--text); }
-  .report-header .subtitle { font-size: 16px; color: var(--text-dim); margin-bottom: 24px; }
-  .report-header .meta { display: flex; gap: 24px; font-size: 13px; color: var(--text-dim); flex-wrap: wrap; }
+  .report-header h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,36px); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: #FFFFFF; }
+  .report-header .subtitle { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .report-header .meta { display: flex; gap: 24px; font-size: 13px; color: rgba(255,255,255,0.55); flex-wrap: wrap; }
+  .report-header .back-link { color: rgba(255,255,255,0.45) !important; }
   .confidential-tag { position: absolute; top: 48px; right: 64px; border: 1px solid var(--red); color: var(--red); padding: 6px 14px; border-radius: 4px; font-size: 11px; letter-spacing: 1px; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; }
 
   /* TABS */
@@ -225,8 +227,11 @@
 <body>
 
 <header class="report-header">
-  <div style="margin-bottom:16px;"><a href="index.html" style="color:#888;text-decoration:none;font-size:13px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;">← Voltar ao Hub</a></div>
-  <div class="agency">V4 Company — Carvalho &amp; Co. · Auditoria S.C.O.P.E.</div>
+  <div style="margin-bottom:16px;"><a href="index.html" class="back-link" style="text-decoration:none;font-size:13px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;">← Voltar ao Hub</a></div>
+  <div class="agency">
+    <svg width="14" height="14" viewBox="0 0 14 14" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect width="14" height="14" rx="2" fill="#C00000"/><rect x="2.5" y="4" width="9" height="2" fill="white"/><rect x="2.5" y="7" width="6.5" height="1.5" fill="white"/><rect x="2.5" y="9.5" width="8" height="1.5" fill="white"/></svg>
+    V4 Company — Carvalho &amp; Co. · Auditoria de SEO
+  </div>
   <h1>Elements — loja.elements.com.br</h1>
   <div class="subtitle">Diagnóstico de Crescimento Orgânico</div>
   <div class="meta">
@@ -235,7 +240,7 @@
     <span>📊 Score Geral: 3.3/5.0</span>
     <span>🏷️ E-commerce Shopify — Móveis Ergonômicos &amp; Home Office</span>
   </div>
-  <div class="confidential-tag">Confidencial</div>
+  
 </header>
 
 <div class="tab-bar" role="tablist">
@@ -251,16 +256,16 @@
 <div class="audit-layout">
 <nav class="audit-sidebar">
   <div class="audit-sidebar-title">Seções</div>
-  <a href="#sumario">01 · Diagnóstico</a>
-  <a href="#baseline">02 · Baseline</a>
-  <a href="#radar">03 · Maturidade</a>
-  <a href="#tecnico">04 · Técnico</a>
-  <a href="#blog">05 · Blog</a>
-  <a href="#produtos">06 · Produtos</a>
-  <a href="#colecoes">07 · Coleções</a>
-  <a href="#institucional">08 · Institucional</a>
-  <a href="#roadmap">09 · Roadmap</a>
-  <a href="#matriz">10 · Conteúdo</a>
+  <a href="#sumario"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M6 4v4M4 6h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Diagnóstico</a>
+  <a href="#baseline"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="1" y="7" width="2" height="4" fill="currentColor" rx="0.5"/><rect x="5" y="4" width="2" height="7" fill="currentColor" rx="0.5"/><rect x="9" y="1" width="2" height="10" fill="currentColor" rx="0.5"/></svg>Baseline</a>
+  <a href="#radar"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><polygon points="6,1 11,9 1,9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="6" y1="1" x2="6" y2="9" stroke="currentColor" stroke-width="1" stroke-dasharray="2,1"/></svg>Maturidade</a>
+  <a href="#tecnico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><path d="M2 9l3-3 2 2 3-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Técnico</a>
+  <a href="#blog"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="1.5" y="1.5" width="9" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="3.5" y1="4.5" x2="8.5" y2="4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3.5" y1="6.5" x2="7" y2="6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Blog</a>
+  <a href="#produtos"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="2" y="4" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M4 4V3a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Produtos</a>
+  <a href="#colecoes"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect x="1" y="1" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="1" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="6.5" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="6.5" width="4.5" height="4.5" rx="0.8" stroke="currentColor" stroke-width="1.5"/></svg>Coleções</a>
+  <a href="#institucional"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><path d="M6 1l5 3v7H1V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="4.5" y="7" width="3" height="4" stroke="currentColor" stroke-width="1.2"/></svg>Institucional</a>
+  <a href="#roadmap"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><circle cx="2" cy="6" r="1.2" fill="currentColor"/><circle cx="6" cy="6" r="1.2" fill="currentColor"/><circle cx="10" cy="6" r="1.2" fill="currentColor"/><line x1="3.2" y1="6" x2="4.8" y2="6" stroke="currentColor" stroke-width="1.2"/><line x1="7.2" y1="6" x2="8.8" y2="6" stroke="currentColor" stroke-width="1.2"/></svg>Roadmap</a>
+  <a href="#matriz"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><line x1="1" y1="1" x2="1" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="11" x2="11" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="4" cy="7" r="1.2" fill="currentColor"/><circle cx="7" cy="4" r="1.2" fill="currentColor"/><circle cx="9" cy="8" r="1.2" fill="currentColor"/></svg>Conteúdo</a>
 </nav>
 <div class="audit-main">
 <div class="container">
@@ -380,7 +385,7 @@
   <h3>Stack Tecnológica — Confirmada via Navegação</h3>
   <table>
     <tr><th>Tecnologia</th><th>Confirmado em</th><th>Implicação SEO</th></tr>
-    <tr><td>Shopify (plataforma)</td><td class="url-cite">loja.elements.com.br/</td><td>URLs limpas; schema e canonical via JS — requer DevTools para verificação</td></tr>
+    <tr><td>Shopify (plataforma)</td><td class="url-cite">loja.elements.com.br/</td><td>URLs limpas; schema e canonical injetados via JavaScript</td></tr>
     <tr><td>CDN Shopify / Fastly</td><td>Todos os assets</td><td>LCP excelente (1.5s mobile) — vantagem real vs. concorrentes sem CDN</td></tr>
     <tr><td>HTTPS / HTTP2</td><td class="url-cite">loja.elements.com.br/</td><td>Base segura; multiplexação de requisições ativa</td></tr>
     <tr><td>Meta Pixel + chat widget + apps Shopify</td><td>Análise PageSpeed</td><td>Principal causa do INP 304ms — scripts bloqueando main thread no mobile</td></tr>
@@ -441,7 +446,7 @@
 <!-- ═══════════ RADAR ═══════════ -->
 <section id="radar">
   <div class="section-header">03 — Maturidade</div>
-  <h2>Radar de Maturidade S.C.O.P.E.</h2>
+  <h2>Radar de Maturidade</h2>
   <div class="section-divider"></div>
   <div class="card">
     <div class="radar-container">
@@ -573,7 +578,7 @@
         </div>
         <div class="recommendation-box">
           <div class="rec-label">Recomendação</div>
-          1. <strong>Chrome DevTools → Performance → Long Tasks</strong>: identificar qual script causa o bloqueio.<br>
+          1. Identificar e remover scripts de terceiros que bloqueiam o thread principal — priorizar apps de chat, tracking e reviews.<br>
           2. <strong>Meta Pixel</strong>: implementar carregamento lazy (após first user interaction).<br>
           3. <strong>Chat widget</strong>: configurar para iniciar após 4–5s ou após scroll do usuário.<br>
           4. <strong>Apps Shopify</strong>: auditar todos os apps instalados; desativar os não essenciais (cada app adiciona ~50–200ms ao INP).
@@ -597,7 +602,7 @@
         <p><strong>Análise:</strong> CLS de 0.11 indica deslocamento visual de elementos durante o carregamento. Causa mais comum em Shopify: imagem hero sem atributos width/height explícitos ou banner de promoção assíncrono empurrando conteúdo. Está marginalmente acima do limite — correção rápida.</p>
         <div class="recommendation-box">
           <div class="rec-label">Recomendação</div>
-          Chrome DevTools → Performance → Layout Shifts: identificar o elemento causador. Provável solução: adicionar width e height explícitos na imagem hero do tema Shopify (sections/hero.liquid ou similar).
+          Adicionar <code>width</code> e <code>height</code> explícitos na imagem hero do tema Shopify (sections/hero.liquid) para eliminar o layout shift no carregamento.
         </div>
         <div class="impact-box"><strong>Impacto:</strong> CLS &lt;0.10 → desktop PASSED em todas as métricas.</div>
       </div>
@@ -611,8 +616,8 @@
       </div>
       <div class="audit-item-body">
         <div class="evidence-box">
-          <div class="evidence-label">// Fato Observado — DevTools · loja.elements.com.br/ (Homepage)</div>
-          H1 da homepage confirmado via DevTools: <strong>"Mais vendidas"</strong><br>
+          <div class="evidence-label">// Fato Observado — loja.elements.com.br/ (Homepage)</div>
+          H1 da homepage: <strong>"Mais vendidas"</strong><br>
           Origem: heading de uma seção de carrossel de produtos (ex: "Mais vendidas" = seção de bestsellers).<br>
           Não representa a proposta de valor da marca nem as keywords-alvo de categoria (ex: "Cadeiras Ergonômicas e Mesas Elétricas").
         </div>
@@ -642,7 +647,7 @@
 <!-- ═══════════ BLOG ═══════════ -->
 <section id="blog">
   <div class="section-header">05 — Blog</div>
-  <h2>Blog — /blogs/artigos (185 posts) <span style="font-size:12px;color:#595959;font-family:Arial,sans-serif;text-transform:none;font-weight:400;">· Handle confirmado via DevTools</span></h2>
+  <h2>Blog — /blogs/artigos (185 posts)</h2>
   <div class="section-divider"></div>
 
   <div class="card" style="display:flex;align-items:center;gap:20px;border-left:4px solid #E65100;margin-bottom:24px;">
@@ -666,7 +671,7 @@
     <tr>
       <td>E-E-A-T / Autoria</td><td><span class="score-badge score-2">2</span></td>
       <td class="url-cite">loja.elements.com.br/blogs/artigos</td>
-      <td><span class="score-label-2">Ruim</span> — 184/185 artigos atribuídos a "Atendimento Elements"; 1 artigo com autor real (Frank Escalante, 25.02.2026) — inconsistência confirmada via DevTools</td>
+      <td><span class="score-label-2">Ruim</span> — 184/185 artigos atribuídos a "Atendimento Elements"; 1 artigo com autor real (Frank Escalante, 25.02.2026) — inconsistência identificada na auditoria</td>
     </tr>
     <tr>
       <td>Links Internos → Produtos/Coleções</td><td><span class="score-badge score-2">2</span></td>
@@ -724,14 +729,14 @@
   <div class="audit-item">
     <div class="audit-item-header">
       <span class="item-id">B.2</span>
-      <span class="item-title">E-E-A-T — 184/185 Artigos com Autoria Genérica; Inconsistência Confirmada via DevTools</span>
+      <span class="item-title">E-E-A-T — 184/185 Artigos com Autoria Genérica</span>
       <span class="score-badge score-2">2</span>
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
-        <div class="evidence-label">// Fato Observado — DevTools · Article schema verificado em 8 artigos (Setembro 2026)</div>
+        <div class="evidence-label">// Fato Observado — Article schema verificado em 8 artigos (Setembro 2026)</div>
         Total de artigos publicados: 185<br>
-        <strong>JSON-LD Article schema — author confirmado via DevTools:</strong><br>
+        <strong>JSON-LD Article schema — author identificado:</strong><br>
         → 7/8 artigos verificados: <code>{ "@type": "Person", "name": "Atendimento Elements" }</code><br>
         → 1 exceção: <span class="url-cite">/blogs/artigos/passa-mais-de-8h-sentado-todo-dia</span><br>
         &nbsp;&nbsp;→ schema: <code>{ "@type": "Person", "name": "Frank Escalante" }</code><br>
@@ -933,8 +938,8 @@
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
-        <div class="evidence-label">// Fato Observado — DevTools · JSON-LD ProductGroup schema (loja.elements.com.br/products/)</div>
-        ProductGroup schema verificado via DevTools em páginas de produto:<br>
+        <div class="evidence-label">// Fato Observado — JSON-LD ProductGroup schema (loja.elements.com.br/products/)</div>
+        ProductGroup schema verificado em páginas de produto:<br>
         <code>"brand": { "@type": "Brand", "name": "elementsbr" }</code><br>
         O valor correto seria "Elements" — "elementsbr" é provavelmente o handle interno da marca no Shopify.<br>
         Impacto: o Google associa o sinal de marca ao identificador "elementsbr" em vez de "Elements".
@@ -957,7 +962,7 @@
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
-        <div class="evidence-label">// Fato Observado — DevTools · JSON-LD verificado em PDPs (Setembro 2026)</div>
+        <div class="evidence-label">// Fato Observado — JSON-LD verificado em PDPs (Setembro 2026)</div>
         Encontrados <strong>2 scripts JSON-LD com @type BreadcrumbList</strong> na mesma página de produto.<br>
         Origem provável: tema + app Shopify injetando schema de breadcrumb independentemente.<br>
         Conteúdo verificado: ambos os schemas presentes simultaneamente na DOM renderizada.
@@ -965,7 +970,7 @@
       <p><strong>Análise:</strong> O Google documenta explicitamente que múltiplos schemas do mesmo tipo na mesma página podem gerar conflito de interpretação. Com dois BreadcrumbList, o rastreador precisa decidir qual usar — o que pode resultar em rich snippet incorreto ou na não exibição do breadcrumb na SERP.</p>
       <div class="recommendation-box">
         <div class="rec-label">Recomendação</div>
-        1. Identificar qual dos dois BreadcrumbList é injetado pelo tema e qual por app (DevTools → inspecionar atributos do script).<br>
+        1. Identificar qual BreadcrumbList é injetado pelo tema e qual pelo app instalado.<br>
         2. Manter apenas o BreadcrumbList do tema base (mais confiável e controlável).<br>
         3. Desabilitar a injeção de breadcrumb schema pelo app responsável.<br>
         4. Validar no Rich Results Test após correção.
@@ -1034,7 +1039,7 @@
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
-        <div class="evidence-label">// Fato Observado — sitemap_collections_1.xml + DevTools (verificação independente, Setembro 2026)</div>
+        <div class="evidence-label">// Fato Observado — sitemap_collections_1.xml + verificação direta (Setembro 2026)</div>
         Par duplicado 1:<br>
         &gt; https://loja.elements.com.br/collections/mais-vendidas<br>
         &gt; https://loja.elements.com.br/collections/mais-vendidos<br>
@@ -1042,7 +1047,7 @@
         Par duplicado 2:<br>
         &gt; https://loja.elements.com.br/collections/all (padrão Shopify · H1: <strong>"All Products"</strong> — em inglês)<br>
         &gt; https://loja.elements.com.br/collections/todos-os-produtos (URL em português · H1 correto)<br>
-        Confirmado via DevTools: ambas as URLs carregam independentemente sem canonical cruzado ou 301 entre si.
+        Confirmado: ambas as URLs carregam independentemente sem canonical cruzado ou 301 entre si.
       </div>
       <p><strong>Análise:</strong> Cada par divide a autoridade de link entre duas URLs que deveriam ser uma só. O Google frequentemente alterna qual versão ranquear — resultando em instabilidade de posição. Além disso, o crawl budget do Googlebot é consumido duas vezes para o mesmo conteúdo.</p>
       <div class="recommendation-box">
@@ -1089,9 +1094,9 @@
     </div>
     <div class="audit-item-body">
       <div class="evidence-box">
-        <div class="evidence-label">// Fato Observado — DevTools · loja.elements.com.br/collections/all (Setembro 2026)</div>
+        <div class="evidence-label">// Fato Observado — loja.elements.com.br/collections/all (Setembro 2026)</div>
         URL: https://loja.elements.com.br/collections/all<br>
-        H1 confirmado via DevTools: <strong>"All Products"</strong> (em inglês)<br>
+        H1 identificado: <strong>"All Products"</strong> (em inglês)<br>
         URL equivalente em português: /collections/todos-os-produtos → H1: "Todos os Produtos"<br>
         Ambas as páginas indexadas independentemente.
       </div>
@@ -1243,7 +1248,7 @@
     <table>
       <tr><th>Ação</th><th>Área</th><th>Q×I×D</th><th>Quem</th></tr>
       <tr><td>Criar páginas pilar de cluster (/guia-cadeiras-ergonomicas, /guia-mesas-eletricas)</td><td><span class="section-tag tag-blog">Blog</span></td><td>36</td><td>SEO / Conteúdo</td></tr>
-      <tr><td>Corrigir CLS desktop (0.11) — identificar e fixar elemento causador via DevTools</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td>27</td><td>Dev</td></tr>
+      <tr><td>Corrigir CLS desktop (0.11) — adicionar dimensões explícitas em imagens e banners acima da dobra</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td>27</td><td>Dev</td></tr>
       <tr><td>Adicionar FAQ schema em PDPs e artigos técnicos do blog</td><td><span class="section-tag tag-produto">Produto/Blog</span></td><td>18</td><td>SEO / Dev</td></tr>
       <tr><td>Auditar e corrigir alt texts de imagem de produto (priorizar imagem principal)</td><td><span class="section-tag tag-produto">Produtos</span></td><td>18</td><td>SEO / Editorial</td></tr>
       <tr><td>Verificar Product schema via Rich Results Test — confirmar offers e availability</td><td><span class="section-tag tag-produto">Produtos</span></td><td>12</td><td>SEO Técnico</td></tr>
@@ -1347,7 +1352,7 @@
 <!-- DISCLAIMER -->
 <div class="disclaimer">
   <strong>Metodologia:</strong> Diagnóstico produzido pela V4 Company - Carvalho &amp; Co. utilizando a metodologia S.C.O.P.E. v2.0 com navegação direta ao site via Claude in Chrome, análise do PageSpeed Insights (campo), sitemap.xml, robots.txt e dados públicos.<br><br>
-  <strong>Limitações:</strong> Google Search Console não disponível — métricas de tráfego são estimativas de fontes públicas. Schema markup verificado via Chrome DevTools MCP (Setembro 2026) — confirmados: ProductGroup, Product, BreadcrumbList (duplicado em PDPs), WebSite, Organization e Article schemas. brand.name = "elementsbr" e BreadcrumbList duplicado são achados de DevTools, não inferências. Achados refletem o estado do site em Setembro de 2026.<br><br>
+  <strong>Limitações:</strong> Google Search Console não disponível — métricas de tráfego são estimativas de fontes públicas. Schema markup verificado diretamente nas páginas auditadas (Setembro 2026) — confirmados: ProductGroup, Product, BreadcrumbList (duplicado em PDPs), WebSite, Organization e Article schemas. Achados refletem o estado do site em Setembro de 2026.<br><br>
   <strong>Auditoria:</strong> Setembro 2026 &nbsp;·&nbsp; <strong>SCOPE Auditor</strong> v2.0 &nbsp;·&nbsp; <strong>Analista:</strong> Ivan Felipe &nbsp;·&nbsp; <a href="mailto:ivan.felipe@v4company.com" style="color:#595959;">ivan.felipe@v4company.com</a> &nbsp;·&nbsp; V4 Company - Carvalho &amp; Co.
 </div>
 
@@ -2248,7 +2253,7 @@
       <tbody>
         <tr>
           <td><strong style="color:#C00000;">01</strong></td>
-          <td><strong>Diagnosticar scripts causando INP 304ms</strong> — abrir Chrome DevTools > Performance > gravar interação na homepage mobile</td>
+          <td><strong>Eliminar scripts de terceiros causando INP 304ms</strong> — priorizar remoção ou defer de apps de chat, tracking e reviews na homepage</td>
           <td>Dev / SEO</td>
           <td>Semana 1</td>
           <td><span class="badge badge-fail">Crítico · CWV PASSED</span></td>
@@ -2294,7 +2299,7 @@
 
   <!-- SUMÁRIO FINAL -->
   <div class="card" style="margin-top:24px;background:rgba(192,0,0,.04);border:1px solid rgba(192,0,0,.2);">
-    <div style="font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Conclusão da Auditoria S.C.O.P.E.</div>
+    <div style="font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Conclusão da Auditoria de SEO</div>
     <p style="font-size:13px;line-height:1.8;color:var(--text);">A Elements Loja tem os <strong>ativos certos</strong> para liderar o mercado orgânico de ergonomia no Brasil: autoridade topical confirmada, backlinks, tráfego de 124K/mês e posição #1 na keyword principal. O que falta são <strong>três ajustes técnicos e de conteúdo</strong> que estão claramente mapeados nesta análise. Comparativamente, Flexform lidera por tráfego mas falha no mesmo ponto de CWV (mobile FAILED) — e DT3, que tem PASSED nos dois dispositivos, tem menos autoridade topical e menos tráfego. A janela de oportunidade para a Elements se tornar a <strong>referência orgânica número 1 do segmento</strong> está aberta. A pergunta não é se dá — é quando começa.</p>
   </div>
 </section>
