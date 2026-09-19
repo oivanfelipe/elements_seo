@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Elements · Auditoria de SEO — Loja B2C</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -20,7 +20,7 @@
     --text-dim: #3D3D3D;
     --text-light: #666;
     --font: 'Inter', system-ui, sans-serif;
-    --font-display: 'Oswald', Arial, sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
@@ -109,7 +109,8 @@
   .conclusion-block .conclusion-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--red); margin-bottom: 6px; }
 
   /* TABLES */
-  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0; }
   th { background: var(--bg); color: var(--text); padding: 9px 14px; text-align: left; font-size: 11px; letter-spacing: .5px; font-family: var(--font-display); text-transform: uppercase; border-bottom: 2px solid var(--border); }
   td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tr:hover td { background: rgba(192,0,0,.02); }
@@ -227,7 +228,7 @@
 <body>
 
 <header class="report-header">
-  <div style="margin-bottom:16px;"><a href="index.html" class="back-link" style="text-decoration:none;font-size:13px;font-family:'Oswald',Arial,sans-serif;letter-spacing:.5px;">← Voltar ao Hub</a></div>
+  <div style="margin-bottom:16px;"><a href="index.html" class="back-link" style="text-decoration:none;font-size:13px;font-family:'Inter',system-ui,sans-serif;letter-spacing:.5px;">← Voltar ao Hub</a></div>
   <div class="agency">
     <svg width="14" height="14" viewBox="0 0 14 14" style="vertical-align:middle;margin-right:6px;flex-shrink:0"><rect width="14" height="14" rx="2" fill="#C00000"/><rect x="2.5" y="4" width="9" height="2" fill="white"/><rect x="2.5" y="7" width="6.5" height="1.5" fill="white"/><rect x="2.5" y="9.5" width="8" height="1.5" fill="white"/></svg>
     V4 Company — Carvalho &amp; Co. · Auditoria de SEO
@@ -308,7 +309,7 @@
   </div>
 
   <h3>Top 5 Problemas por Área</h3>
-  <table>
+  <div class="table-wrap"><table>
     <tr><th>Área</th><th>Problema</th><th>URL Afetada</th><th>Q×I×D</th></tr>
     <tr>
       <td><span class="section-tag tag-blog">Blog</span></td>
@@ -340,10 +341,10 @@
       <td class="url-cite">loja.elements.com.br/ (todo o site)</td>
       <td><strong>80</strong></td>
     </tr>
-  </table>
+  </table></div>
 
   <h3>Top 3 Oportunidades</h3>
-  <table>
+  <div class="table-wrap"><table>
     <tr><th>Área</th><th>Oportunidade</th><th>Potencial</th></tr>
     <tr>
       <td><span class="section-tag tag-blog">Blog</span></td>
@@ -360,7 +361,7 @@
       <td>Meta descriptions otimizadas em PDPs: aumento de CTR estimado 15–30% sem mudança de posição</td>
       <td>Médio — implementação rápida</td>
     </tr>
-  </table>
+  </table></div>
 </section>
 
 <!-- ═══════════ BASELINE ═══════════ -->
@@ -383,14 +384,14 @@
   </div>
 
   <h3>Stack Tecnológica — Confirmada via Navegação</h3>
-  <table>
+  <div class="table-wrap"><table>
     <tr><th>Tecnologia</th><th>Confirmado em</th><th>Implicação SEO</th></tr>
     <tr><td>Shopify (plataforma)</td><td class="url-cite">loja.elements.com.br/</td><td>URLs limpas; schema e canonical injetados via JavaScript</td></tr>
     <tr><td>CDN Shopify / Fastly</td><td>Todos os assets</td><td>LCP excelente (1.5s mobile) — vantagem real vs. concorrentes sem CDN</td></tr>
     <tr><td>HTTPS / HTTP2</td><td class="url-cite">loja.elements.com.br/</td><td>Base segura; multiplexação de requisições ativa</td></tr>
     <tr><td>Meta Pixel + chat widget + apps Shopify</td><td>Análise PageSpeed</td><td>Principal causa do INP 304ms — scripts bloqueando main thread no mobile</td></tr>
     <tr><td>Sitemap Index (6 filhos)</td><td class="url-cite">loja.elements.com.br/sitemap.xml</td><td>Estrutura correta; contém página de teste (/pages/header-poc)</td></tr>
-  </table>
+  </table></div>
 
   <h3>Análise de Tráfego Orgânico — Semrush Set 2026</h3>
   <div class="card-grid" style="grid-template-columns:repeat(4,1fr);">
@@ -401,7 +402,7 @@
   </div>
 
   <h3>Top 10 Keywords por Tráfego Estimado</h3>
-  <table>
+  <div class="table-wrap"><table>
     <tr><th>#</th><th>Keyword</th><th>Intenção</th><th>Posição</th><th>Tráfego/mês</th><th>Volume</th><th>URL de Destino</th></tr>
     <tr><td>1</td><td><strong>elements</strong></td><td>Informacional/Navegacional</td><td>1</td><td>21.700</td><td>27.100</td><td>/</td></tr>
     <tr><td>2</td><td><strong>cadeira ergonomica</strong></td><td>Comercial/Informacional</td><td>1</td><td>9.000</td><td>110.000</td><td>/collections/cadeiras-ergonomicas</td></tr>
@@ -413,11 +414,11 @@
     <tr><td>8</td><td>elements magna</td><td>Informacional</td><td>1</td><td>1.900</td><td>2.400</td><td>/products/cadeira-gamer-elements-magna</td></tr>
     <tr><td>9</td><td>braço articulado</td><td>Comercial/Informacional</td><td>—</td><td>1.600</td><td>18.100</td><td>/products/braco-articulado-para-monitor-elements-axion</td></tr>
     <tr><td>10</td><td>cadeira elements (coleção)</td><td>Comercial/Navegacional</td><td>—</td><td>1.600</td><td>8.100</td><td>/collections/cadeiras</td></tr>
-  </table>
+  </table></div>
 
   <div class="card" style="margin-top:16px;">
     <h3 style="margin-top:0">Alertas Detectados nos Dados Semrush</h3>
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Alerta</th><th>Evidência</th><th>Impacto</th></tr>
       <tr>
         <td><strong>⚠️ Canibalização de keyword</strong></td>
@@ -498,7 +499,7 @@
   <!-- HTTPS + Sitemap + Robots -->
   <div class="page-section-header"><span class="section-tag tag-tecnico" style="margin:0;">Rastreabilidade</span> HTTPS · robots.txt · sitemap.xml</div>
   <div class="page-section-body">
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Item</th><th>Score</th><th>URL Verificada</th><th>Status</th></tr>
       <tr>
         <td>HTTPS / SSL</td><td><span class="score-badge score-5">5</span></td>
@@ -515,7 +516,7 @@
         <td class="url-cite">loja.elements.com.br/sitemap.xml</td>
         <td><span class="score-label-4">Bom</span> — Sitemap index com 6 filhos (produtos, coleções, páginas, blog, metaobjects). <strong>Problema:</strong> /pages/header-poc incluído</td>
       </tr>
-    </table>
+    </table></div>
 
     <div class="audit-item" style="margin-top:16px;">
       <div class="audit-item-header">
@@ -661,7 +662,7 @@
     </div>
   </div>
 
-  <table style="margin-bottom:24px;">
+  <div class="table-wrap"><table style="margin-bottom:24px;">
     <tr><th>Item</th><th>Score</th><th>URL de Referência</th><th>Status</th></tr>
     <tr>
       <td>Heading Structure (H1–H3)</td><td><span class="score-badge score-1">1</span></td>
@@ -688,7 +689,7 @@
       <td class="url-cite">loja.elements.com.br/blogs/artigos/[artigo]</td>
       <td><span class="score-label-3">Regular</span> — Sem FAQPage ou HowTo schema em artigos técnicos</td>
     </tr>
-  </table>
+  </table></div>
 
   <!-- H1 Múltiplos - ACHADO PRINCIPAL -->
   <div class="audit-item">
@@ -834,7 +835,7 @@
     </div>
   </div>
 
-  <table style="margin-bottom:24px;">
+  <div class="table-wrap"><table style="margin-bottom:24px;">
     <tr><th>Item</th><th>Score</th><th>URL de Referência</th><th>Status</th></tr>
     <tr>
       <td>Meta Descriptions (Produtos)</td><td><span class="score-badge score-2">2</span></td>
@@ -871,7 +872,7 @@
       <td class="url-cite">loja.elements.com.br/products/[produto]</td>
       <td><span class="score-label-4">Bom</span> — Home &gt; Coleção &gt; Produto — padrão Shopify correto</td>
     </tr>
-  </table>
+  </table></div>
 
   <div class="audit-item">
     <div class="audit-item-header">
@@ -1002,7 +1003,7 @@
     </div>
   </div>
 
-  <table style="margin-bottom:24px;">
+  <div class="table-wrap"><table style="margin-bottom:24px;">
     <tr><th>Item</th><th>Score</th><th>URL Afetada</th><th>Status</th></tr>
     <tr>
       <td>Coleções Duplicadas</td><td><span class="score-badge score-2">2</span></td>
@@ -1029,7 +1030,7 @@
       <td class="url-cite">loja.elements.com.br/collections/</td>
       <td><span class="score-label-3">Regular</span> — Shopify injeta via JS — verificar se duplicatas têm canonical para si mesmas</td>
     </tr>
-  </table>
+  </table></div>
 
   <div class="audit-item">
     <div class="audit-item-header">
@@ -1126,7 +1127,7 @@
     <p>Área sem problemas críticos. Único achado acionável: a página de teste /pages/header-poc incluída no sitemap (tratada no Módulo Técnico). As páginas de /pages/sobre e /pages/contato estão presentes e funcionais.</p>
   </div>
 
-  <table>
+  <div class="table-wrap"><table>
     <tr><th>Página</th><th>Score</th><th>URL</th><th>Observação</th></tr>
     <tr>
       <td>Sobre / Institucional</td><td><span class="score-badge score-4">4</span></td>
@@ -1143,7 +1144,7 @@
       <td class="url-cite">loja.elements.com.br/pages/header-poc</td>
       <td><span class="score-label-1">Remover do sitemap</span> — página de desenvolvimento exposta publicamente e enviada ao Google</td>
     </tr>
-  </table>
+  </table></div>
 </section>
 
 <!-- ═══════════ ROADMAP ═══════════ -->
@@ -1159,7 +1160,7 @@
 
   <div class="sprint-card sprint-1">
     <h4>🔴 Sprint 1 — Crítico · 30 dias</h4>
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Ação</th><th>Área</th><th>URL Alvo</th><th>Q×I×D</th><th>Quem</th></tr>
       <tr>
         <td><strong>Corrigir H1s múltiplos no blog</strong> — editar article.liquid para 1 único H1 = título do artigo</td>
@@ -1196,7 +1197,7 @@
 
   <div class="sprint-card sprint-2">
     <h4>🟡 Sprint 2 — Alta Prioridade · 30–60 dias</h4>
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Ação</th><th>Área</th><th>URL Alvo</th><th>Q×I×D</th><th>Quem</th></tr>
       <tr>
         <td><strong>Criar perfis de autor para o blog</strong> — 2–3 especialistas com bio, foto e credenciais</td>
@@ -1245,7 +1246,7 @@
 
   <div class="sprint-card sprint-3">
     <h4>⚫ Sprint 3 — Média Prioridade · 60–90 dias</h4>
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Ação</th><th>Área</th><th>Q×I×D</th><th>Quem</th></tr>
       <tr><td>Criar páginas pilar de cluster (/guia-cadeiras-ergonomicas, /guia-mesas-eletricas)</td><td><span class="section-tag tag-blog">Blog</span></td><td>36</td><td>SEO / Conteúdo</td></tr>
       <tr><td>Corrigir CLS desktop (0.11) — adicionar dimensões explícitas em imagens e banners acima da dobra</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td>27</td><td>Dev</td></tr>
@@ -1257,7 +1258,7 @@
 
   <div class="sprint-card sprint-4">
     <h4>🟢 Sprint 4 — Refinamentos · após 90 dias</h4>
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>Ação</th><th>Área</th><th>Q×I×D</th></tr>
       <tr><td>Estruturar todos os 185 artigos em clusters com interligação sistemática</td><td><span class="section-tag tag-blog">Blog</span></td><td>24</td></tr>
       <tr><td>Author schema em todos os artigos do blog</td><td><span class="section-tag tag-blog">Blog</span></td><td>12</td></tr>
@@ -1285,7 +1286,7 @@
     <div class="kpi-card" style="border-top:4px solid #D9D9D9;"><div class="kpi-value">1</div><div class="kpi-label">Descontinuar</div></div>
   </div>
 
-  <table>
+  <div class="table-wrap"><table>
     <tr><th>URL</th><th>Tipo</th><th>T</th><th>P</th><th>R</th><th>Score</th><th>Ação</th><th>Próximo Passo</th></tr>
     <tr>
       <td class="url-cite">/collections/cadeiras-ergonomicas</td><td>Coleção</td><td>4</td><td>4</td><td>5</td><td><strong>13</strong></td>
@@ -1342,7 +1343,7 @@
       <td><span style="color:#C00000;font-weight:700;">Descontinuar</span></td>
       <td>Remover do sitemap + noindex ou excluir a página</td>
     </tr>
-  </table>
+  </table></div>
 
   <div class="card" style="border-left:4px solid #C00000;margin-top:16px;">
     <p><strong>Insight editorial:</strong> A maior oportunidade de conteúdo está em <strong>mesas elétricas / standing desk</strong> (P=5 — demanda alta com baixa presença atual) e na requalificação do blog existente. A produção de conteúdo novo deve começar <em>após</em> corrigir H1s e atribuir autores nos 185 artigos existentes — sem essa base, novos artigos sofrerão os mesmos problemas.</p>
@@ -1441,7 +1442,7 @@
 <section id="comp-cwv"><div class="section-header">Core Web Vitals · PageSpeed Insights Field Data — Set 2026</div><div class="section-divider"></div>
 
   <div class="card" style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Domínio</th>
@@ -1515,7 +1516,7 @@
   <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Comparativo de posições orgânicas para as keywords mais estratégicas do segmento. Fonte: Semrush Set 2026.</div>
 
   <div class="card" style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Keyword</th>
@@ -1695,24 +1696,24 @@
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
     <div class="card">
       <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">Concorrentes de Sensetup</div>
-      <table>
+      <div class="table-wrap"><table>
         <tr><th>Domínio</th><th>KWs Comuns</th><th>Comp. Level</th></tr>
         <tr><td>comfy.com.br</td><td>610</td><td>35%</td></tr>
         <tr><td style="color:#C00000;font-weight:700;">elements.com.br</td><td style="color:#C00000;font-weight:700;">573</td><td style="color:#C00000;">30%</td></tr>
         <tr><td>cadeirasparaescritorio.ind.br</td><td>400</td><td>27%</td></tr>
         <tr><td>flexform.com.br</td><td>447</td><td>23%</td></tr>
-      </table>
+      </table></div>
       <div style="font-size:11px;color:var(--text-dim);margin-top:10px;">Elements é o 2º maior concorrente da Sensetup por sobreposição de keywords, confirmando disputa direta no mesmo universo semântico.</div>
     </div>
     <div class="card">
       <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">Autoridade de Domínio · Dados Semrush</div>
-      <table>
+      <div class="table-wrap"><table>
         <tr><th>Domínio</th><th>Visibility BR*</th><th>Keywords (top&nbsp;10)</th><th>Tráfego Est.</th><th>Posição no Segmento</th></tr>
         <tr><td>flexform.com.br</td><td><strong style="color:#1565C0;">63</strong></td><td>>1.000</td><td>~160K</td><td>#1</td></tr>
         <tr style="background:rgba(192,0,0,.04);"><td style="color:#C00000;font-weight:700;">loja.elements.com.br</td><td><strong style="color:#C00000;">~45–55 est.</strong></td><td>>1.000</td><td style="color:#C00000;">~124K</td><td>#2</td></tr>
         <tr><td>dt3.com</td><td><strong style="color:#558B2F;">~35–45 est.</strong></td><td>3.427</td><td>~75K</td><td>#3</td></tr>
         <tr><td>sensetup.com.br</td><td><strong style="color:#888;">~20–30 est.</strong></td><td>2.337</td><td>~31K</td><td>#4</td></tr>
-      </table>
+      </table></div>
       <div style="font-size:11px;color:var(--text-dim);margin-top:10px;">*Semrush Visibility Score (0–100): métrica de presença orgânica no banco de dados Semrush. Flexform: 63 BR confirmado pelo export Semrush Set 2026 (Countries/Visibility). Demais: estimados com base em tráfego, keywords e maturidade. Fato observado: Elements tem mais tráfego que DT3 apesar de menor volume de keywords rastreadas — evidência de autoridade topical concentrada em ergonomia de alto volume.</div>
     </div>
   </div>
@@ -1803,7 +1804,7 @@
   </section>
 <section id="proj-baseline"><div class="section-header">Baseline · Estado Atual (Semrush Set 2026)</div><div class="section-divider"></div>
   <div class="card" style="overflow-x:auto;margin-bottom:32px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Keyword</th>
@@ -1862,7 +1863,7 @@
           <td style="color:var(--text-dim);">—</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="font-size:11px;color:var(--text-light);margin-top:10px;">*CTR real de 8.2% para #1 em "cadeira ergonomica" (9.000 / 110.000) é inferior ao benchmark teórico de 27.6% porque o volume de 110K inclui variações de query com CTR menor. O CTR efetivo tende a equilibrar ao redor de 8–12% para grandes clusters semânticos.</div>
   </div>
 
@@ -1872,7 +1873,7 @@
   <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Para keywords onde Elements está fora do top 10, calculamos o ganho de tráfego estimado caso as posições sejam conquistadas. CTR por posição: Backlinko 2022 (mobile). Volume: Semrush Set 2026.</div>
 
   <div class="card" style="overflow-x:auto;margin-bottom:16px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Keyword</th>
@@ -2222,7 +2223,7 @@
   </section>
 <section id="exec-proximos"><div class="section-header">Próximos Passos · Ação Imediata</div><div class="section-divider"></div>
   <div class="card">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>#</th><th>Ação</th><th>Responsável</th><th>Prazo</th><th>Impacto</th></tr>
       </thead>

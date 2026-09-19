@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Elements · Auditoria de SEO — Corporativo B2B</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   :root {
@@ -20,7 +20,7 @@
     --text-dim: #3D3D3D;
     --text-light: #666;
     --font: 'Inter', system-ui, sans-serif;
-    --font-display: 'Oswald', Arial, sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
@@ -133,7 +133,8 @@
   .conclusion-block .conclusion-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--red); margin-bottom: 6px; }
 
   /* TABLES */
-  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0; }
   th { background: var(--bg); color: var(--text); padding: 9px 14px; text-align: left; font-size: 11px; letter-spacing: .5px; font-family: var(--font-display); text-transform: uppercase; border-bottom: 2px solid var(--border); }
   td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tr:hover td { background: rgba(192,0,0,.02); }
@@ -266,7 +267,7 @@
     </div>
 
     <div class="card" style="border-left:3px solid #C00000">
-      <p style="font-size:13px"><strong style="font-family:'Oswald',Arial,sans-serif;text-transform:uppercase;color:#C00000;letter-spacing:.5px">Observação estratégica sobre a arquitetura de subdomínios:</strong><br>
+      <p style="font-size:13px"><strong style="font-family:'Inter',system-ui,sans-serif;text-transform:uppercase;color:#C00000;letter-spacing:.5px">Observação estratégica sobre a arquitetura de subdomínios:</strong><br>
       Os dois canais principais operam em subdomínios separados (<code>loja.</code> e <code>corporativo.</code>). Para o Google, cada subdomínio Shopify é tratado como site independente — backlinks, autoridade de domínio (DR) e sinais de E-E-A-T <strong>não são consolidados</strong> entre eles. Esta é a decisão arquitetural mais impactante para o crescimento orgânico de longo prazo do canal corporativo e é abordada em detalhe na seção Estratégico.</p>
     </div>
   </section>
@@ -328,7 +329,7 @@
     </div>
 
     <div class="card" style="border:2px solid #C00000;margin-top:16px;">
-      <p style="font-family:'Oswald',Arial,sans-serif;font-size:12px;font-weight:700;color:#C00000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚠ ACHADO CRÍTICO — Tráfego Orgânico Extremamente Baixo</p>
+      <p style="font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:700;color:#C00000;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚠ ACHADO CRÍTICO — Tráfego Orgânico Extremamente Baixo</p>
       <p style="font-size:13px;">corporativo.elements.com.br gera <strong>~561 visitas orgânicas/mês</strong> (Semrush) contra <strong>~124.400 da loja.elements.com.br</strong> — uma diferença de <strong>221×</strong>. O tráfego é 100% dependente de marca: "elements" e variações representam praticamente toda a demanda capturada. Nenhuma keyword de categoria ("cadeira ergonomica", "cadeira de escritório", "mesa elétrica") aparece nas posições do corporativo. A ausência de blog, a estratégia de preços gateados (CNPJ) e a arquitetura de coleções sem conteúdo editorial explicam o low footprint orgânico.</p>
       <div style="margin-top:12px;">
         <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:0;">
@@ -340,14 +341,14 @@
     </div>
 
     <h3>Top Keywords por Tráfego — corporativo.elements.com.br</h3>
-    <table>
+    <div class="table-wrap"><table>
       <tr><th>#</th><th>Keyword</th><th>Intenção</th><th>Posição</th><th>Tráfego/mês</th><th>Volume</th><th>URL de Destino</th></tr>
       <tr><td>1</td><td><strong>elements</strong></td><td>Informacional/Navegacional</td><td>3</td><td>271</td><td>27.100</td><td>corporativo.elements.com.br/</td></tr>
       <tr><td>2</td><td>cadeira elements</td><td>Comercial/Navegacional</td><td>4</td><td>96</td><td>12.100</td><td>/collections/cadeiras</td></tr>
       <tr><td>3</td><td>elements astra pro</td><td>Informacional/Transacional</td><td>4</td><td>26</td><td>1.900</td><td>/products/cadeira-ergonomica-astra-pro</td></tr>
       <tr><td>4</td><td>elements cadeiras</td><td>Navegacional</td><td>4</td><td>24</td><td>2.400</td><td>/collections/cadeiras</td></tr>
       <tr><td>5</td><td>astra pro</td><td>Comercial</td><td>8</td><td>22</td><td>1.000</td><td>/products/cadeira-ergonomica-astra-pro</td></tr>
-    </table>
+    </table></div>
     <p style="font-size:12px;color:#595959;margin-top:8px;"><em>Nota: as 386 keywords exportadas totalizam ~561 visitas/mês. A grande maioria tem tráfego "0" ou "&lt; 0,01" — o site praticamente não captura demanda de pesquisa não-brand.</em></p>
   </section>
 
@@ -383,7 +384,7 @@
             r: {
               min: 0, max: 5,
               ticks: { stepSize: 1, font: { size: 10 } },
-              pointLabels: { font: { size: 12, family: "'Oswald', Arial, sans-serif" }, color: '#111' },
+              pointLabels: { font: { size: 12, family: "'Inter', system-ui, sans-serif" }, color: '#111' },
               grid: { color: 'rgba(0,0,0,0.1)' }
             }
           },
@@ -394,7 +395,7 @@
       });
     </script>
 
-    <table style="margin-top:16px">
+    <div class="table-wrap"><table style="margin-top:16px">
       <thead><tr><th>Dimensão</th><th>Score</th><th>Classificação</th><th>Principal problema</th></tr></thead>
       <tbody>
         <tr><td>Infraestrutura Técnica</td><td><span class="score-badge score-3">3.0</span></td><td class="score-label-3">Regular</td><td>6 páginas internas/transacionais no sitemap indexadas</td></tr>
@@ -403,7 +404,7 @@
         <tr><td>Coleções</td><td><span class="score-badge score-3">2.8</span></td><td class="score-label-3">Regular</td><td>Sem meta description; páginas sazonais finas no sitemap</td></tr>
         <tr><td>Semântica &amp; AIO</td><td><span class="score-badge score-2">2.2</span></td><td class="score-label-2">Ruim</td><td>Sem blog ativo = sem autoridade temática; schema não verificado</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </section>
 
   <!-- INFRAESTRUTURA TÉCNICA -->
@@ -993,7 +994,7 @@
     </div>
 
     <h3>Resumo de Achados por Prioridade</h3>
-    <table style="margin-top:16px">
+    <div class="table-wrap"><table style="margin-top:16px">
       <thead><tr><th>ID</th><th>Achado</th><th>Dimensão</th><th>Score</th><th>Sprint</th></tr></thead>
       <tbody>
         <tr><td>T.2</td><td>6 páginas internas no sitemap (obrigado, formulários, erro CNPJ)</td><td><span class="section-tag tag-tecnico" style="margin-bottom:0;font-size:10px">Técnico</span></td><td><span class="score-badge score-1" style="width:24px;height:24px;font-size:11px">1</span></td><td><strong>1</strong></td></tr>
@@ -1010,7 +1011,7 @@
         <tr><td>P.6</td><td>Organization schema sameAs com strings vazias — campo sem conteúdo indexável</td><td><span class="section-tag tag-produto" style="margin-bottom:0;font-size:10px">Semântica</span></td><td><span class="score-badge score-3" style="width:24px;height:24px;font-size:11px">3</span></td><td><strong>3</strong></td></tr>
         <tr><td>I.1</td><td>/venda-corporativa sem case study detalhado</td><td><span class="section-tag tag-institucional" style="margin-bottom:0;font-size:10px">Institucional</span></td><td><span class="score-badge score-4" style="width:24px;height:24px;font-size:11px">4</span></td><td><strong>3</strong></td></tr>
       </tbody>
-    </table>
+    </table></div>
 
   </section>
 
@@ -1114,7 +1115,7 @@
   </div>
 
   <div class="card" style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Domínio</th>
@@ -1174,7 +1175,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:15px;text-transform:uppercase;margin:0 0 12px;color:var(--text);">Flexform — 16 Keywords B2B (top performers)</h3>
   <div class="card" style="overflow-x:auto;margin-bottom:28px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Keyword</th><th>Volume/mês</th><th>Posição</th><th>Tráfego estimado</th></tr>
       </thead>
@@ -1192,7 +1193,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:15px;text-transform:uppercase;margin:0 0 12px;color:var(--text);">Sensetup — 12 Keywords B2B (top performers)</h3>
   <div class="card" style="overflow-x:auto;margin-bottom:28px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Keyword</th><th>Volume/mês</th><th>Posição</th><th>Tráfego estimado</th></tr>
       </thead>
@@ -1208,7 +1209,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:15px;text-transform:uppercase;margin:0 0 12px;color:var(--text);">DT3 Sports — 3 Keywords B2B (presença marginal)</h3>
   <div class="card" style="overflow-x:auto;margin-bottom:20px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Keyword</th><th>Volume/mês</th><th>Posição</th><th>Tráfego estimado</th></tr>
       </thead>
@@ -1236,7 +1237,7 @@
   <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Keywords B2B de alto volume identificadas no universo geral de buscas (mesa/escritório/cadeira) que <strong>nenhum dos concorrentes ranqueia</strong> com conteúdo B2B dedicado. Volume total mapeado: <strong>~62.900 buscas/mês</strong> em 52 keywords.</p>
 
   <div class="card" style="overflow-x:auto;margin-bottom:28px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr>
           <th>Keyword</th>
@@ -1329,7 +1330,7 @@
           <td style="color:#1B7F37;font-weight:700;">ALTA</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="font-size:11px;color:var(--text-light);margin-top:10px;">Total universo mapeado: 52 keywords B2B · ~62.900 vol/mês agregado · KD médio: 18% · Dados: Semrush Set 2026</div>
   </div>
 
@@ -1431,7 +1432,7 @@
 
   <div class="card" style="overflow-x:auto;">
     <p style="font-size:13px;font-weight:700;margin-bottom:12px;">Top Keywords — Baseline (Semrush Set 2026)</p>
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Keyword</th><th>Tipo</th><th>Volume/mês</th><th>Posição atual</th><th>Tráfego estimado</th></tr>
       </thead>
@@ -1512,7 +1513,7 @@
 
   <div class="card" style="overflow-x:auto;">
     <p style="font-size:13px;font-weight:700;margin-bottom:12px;">Top 15 Keywords B2B por Volume — Prioridade de Ataque</p>
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>#</th><th>Keyword</th><th>Volume BR/mês</th><th>KD%</th><th>Tráfego est. #5</th><th>Prioridade</th></tr>
       </thead>
@@ -1533,7 +1534,7 @@
         <tr><td>14</td><td>sofá corporativo</td><td>590</td><td>14%</td><td>~37</td><td style="color:#F0A500;font-weight:700;">P1 — Sprint 2</td></tr>
         <tr><td>15</td><td>ergonomia no trabalho empresa</td><td>480</td><td>10%</td><td>~30</td><td style="color:#F0A500;font-weight:700;">P1 — Sprint 2</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="font-size:11px;color:var(--text-light);margin-top:10px;">CTR estimado: 6.3% para posição #5 (Backlinko 2022, mobile, conservadorismo BR de 15%). Volume: Semrush Set 2026.</div>
   </div>
 </section>
@@ -1564,7 +1565,7 @@
 
   <div class="card" style="overflow-x:auto;margin-bottom:28px;">
     <p style="font-size:13px;font-weight:700;margin-bottom:12px;">Detalhamento por Cenário</p>
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Cenário</th><th>Prazo</th><th>Ações principais</th><th>Keywords alvo</th><th>Tráfego B2B/mês</th><th>Crescimento vs. baseline</th></tr>
       </thead>
@@ -1607,7 +1608,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:15px;text-transform:uppercase;margin:0 0 12px;">Sprint 1 — Ações Prioritárias B2B (30 dias)</h3>
   <div class="card" style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Ação</th><th>Área</th><th>Impacto</th><th>Prazo</th></tr>
       </thead>
@@ -1660,7 +1661,7 @@
   <div class="section-divider"></div>
 
   <div class="card" style="overflow-x:auto;margin-bottom:24px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Mês</th><th>Tráfego total/mês</th><th>Brand</th><th>Não-brand B2B</th><th>Marco</th></tr>
       </thead>
@@ -1777,7 +1778,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:14px;text-transform:uppercase;margin:0 0 12px;">Score da Auditoria de SEO — Corporativo</h3>
   <div class="card" style="overflow-x:auto;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Módulo</th><th>Score</th><th>Status</th><th>Principal achado</th></tr>
       </thead>
@@ -1808,7 +1809,7 @@
 
   <div class="card" style="overflow-x:auto;margin-bottom:24px;">
     <p style="font-size:13px;font-weight:700;margin-bottom:12px;">Resumo Competitivo B2B</p>
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Critério</th><th>Flexform</th><th>Sensetup</th><th>DT3</th><th>Elements Corporativo</th></tr>
       </thead>
@@ -1884,7 +1885,7 @@
   </div>
 
   <div class="card" style="overflow-x:auto;margin-bottom:20px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Cenário</th><th>Tráfego B2B/mês</th><th>Conversão 0.5%</th><th>Ticket médio R$3.500</th><th>GMV orgânico estimado</th></tr>
       </thead>
@@ -1894,7 +1895,7 @@
         <tr style="background:rgba(85,139,47,.04);"><td>Sprints 1+2 (60d)</td><td>~3.800 non-brand</td><td>~19 pedidos</td><td>R$3.500</td><td><strong>~R$66.500/mês</strong></td></tr>
         <tr style="background:rgba(27,127,55,.06);"><td>SCOPE Completo (90d+)</td><td>~11.100 non-brand</td><td>~56 pedidos</td><td>R$3.500</td><td><strong>~R$196.000/mês</strong></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div style="font-size:11px;color:var(--text-light);margin-top:10px;">Estimativas conservadoras. Conversão B2B pode ser 0.3–1.5% dependendo de UX e time comercial de suporte. Ticket médio baseado em pedidos corporativos típicos de mobiliário ergonômico.</div>
   </div>
 </section>
@@ -1907,7 +1908,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:14px;text-transform:uppercase;margin:0 0 12px;">Sprint 1 · Semanas 1–4 (Quick Wins)</h3>
   <div class="card" style="overflow-x:auto;margin-bottom:24px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Ação</th><th>Impacto</th><th>Esforço</th><th>Prazo</th></tr>
       </thead>
@@ -1948,7 +1949,7 @@
 
   <h3 style="font-family:var(--font-display);font-size:14px;text-transform:uppercase;margin:0 0 12px;">Sprint 2 · Semanas 5–8 (Cluster B2B)</h3>
   <div class="card" style="overflow-x:auto;margin-bottom:24px;">
-    <table>
+    <div class="table-wrap"><table>
       <thead>
         <tr><th>Ação</th><th>Impacto</th><th>Esforço</th><th>Prazo</th></tr>
       </thead>
