@@ -183,6 +183,7 @@
 <div class="tab-bar" role="tablist">
   <button class="tab-btn active" data-tab="tab-auditoria" onclick="switchTab('tab-auditoria')" role="tab" aria-selected="true">Auditoria</button>
   <button class="tab-btn" data-tab="tab-comparativo" onclick="switchTab('tab-comparativo')" role="tab" aria-selected="false">Comparativo</button>
+  <button class="tab-btn" data-tab="tab-proj" onclick="switchTab('tab-proj')" role="tab" aria-selected="false">Projeção de Tráfego</button>
   <button class="tab-btn" data-tab="tab-resumo" onclick="switchTab('tab-resumo')" role="tab" aria-selected="false">Resumo Executivo</button>
 </div>
 
@@ -1358,7 +1359,17 @@
 </div>
 </div></div></div><!-- /tab-auditoria -->
 
-<div id="tab-resumo" class="tab-pane" role="tabpanel">
+<div id="tab-comparativo" class="tab-pane" role="tabpanel">
+  <div class="tab-toolbar">
+    <span style="color:#D9D9D9;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;">ANÁLISE COMPARATIVA · Elements vs Concorrentes</span>
+    <a href="scope-comparativo.html" target="_blank" style="margin-left:auto;">↗ Abrir em tela cheia</a>
+  </div>
+  <div class="iframe-wrap">
+    <iframe src="scope-comparativo.html" title="Análise Comparativa Elements vs Concorrentes" loading="lazy"></iframe>
+  </div>
+</div>
+
+<div id="tab-proj" class="tab-pane" role="tabpanel">
   <div class="container">
     <div class="card" style="border-left:4px solid #C00000;margin-bottom:32px;">
       <p style="font-size:15px;line-height:1.8;"><strong>Diagnóstico síntese:</strong> A Elements lidera "cadeira ergonomica" (110K vol, #1) com ~124K visitas orgânicas/mês, mas três vetores críticos limitam o crescimento: blog com heading structure quebrada (185 artigos, H1 múltiplos), coleções duplicadas fragmentando autoridade de link e INP mobile 304ms com CWV FAILED. Correções diretas no Shopify Admin e no template do tema podem ser executadas em 2 semanas com impacto estimado de +5–8% no tráfego orgânico apenas no Sprint 1.</p>
@@ -1375,7 +1386,7 @@
       <div class="kpi-card" style="border-top:4px solid #C00000;"><div class="kpi-value score-label-3" style="font-size:32px;">3.3</div><div class="kpi-label">Score Geral</div></div>
     </div>
 
-    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:#111;">Sprint 1 — Ações Críticas (30 dias)</h3>
+    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:var(--text);">Sprint 1 — Ações Críticas (30 dias)</h3>
     <table>
       <tr><th>Ação</th><th>Área</th><th>Q×I×D</th><th>Prazo</th></tr>
       <tr><td><strong>Corrigir H1s múltiplos no blog</strong> — editar article.liquid para 1 único H1</td><td><span class="section-tag tag-blog">Blog</span></td><td><strong>125</strong></td><td>Semana 1</td></tr>
@@ -1385,7 +1396,7 @@
       <tr><td><strong>Corrigir H1 homepage</strong> — substituir "Mais vendidas" por H1 brand + categoria</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td><strong>80</strong></td><td>Semana 1</td></tr>
     </table>
 
-    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:#111;">Top 3 Oportunidades</h3>
+    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:var(--text);">Top 3 Oportunidades</h3>
     <table>
       <tr><th>Oportunidade</th><th>Potencial Estimado</th><th>Esforço</th></tr>
       <tr><td>Requalificar 185 artigos com autoria + links internos para produtos</td><td>Alto — ativo existente, sem criar conteúdo novo</td><td>Médio</td></tr>
@@ -1393,7 +1404,7 @@
       <tr><td>Meta descriptions em PDPs: aumento de CTR 15–30% nas posições já ranqueadas</td><td>Médio — sem mudança de posição</td><td>Baixo</td></tr>
     </table>
 
-    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:#111;">Projeção de Tráfego</h3>
+    <h3 style="margin:32px 0 12px;font-family:'Oswald',Arial,sans-serif;font-size:16px;text-transform:uppercase;color:var(--text);">Projeção de Tráfego Orgânico</h3>
     <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
       <div class="kpi-card" style="border-top:4px solid #F0A500;"><div class="kpi-value">~131K</div><div class="kpi-label">Sprint 1 (Quick Wins)</div><div class="kpi-source">+6.600 visitas/mês (+5.3%)</div></div>
       <div class="kpi-card" style="border-top:4px solid #558B2F;"><div class="kpi-value">~152K</div><div class="kpi-label">Sprints 1+2</div><div class="kpi-source">+27.600 visitas/mês (+22.2%)</div></div>
@@ -1406,13 +1417,13 @@
   </div>
 </div>
 
-<div id="tab-comparativo" class="tab-pane" role="tabpanel">
+<div id="tab-resumo" class="tab-pane" role="tabpanel">
   <div class="tab-toolbar">
-    <span style="color:#D9D9D9;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;">ANÁLISE COMPARATIVA · Elements vs Concorrentes</span>
-    <a href="scope-comparativo.html" target="_blank" style="margin-left:auto;">↗ Abrir em tela cheia</a>
+    <span style="color:#D9D9D9;font-family:'Oswald',Arial,sans-serif;font-size:12px;letter-spacing:.5px;">RESUMO EXECUTIVO · Elements Loja B2C</span>
+    <a href="scope-resumo.html" target="_blank" style="margin-left:auto;">↗ Abrir em tela cheia</a>
   </div>
   <div class="iframe-wrap">
-    <iframe src="scope-comparativo.html" title="Análise Comparativa Elements vs Concorrentes" loading="lazy"></iframe>
+    <iframe src="scope-resumo.html" title="Resumo Executivo SCOPE Elements" loading="lazy"></iframe>
   </div>
 </div>
 

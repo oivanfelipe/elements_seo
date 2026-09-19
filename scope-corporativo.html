@@ -207,6 +207,7 @@
 <div class="tab-bar" role="tablist">
   <button class="tab-btn active" data-tab="tab-auditoria" onclick="switchTab('tab-auditoria')" role="tab" aria-selected="true">Auditoria</button>
   <button class="tab-btn" data-tab="tab-comparativo" onclick="switchTab('tab-comparativo')" role="tab" aria-selected="false">Comparativo</button>
+  <button class="tab-btn" data-tab="tab-proj" onclick="switchTab('tab-proj')" role="tab" aria-selected="false">Projeção de Tráfego</button>
   <button class="tab-btn" data-tab="tab-resumo" onclick="switchTab('tab-resumo')" role="tab" aria-selected="false">Resumo Executivo</button>
 </div>
 
@@ -1034,6 +1035,55 @@
   </div>
   <div class="iframe-wrap">
     <iframe src="scope-comparativo.html" title="Análise Comparativa Elements vs Concorrentes" loading="lazy"></iframe>
+  </div>
+</div>
+
+<div id="tab-proj" class="tab-pane" role="tabpanel">
+  <div class="container">
+    <div class="card" style="border-left:4px solid #C00000;margin-bottom:32px;">
+      <p style="font-size:15px;line-height:1.8;"><strong>Diagnóstico síntese B2B:</strong> O canal corporativo <code>corporativo.elements.com.br</code> não aparece indexado no Google e carece de estrutura SEO própria. A oportunidade é alta: o segmento B2B de mobiliário ergonômico para empresas tem pouca concorrência orgânica específica. Com indexação correta, cluster de conteúdo B2B e páginas de categoria otimizadas, é possível construir tráfego orgânico qualificado em 60–90 dias.</p>
+    </div>
+
+    <div class="section-header">Cenários de Projeção — Canal Corporativo</div>
+    <div class="section-divider"></div>
+    <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-card" style="border-top:4px solid #F0A500;">
+        <div class="kpi-value">~800</div>
+        <div class="kpi-label">Sprint 1 — Indexação</div>
+        <div class="kpi-source">Baseline: ~0 orgânico atual</div>
+      </div>
+      <div class="kpi-card" style="border-top:4px solid #558B2F;">
+        <div class="kpi-value">~3.200</div>
+        <div class="kpi-label">Sprints 1+2 — Cluster B2B</div>
+        <div class="kpi-source">+2.400 visitas/mês após 60 dias</div>
+      </div>
+      <div class="kpi-card" style="border-top:4px solid #1B7F37;">
+        <div class="kpi-value">~8.500</div>
+        <div class="kpi-label">SCOPE Completo</div>
+        <div class="kpi-source">+7.700 visitas/mês qualificadas B2B</div>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px;font-family:var(--font-display);font-size:16px;text-transform:uppercase;color:var(--text);">Sprint 1 — Ações Prioritárias B2B (30 dias)</h3>
+    <table>
+      <tr><th>Ação</th><th>Área</th><th>Impacto</th><th>Prazo</th></tr>
+      <tr><td><strong>Submeter sitemap corporativo ao GSC</strong> — criar conta GSC separada para o subdomínio</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td><strong>Crítico</strong></td><td>Semana 1</td></tr>
+      <tr><td><strong>Remover noindex do subdomínio</strong> — verificar robots.txt e meta robots em corporativo.elements.com.br</td><td><span class="section-tag tag-tecnico">Técnico</span></td><td><strong>Crítico</strong></td><td>Semana 1</td></tr>
+      <tr><td><strong>H1 e title tag únicos por categoria</strong> — separar copy B2B de loja B2C para evitar canibalização</td><td><span class="section-tag tag-colecao">Categorias</span></td><td><strong>Alto</strong></td><td>Semana 2</td></tr>
+      <tr><td><strong>Página pilar "Mobiliário Ergonômico para Empresas"</strong> — conteúdo de cluster para captação B2B</td><td><span class="section-tag tag-blog">Conteúdo</span></td><td><strong>Alto</strong></td><td>Semana 3–4</td></tr>
+    </table>
+
+    <h3 style="margin:32px 0 12px;font-family:var(--font-display);font-size:16px;text-transform:uppercase;color:var(--text);">Top 3 Oportunidades B2B</h3>
+    <table>
+      <tr><th>Oportunidade</th><th>Potencial Estimado</th><th>Esforço</th></tr>
+      <tr><td>Criar landing page dedicada para "cadeiras ergonômicas para empresas" + formulário de pedido coletivo</td><td>Alto — keyword com 6.600 vol mensal e baixa concorrência B2B</td><td>Médio</td></tr>
+      <tr><td>Blog B2B com guias de NR-17, ergonomia no trabalho, benefícios corporativos — linkado ao catálogo</td><td>Alto — conteúdo de alta intenção de compra corporativa</td><td>Médio-Alto</td></tr>
+      <tr><td>Schema Organization + Product com pricing B2B — elegibilidade para rich snippets no segmento corporativo</td><td>Médio — aumento de CTR em buscas institucionais</td><td>Baixo</td></tr>
+    </table>
+
+    <div class="card" style="border-left:4px solid #F0A500;margin-top:24px;">
+      <p style="font-size:13px;"><strong>Pré-requisito imediato:</strong> Confirmar se o subdomínio corporativo.elements.com.br está bloqueado para rastreamento. Sem indexação, nenhuma das projeções acima se materializa. Ver análise comparativa completa na aba <strong>Comparativo</strong>.</p>
+    </div>
   </div>
 </div>
 
