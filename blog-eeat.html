@@ -22,16 +22,6 @@
     --font: 'Inter', system-ui, sans-serif;
     --font-display: 'Oswald', Arial, sans-serif;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0D0D0D; --bg-card: #181818; --border: #2A2A2A;
-      --text: #F0F0F0; --text-dim: #A0A0A0; --text-light: #666;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0D0D0D; --bg-card: #181818; --border: #2A2A2A;
-    --text: #F0F0F0; --text-dim: #A0A0A0; --text-light: #666;
-  }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
