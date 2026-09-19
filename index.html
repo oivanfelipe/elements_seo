@@ -340,6 +340,7 @@
     }
     .tag-b2c { background: rgba(192,0,0,.15); color: var(--red); }
     .tag-b2b { background: rgba(21,101,192,.15); color: #64B5F6; }
+    .tag-comp { background: rgba(245,124,0,.15); color: #FFB74D; }
 
     .report-card h2 {
       font-family: 'Oswald', Arial, sans-serif;
@@ -386,6 +387,7 @@
     }
     .loja .stat-value { color: var(--red); }
     .corp .stat-value { color: #64B5F6; }
+    .comp .stat-value { color: #FFB74D; }
 
     .report-score-badge {
       position: absolute;
@@ -404,6 +406,7 @@
     }
     .score-badge-loja { background: rgba(192,0,0,.15); color: var(--red); border-color: rgba(192,0,0,.3); }
     .score-badge-corp { background: rgba(21,101,192,.15); color: #64B5F6; border-color: rgba(21,101,192,.3); }
+    .score-badge-comp { background: rgba(245,124,0,.15); color: #FFB74D; border-color: rgba(245,124,0,.3); }
 
     /* ── FOOTER ── */
     .footer {
@@ -620,6 +623,29 @@
         <div class="stat">
           <span class="stat-value">PASSED</span>
           <span class="stat-label">CWV Mobile</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- COMPARATIVO DE CONCORRENTES -->
+    <a href="scope-comparativo.html" class="report-card comp">
+      <div class="report-score-badge score-badge-comp">+3</div>
+      <span class="report-tag tag-comp">Inteligência Competitiva</span>
+      <h2>Análise Comparativa</h2>
+      <div class="report-url">Elements vs Flexform · DT3 · Sensetup</div>
+      <p class="report-desc">Benchmark competitivo com dados Semrush: CWV, tráfego orgânico, batalha de keywords e gaps de posicionamento. Projeção probabilística de crescimento em 3 cenários (Conservative / Base / Optimistic).</p>
+      <div class="report-stats">
+        <div class="stat">
+          <span class="stat-value">~160K</span>
+          <span class="stat-label">Líder (Flexform)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">+48.7%</span>
+          <span class="stat-label">Upside Otimista</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">3</span>
+          <span class="stat-label">Cenários</span>
         </div>
       </div>
     </a>

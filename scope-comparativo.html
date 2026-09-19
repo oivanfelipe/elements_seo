@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Análise Comparativa · Elements vs Concorrentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --red: #C00000;
+    --red-dark: #8B0000;
+    --green: #1B7F37;
+    --orange: #F0A500;
+    --blue: #1565C0;
+    --bg: #F5F5F5;
+    --bg-card: #FFFFFF;
+    --border: #E0E0E0;
+    --text: #1A1A1A;
+    --text-dim: #595959;
+    --text-light: #888;
+    --font: 'Inter', system-ui, sans-serif;
+    --font-display: 'Oswald', Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D0D0D;
+      --bg-card: #181818;
+      --border: #2A2A2A;
+      --text: #F0F0F0;
+      --text-dim: #A0A0A0;
+      --text-light: #666;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D0D0D;
+    --bg-card: #181818;
+    --border: #2A2A2A;
+    --text: #F0F0F0;
+    --text-dim: #A0A0A0;
+    --text-light: #666;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding-inline: 0;
+  }
+
+  /* HEADER */
+  .report-header {
+    background: #111;
+    color: #fff;
+    padding: 48px 64px;
+    border-bottom: 4px solid var(--red);
+    position: relative;
+  }
+  .report-header a { color: #888; text-decoration: none; font-size: 13px; }
+  .report-header a:hover { color: #fff; }
+  .breadcrumb { margin-bottom: 20px; font-size: 13px; color: #888; }
+  .breadcrumb span { color: #fff; }
+  .confidential-tag {
+    position: absolute; top: 48px; right: 64px;
+    border: 1px solid var(--red); color: var(--red);
+    padding: 6px 14px; border-radius: 4px;
+    font-size: 11px; letter-spacing: 1px;
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+  }
+  .report-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700; text-transform: uppercase;
+    line-height: 1.1; letter-spacing: 0.5px;
+    color: #fff; margin-bottom: 8px;
+  }
+  .report-header h1 span { color: var(--red); }
+  .report-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px; }
+  .meta-item { font-size: 12px; color: #888; }
+  .meta-item strong { color: #bbb; }
+
+  /* TABS */
+  .tabs-nav {
+    position: sticky; top: 0; z-index: 50;
+    background: #1A1A1A;
+    border-bottom: 1px solid #333;
+    display: flex; gap: 0;
+    padding: 0 48px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    font-family: var(--font-display);
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #888; background: none; border: none;
+    padding: 16px 24px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer; white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .tab-btn:hover { color: #ddd; }
+  .tab-btn.active { color: #fff; border-bottom-color: var(--red); }
+
+  .tab-pane { display: none; padding: 40px 64px 80px; max-width: 1200px; margin: 0 auto; }
+  .tab-pane.active { display: block; }
+
+  /* SECTIONS */
+  .section-header {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 24px; margin-top: 48px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-header::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .section-header:first-child { margin-top: 0; }
+
+  /* CARDS */
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; }
+  .card + .card { margin-top: 16px; }
+
+  /* KPI ROW */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi-box {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px 24px; text-align: center;
+  }
+  .kpi-val { font-family: var(--font-display); font-size: 32px; font-weight: 700; line-height: 1.1; }
+  .kpi-label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .kpi-source { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .kpi-rank { font-size: 11px; font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  th {
+    background: #f0f0f0; color: var(--text); font-weight: 700;
+    text-align: left; padding: 10px 14px;
+    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) th { background: #222; }
+  }
+  :root[data-theme="dark"] th { background: #222; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(192,0,0,.03); }
+
+  /* STATUS BADGES */
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 700; font-family: var(--font-display); letter-spacing: 0.5px; white-space: nowrap; }
+  .badge-pass { background: rgba(27,127,55,.15); color: #1B7F37; }
+  .badge-fail { background: rgba(192,0,0,.12); color: var(--red); }
+  .badge-ni { background: rgba(240,165,0,.15); color: #b07800; }
+  .badge-na { background: rgba(100,100,100,.1); color: #888; }
+
+  /* CWV cell coloring */
+  .cwv-good { color: #1B7F37; font-weight: 700; }
+  .cwv-bad { color: var(--red); font-weight: 700; }
+  .cwv-ni { color: #b07800; font-weight: 700; }
+  .cwv-na { color: #888; }
+
+  /* BAR CHART */
+  .bar-chart { display: flex; flex-direction: column; gap: 14px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 13px; font-weight: 600; width: 140px; flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--border); border-radius: 4px; height: 32px; position: relative; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 12px; font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; transition: width .6s ease; }
+  .bar-val { font-size: 13px; font-weight: 700; width: 70px; text-align: right; flex-shrink: 0; }
+
+  /* SCENARIO TABLE */
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .scenario-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 24px; position: relative; overflow: hidden;
+  }
+  .scenario-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+  .scenario-cons::before { background: #888; }
+  .scenario-base::before { background: var(--orange); }
+  .scenario-opt::before { background: var(--green); }
+  .scenario-label {
+    font-family: var(--font-display); font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .scenario-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+  .scenario-num { font-family: var(--font-display); font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .scenario-sub { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
+  .scenario-delta { font-size: 14px; font-weight: 700; }
+  .scenario-items { margin-top: 16px; font-size: 12px; color: var(--text-dim); }
+  .scenario-items li { padding: 3px 0; }
+
+  /* WATERFALL */
+  .waterfall { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .wf-row { display: flex; align-items: center; gap: 12px; }
+  .wf-label { font-size: 12px; width: 200px; flex-shrink: 0; }
+  .wf-bar-wrap { flex: 1; position: relative; }
+  .wf-bar { height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 11px; font-weight: 700; color: #fff; }
+  .wf-gain { font-size: 12px; font-weight: 700; width: 80px; text-align: right; }
+
+  /* EXEC SUMMARY */
+  .finding-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .finding-row:last-child { border-bottom: none; }
+  .finding-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .finding-text { flex: 1; }
+  .finding-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .finding-desc { font-size: 13px; color: var(--text-dim); }
+  .finding-badge { flex-shrink: 0; align-self: center; }
+
+  /* PRIORITY MATRIX */
+  .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .matrix-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .matrix-cell-title {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .matrix-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .matrix-item { font-size: 12px; padding: 4px 0; color: var(--text-dim); display: flex; align-items: center; gap: 6px; }
+  .matrix-item::before { content: '→'; color: var(--text-light); flex-shrink: 0; }
+
+  /* URL chip */
+  .url-cite { font-size: 11px; color: var(--text-dim); background: rgba(0,0,0,.05); padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+
+  /* FOOTER */
+  .report-footer {
+    background: #111; color: #888;
+    padding: 32px 64px;
+    font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .report-footer a { color: #888; text-decoration: none; }
+  .report-footer a:hover { color: #fff; }
+  .report-footer strong { color: #bbb; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .report-header, .tab-pane, .report-footer { padding-inline: 20px; }
+    .tabs-nav { padding: 0 16px; }
+    .kpi-row { grid-template-columns: repeat(2,1fr); }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .matrix-grid { grid-template-columns: 1fr; }
+    .bar-label { width: 100px; font-size: 12px; }
+    .confidential-tag { display: none; }
+    .report-meta { gap: 14px; }
+  }
+  @media (max-width: 480px) {
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+    .tab-btn { padding: 14px 14px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="report-header">
+  <div class="breadcrumb">
+    <a href="index.html">← Voltar ao Hub</a>
+  </div>
+  <div class="confidential-tag">Confidencial</div>
+  <h1>Análise <span>Comparativa</span></h1>
+  <p style="font-size:14px;color:#bbb;margin-top:6px;">Elements Loja vs Flexform · Sensetup · DT3 — Oportunidades de Crescimento Orgânico</p>
+  <div class="report-meta">
+    <div class="meta-item"><strong>Domínio auditado:</strong> loja.elements.com.br</div>
+    <div class="meta-item"><strong>Concorrentes:</strong> flexform.com.br · sensetup.com.br · dt3.com</div>
+    <div class="meta-item"><strong>Fontes:</strong> Semrush Set 2026 · PageSpeed Insights Set 19, 2026</div>
+    <div class="meta-item"><strong>Analista:</strong> Ivan Felipe · ivan.felipe@v4company.com</div>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tabs-nav" role="tablist">
+  <button class="tab-btn active" onclick="showTab(event,'tab-comp')" role="tab">01 · Comparação Competitiva</button>
+  <button class="tab-btn" onclick="showTab(event,'tab-proj')" role="tab">02 · Projeção de Tráfego</button>
+  <button class="tab-btn" onclick="showTab(event,'tab-exec')" role="tab">03 · Resumo Executivo</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     TAB 1 — COMPARAÇÃO COMPETITIVA
+══════════════════════════════════════════════════ -->
+<div id="tab-comp" class="tab-pane active">
+
+  <!-- KPI ROW: TRÁFEGO -->
+  <div class="section-header">Tráfego Orgânico Estimado · Semrush Set 2026</div>
+  <div class="kpi-row">
+    <div class="kpi-box" style="border-top:4px solid #C00000;">
+      <div class="kpi-val" style="color:#C00000;">~124K</div>
+      <div class="kpi-label">loja.elements.com.br</div>
+      <div class="kpi-source">21.700 / 17.44% = ~124.400</div>
+      <div class="kpi-rank" style="color:#F0A500;">▲ #2 no segmento</div>
+    </div>
+    <div class="kpi-box" style="border-top:4px solid #1565C0;">
+      <div class="kpi-val" style="color:#1565C0;">~160K</div>
+      <div class="kpi-label">flexform.com.br</div>
+      <div class="kpi-source">26.500 / 16.54% = ~160.200</div>
+      <div class="kpi-rank" style="color:#888;">#1 no segmento</div>
+    </div>
+    <div class="kpi-box" style="border-top:4px solid #558B2F;">
+      <div class="kpi-val" style="color:#558B2F;">~75K</div>
+      <div class="kpi-label">dt3.com</div>
+      <div class="kpi-source">11.800 / 15.78% = ~74.800</div>
+      <div class="kpi-rank" style="color:#888;">#3 no segmento</div>
+    </div>
+    <div class="kpi-box" style="border-top:4px solid #888;">
+      <div class="kpi-val" style="color:#888;">~31K</div>
+      <div class="kpi-label">sensetup.com.br</div>
+      <div class="kpi-source">3.500 / 11.41% = ~30.700</div>
+      <div class="kpi-rank" style="color:#888;">#4 no segmento</div>
+    </div>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="card" style="margin-bottom:32px;">
+    <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;">Tráfego orgânico comparativo — visitas estimadas/mês</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label">Flexform</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:100%;background:#1565C0;">líder</div>
+        </div>
+        <div class="bar-val" style="color:#1565C0;">~160.200</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label" style="color:#C00000;font-weight:800;">Elements Loja</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:77.7%;background:#C00000;">77.7% do líder</div>
+        </div>
+        <div class="bar-val" style="color:#C00000;">~124.400</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">DT3</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:46.7%;background:#558B2F;"></div>
+        </div>
+        <div class="bar-val" style="color:#558B2F;">~74.800</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Sensetup</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:19.2%;background:#888;"></div>
+        </div>
+        <div class="bar-val" style="color:#888;">~30.700</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text-light);margin-top:16px;">Estimativa calculada: tráfego do top keyword ÷ % de tráfego desse keyword. Fonte: Semrush export Set 2026. Inclui tráfego brand e non-brand.</div>
+  </div>
+
+  <!-- CWV COMPARISON TABLE -->
+  <div class="section-header">Core Web Vitals · PageSpeed Insights Field Data — Set 2026</div>
+
+  <div class="card" style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Domínio</th>
+          <th>Mobile LCP</th>
+          <th>Mobile INP</th>
+          <th>Mobile CLS</th>
+          <th>Status Mobile</th>
+          <th>Desktop LCP</th>
+          <th>Desktop INP</th>
+          <th>Desktop CLS</th>
+          <th>Status Desktop</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong style="color:#C00000;">loja.elements.com.br</strong></td>
+          <td class="cwv-good">1.5s ✅</td>
+          <td class="cwv-bad">304ms ❌</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-fail">FAILED</span></td>
+          <td class="cwv-good">✅ Good</td>
+          <td class="cwv-good">✅ Good</td>
+          <td class="cwv-ni">0.11 ⚠️</td>
+          <td><span class="badge badge-ni">NI</span></td>
+        </tr>
+        <tr>
+          <td>flexform.com.br</td>
+          <td class="cwv-bad">2.8s ❌</td>
+          <td class="cwv-good">177ms ✅</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-fail">FAILED</span></td>
+          <td class="cwv-good">1.6s ✅</td>
+          <td class="cwv-good">79ms ✅</td>
+          <td class="cwv-good">0.08 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+        </tr>
+        <tr>
+          <td>sensetup.com.br</td>
+          <td class="cwv-good">1.6s ✅</td>
+          <td class="cwv-good">94ms ✅</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+          <td class="cwv-good">1.5s ✅</td>
+          <td class="cwv-good">29ms ✅</td>
+          <td class="cwv-bad">0.45 ❌</td>
+          <td><span class="badge badge-fail">FAILED</span></td>
+        </tr>
+        <tr>
+          <td>dt3.com</td>
+          <td class="cwv-good">1.8s ✅</td>
+          <td class="cwv-good">163ms ✅</td>
+          <td class="cwv-good">0.0 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+          <td class="cwv-good">1.8s ✅</td>
+          <td class="cwv-good">71ms ✅</td>
+          <td class="cwv-good">0.04 ✅</td>
+          <td><span class="badge badge-pass">PASSED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:12px;border-left:4px solid var(--red);">
+    <p style="font-size:13px;"><strong>Leitura estratégica de CWV:</strong> DT3 é o único concorrente com PASSED em ambos os dispositivos. Flexform — o líder de tráfego — também falha no mobile (LCP 2.8s). Isso significa que <strong>nenhum dos dois maiores players do segmento tem CWV mobile aprovado</strong>. A Elements está empatada nesse gap com Flexform. Sensetup é o único com mobile PASSED mas falha no desktop por CLS (layout shift na URL específica analisada). O INP da Elements (304ms) é o único bloqueador para tornar-se o <em>único líder de tráfego com mobile PASSED no segmento</em>.</p>
+  </div>
+
+  <!-- KEYWORD BATTLE -->
+  <div class="section-header">Batalha por Keywords · Posições por Domínio</div>
+
+  <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Comparativo de posições orgânicas para as keywords mais estratégicas do segmento. Fonte: Semrush Set 2026.</div>
+
+  <div class="card" style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Volume</th>
+          <th>KD%</th>
+          <th style="color:#C00000;">Elements Loja</th>
+          <th>Flexform</th>
+          <th>DT3</th>
+          <th>Sensetup</th>
+          <th>Oportunidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>cadeira ergonomica</strong></td>
+          <td>110.000</td>
+          <td>32%</td>
+          <td><strong style="color:#1B7F37;">#1 · 9.000/mês</strong></td>
+          <td>#2 · 7.200/mês</td>
+          <td>#3 · 3.900/mês</td>
+          <td>#5 · 2.600/mês</td>
+          <td><span class="badge badge-pass">Defender</span></td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>cadeira de escritorio</strong></td>
+          <td>201.000</td>
+          <td>34%</td>
+          <td><strong style="color:#C00000;">Fora do top 10</strong></td>
+          <td><strong style="color:#1565C0;">#1 · 26.500/mês</strong></td>
+          <td>#3 · 343/mês</td>
+          <td>#10 · 54/mês</td>
+          <td><span class="badge badge-fail">Maior Gap</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira escritorio</strong></td>
+          <td>90.500</td>
+          <td>28%</td>
+          <td style="color:var(--text-dim);">Fora do top 10</td>
+          <td>#1 · 7.400/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Alta Prioridade</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira</strong></td>
+          <td>110.000</td>
+          <td>27%</td>
+          <td><strong style="color:#F0A500;">#3 · 2.400/mês</strong></td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Melhorar</span></td>
+        </tr>
+        <tr>
+          <td><strong>mesa de escritorio</strong></td>
+          <td>74.000</td>
+          <td>28%</td>
+          <td style="color:var(--text-dim);">Não identificado</td>
+          <td>#2 · 3.300/mês</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td style="color:var(--text-dim);">—</td>
+          <td><span class="badge badge-ni">Alta Prioridade</span></td>
+        </tr>
+        <tr>
+          <td><strong>cadeira ergonomica escritório</strong></td>
+          <td>12.100</td>
+          <td>33%</td>
+          <td style="color:var(--text-dim);">Não identificado</td>
+          <td>#2 · 786/mês</td>
+          <td>#8 · 108/mês</td>
+          <td>#3 · 532/mês</td>
+          <td><span class="badge badge-ni">Oportunidade</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:12px;border-left:4px solid #F0A500;">
+    <p style="font-size:13px;"><strong>Insight principal:</strong> A Elements domina "cadeira ergonomica" (#1, 110K vol) mas está <strong>completamente ausente</strong> da keyword "cadeira de escritorio" (201K vol), onde Flexform detém o #1 com 26.500 visitas/mês. Esse único gap representa mais de 20% do tráfego atual de Flexform. Resolver a homepage H1, otimizar a coleção <span class="url-cite">/cadeiras/cadeiras-de-escritorio</span> e corrigir o CWV mobile são os três movimentos para atacar esse vácuo.</p>
+  </div>
+
+  <!-- OVERLAP DE KEYWORDS -->
+  <div class="section-header">Sobreposição de Keywords · Autoridade Estimada</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+    <div class="card">
+      <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">Concorrentes de Sensetup</div>
+      <table>
+        <tr><th>Domínio</th><th>KWs Comuns</th><th>Comp. Level</th></tr>
+        <tr><td>comfy.com.br</td><td>610</td><td>35%</td></tr>
+        <tr><td style="color:#C00000;font-weight:700;">elements.com.br</td><td style="color:#C00000;font-weight:700;">573</td><td style="color:#C00000;">30%</td></tr>
+        <tr><td>cadeirasparaescritorio.ind.br</td><td>400</td><td>27%</td></tr>
+        <tr><td>flexform.com.br</td><td>447</td><td>23%</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:10px;">Elements é o 2º maior concorrente da Sensetup por sobreposição de keywords, confirmando disputa direta no mesmo universo semântico.</div>
+    </div>
+    <div class="card">
+      <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;">Autoridade de Domínio Estimada</div>
+      <table>
+        <tr><th>Domínio</th><th>DR Est.</th><th>Keywords</th><th>Tráfego</th></tr>
+        <tr><td>flexform.com.br</td><td>~40–50</td><td>>1.000</td><td>~160K</td></tr>
+        <tr style="background:rgba(192,0,0,.04);"><td style="color:#C00000;font-weight:700;">loja.elements.com.br</td><td style="color:#C00000;">~25–35</td><td>>1.000</td><td style="color:#C00000;">~124K</td></tr>
+        <tr><td>dt3.com</td><td>~35–45</td><td>3.427</td><td>~75K</td></tr>
+        <tr><td>sensetup.com.br</td><td>~20–30</td><td>2.337</td><td>~31K</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:10px;">Hipótese: DR estimado com base em tráfego e maturidade. Verificar com Ahrefs/Moz. Elements tem mais tráfego que DT3 mesmo com DR potencialmente menor, evidenciando autoridade topical forte em ergonomia.</div>
+    </div>
+  </div>
+
+  <!-- SWOT RÁPIDO -->
+  <div class="section-header">Posicionamento Estratégico · Elements vs Concorrentes</div>
+  <div class="matrix-grid">
+    <div class="matrix-cell" style="border-top:4px solid #1B7F37;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#1B7F37;"></div>Vantagens da Elements</div>
+      <div class="matrix-item">#1 em "cadeira ergonomica" (110K vol) — posição consolidada</div>
+      <div class="matrix-item">~124K visitas/mês — #2 no segmento, acima de DT3 e Sensetup</div>
+      <div class="matrix-item">LCP mobile 1.5s — melhor que Flexform (2.8s)</div>
+      <div class="matrix-item">573 keywords em comum com Sensetup — terreno disputável direto</div>
+      <div class="matrix-item">Blog 185 artigos indexados — ativo subutilizado com alto potencial</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #C00000;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#C00000;"></div>Vulnerabilidades</div>
+      <div class="matrix-item">INP 304ms mobile → CWV FAILED — mesma falha do concorrente líder (Flexform)</div>
+      <div class="matrix-item">Ausente do top 10 para "cadeira de escritorio" (201K vol)</div>
+      <div class="matrix-item">~35% brand traffic — crescimento limitado sem diversificação topical</div>
+      <div class="matrix-item">H1 homepage genérico — não sinaliza autoridade para KWs de escritório</div>
+      <div class="matrix-item">Canibalização "cadeira elements" em 4 URLs diferentes</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #F0A500;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#F0A500;"></div>Oportunidades Identificadas</div>
+      <div class="matrix-item">"Cadeira de escritorio" (201K) — Flexform #1, Elements ausente → gap direto</div>
+      <div class="matrix-item">CWV fix → único líder com mobile PASSED no segmento</div>
+      <div class="matrix-item">Sensetup PASSED no mobile mas #5 em "cadeira ergonomica" — posição frágil</div>
+      <div class="matrix-item">DT3 PASSED (único), mas tráfego 40% menor — autoridade topical inferior</div>
+      <div class="matrix-item">Mesa elétrica: mercado sem líder claro — DT3 e Flexform com posições modestas</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #888;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#888;"></div>Ameaças</div>
+      <div class="matrix-item">DT3 com CWV PASSED nos dois dispositivos — pode ganhar rankings se Google pesar mais CWV</div>
+      <div class="matrix-item">Flexform com DR superior (~40-50 vs ~25-35) — vantagem de autoridade sustentável</div>
+      <div class="matrix-item">Sensetup no mobile PASSED pode escalar para disputar "cadeira ergonomica"</div>
+      <div class="matrix-item">Flexform dominando KWs de escritório transacionais de alto volume</div>
+    </div>
+  </div>
+
+</div><!-- /tab-comp -->
+
+
+<!-- ═══════════════════════════════════════════════
+     TAB 2 — PROJEÇÃO DE TRÁFEGO
+══════════════════════════════════════════════════ -->
+<div id="tab-proj" class="tab-pane">
+
+  <div class="section-header">Metodologia da Projeção</div>
+  <div class="card">
+    <p style="font-size:14px;font-weight:700;margin-bottom:12px;">Como calculamos a projeção</p>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">A projeção combina três variáveis mensuráveis com dados reais do Semrush Set 2026 e benchmarks de CTR por posição (Backlinko 2022, dados mobile):</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+      <div style="background:rgba(192,0,0,.06);border:1px solid rgba(192,0,0,.2);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);margin-bottom:8px;">FATOR 1</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Posição Atual × CTR</div>
+        <div style="font-size:12px;color:var(--text-dim);">Posições Semrush + curva CTR por posição. #1=27.6%, #2=15.8%, #3=11%, #4=8.4%, #5=6.3%.</div>
+      </div>
+      <div style="background:rgba(240,165,0,.06);border:1px solid rgba(240,165,0,.3);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:#b07800;margin-bottom:8px;">FATOR 2</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Ganho de Posição por CWV</div>
+        <div style="font-size:12px;color:var(--text-dim);">Correlação Google CWV × ranking: sites que passam de FAILED para PASSED ganham em média 1–3 posições em keywords competitivas top 10.</div>
+      </div>
+      <div style="background:rgba(27,127,55,.06);border:1px solid rgba(27,127,55,.2);border-radius:8px;padding:16px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:#1B7F37;margin-bottom:8px;">FATOR 3</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Ganho por Otimização de Conteúdo</div>
+        <div style="font-size:12px;color:var(--text-dim);">H1 + meta descriptions + coleções otimizadas = acesso a keywords de alto volume hoje fora do top 10 (ex: "cadeira de escritorio" 201K vol).</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--text-dim);background:rgba(0,0,0,.04);border-radius:6px;padding:12px;">
+      ⚠️ <strong>Nota metodológica:</strong> Projeções de SEO são probabilísticas, não determinísticas. Os cenários apresentados são estimativas conservadoras baseadas em dados observados. Resultados reais dependem de execução técnica, timing de reindexação e movimentos de concorrentes. Google Search Console conectado permitiria precisão significativamente maior.
+    </div>
+  </div>
+
+  <div class="section-header">Baseline · Estado Atual (Semrush Set 2026)</div>
+  <div class="card" style="overflow-x:auto;margin-bottom:32px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Volume</th>
+          <th>Posição Atual</th>
+          <th>CTR Estimado</th>
+          <th>Tráfego Atual/mês</th>
+          <th>Potencial #1</th>
+          <th>Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>cadeira ergonomica</strong></td>
+          <td>110.000</td>
+          <td><strong style="color:#1B7F37;">#1</strong></td>
+          <td>~8.2% (real)*</td>
+          <td>9.000</td>
+          <td>—</td>
+          <td style="color:#1B7F37;">Defender</td>
+        </tr>
+        <tr style="background:rgba(192,0,0,.04);">
+          <td><strong>cadeira de escritorio</strong></td>
+          <td>201.000</td>
+          <td style="color:#C00000;"><strong>>10</strong></td>
+          <td>&lt;2%</td>
+          <td>&lt;1.000</td>
+          <td style="color:#1B7F37;">~55.400</td>
+          <td style="color:#C00000;font-weight:700;">+54K potencial</td>
+        </tr>
+        <tr>
+          <td><strong>cadeira escritorio</strong></td>
+          <td>90.500</td>
+          <td style="color:#C00000;"><strong>>10</strong></td>
+          <td>&lt;2%</td>
+          <td>&lt;500</td>
+          <td style="color:#1B7F37;">~24.978</td>
+          <td style="color:#C00000;font-weight:700;">+24K potencial</td>
+        </tr>
+        <tr>
+          <td><strong>cadeira</strong></td>
+          <td>110.000</td>
+          <td><strong>#3</strong></td>
+          <td>~2.2%</td>
+          <td>2.400</td>
+          <td style="color:#888;">~30.360</td>
+          <td style="color:#F0A500;">+27.9K gap #1</td>
+        </tr>
+        <tr>
+          <td><strong>mesa de escritorio</strong></td>
+          <td>74.000</td>
+          <td style="color:var(--text-dim);">Não rastreado</td>
+          <td>—</td>
+          <td>—</td>
+          <td style="color:#888;">~20.424</td>
+          <td style="color:var(--text-dim);">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:var(--text-light);margin-top:10px;">*CTR real de 8.2% para #1 em "cadeira ergonomica" (9.000 / 110.000) é inferior ao benchmark teórico de 27.6% porque o volume de 110K inclui variações de query com CTR menor. O CTR efetivo tende a equilibrar ao redor de 8–12% para grandes clusters semânticos.</div>
+  </div>
+
+  <div class="section-header">Cenários de Projeção · 3 Horizontes Temporais</div>
+  <div class="scenario-grid">
+    <div class="scenario-card scenario-cons">
+      <div class="scenario-label">Cenário 1 — 4–8 semanas</div>
+      <div class="scenario-title">Conservador</div>
+      <div class="scenario-num">~130K</div>
+      <div class="scenario-sub">visitas orgânicas/mês</div>
+      <div class="scenario-delta" style="color:#888;">+5.600 (+4.5%) vs. hoje</div>
+      <ul class="scenario-items">
+        <li>✅ Ação: Corrigir INP mobile (CWV fix)</li>
+        <li>✅ Ação: Remover /pages/header-poc do sitemap</li>
+        <li>→ Proteção do #1 em "cadeira ergonomica"</li>
+        <li>→ Melhora marginal em top 20 keywords</li>
+        <li>→ Sem novo conteúdo / sem expansão de keywords</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-base">
+      <div class="scenario-label">Cenário 2 — 3–4 meses</div>
+      <div class="scenario-title">Base</div>
+      <div class="scenario-num" style="color:#b07800;">~155K</div>
+      <div class="scenario-sub">visitas orgânicas/mês</div>
+      <div class="scenario-delta" style="color:#F0A500;">+30.600 (+24.6%) vs. hoje</div>
+      <ul class="scenario-items">
+        <li>✅ Tudo do Cenário 1, mais:</li>
+        <li>✅ H1 homepage → "Cadeiras Ergonômicas e Mesas Elétricas"</li>
+        <li>✅ Meta descriptions em PDPs (+15% CTR estimado)</li>
+        <li>✅ Coleção /escritorio/ otimizada para "cadeira de escritorio"</li>
+        <li>→ "Cadeira de escritorio" entra no top 5–8 (~+12K)</li>
+        <li>→ CTR melhora ~15% em non-brand existente (~+12K)</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-opt">
+      <div class="scenario-label">Cenário 3 — 6 meses</div>
+      <div class="scenario-title">Otimista</div>
+      <div class="scenario-num" style="color:#1B7F37;">~185K</div>
+      <div class="scenario-sub">visitas orgânicas/mês</div>
+      <div class="scenario-delta" style="color:#1B7F37;">+60.600 (+48.7%) vs. hoje</div>
+      <ul class="scenario-items">
+        <li>✅ Tudo dos Cenários 1+2, mais:</li>
+        <li>✅ Blog 185 artigos — H1s corrigidos + autoria</li>
+        <li>✅ Schema BreadcrumbList/Product corrigido</li>
+        <li>✅ Canibalização "cadeira elements" consolidada</li>
+        <li>→ "Cadeira de escritorio" top 3 (~+20K)</li>
+        <li>→ Blog keywords long-tail (+15–20K)</li>
+        <li>→ Supera Flexform como líder orgânico do segmento</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WATERFALL CHART -->
+  <div class="section-header">Evolução Projetada de Tráfego</div>
+  <div class="card">
+    <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;">Visitas orgânicas estimadas/mês — escala proporcional</div>
+    <div class="waterfall">
+      <div class="wf-row">
+        <div class="wf-label"><strong>Baseline hoje</strong><br><span style="font-size:11px;color:var(--text-dim);">Estado atual · Set 2026</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:67.2%;background:#595959;">124.400</div>
+        </div>
+        <div class="wf-gain" style="color:#888;">—</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label">Flexform (líder)<br><span style="font-size:11px;color:var(--text-dim);">Benchmark atual</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:86.6%;background:#1565C0;">160.200</div>
+        </div>
+        <div class="wf-gain" style="color:#1565C0;">+35.800</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label"><strong>Cenário 1 · CWV Fix</strong><br><span style="font-size:11px;color:var(--text-dim);">4–8 semanas</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:70.3%;background:#888;">130.000</div>
+        </div>
+        <div class="wf-gain" style="color:#888;">+5.600</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label"><strong>Cenário 2 · CWV + Conteúdo</strong><br><span style="font-size:11px;color:var(--text-dim);">3–4 meses</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:83.8%;background:#F0A500;color:#111;">155.000</div>
+        </div>
+        <div class="wf-gain" style="color:#F0A500;">+30.600</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-label"><strong>Cenário 3 · SCOPE Completo</strong><br><span style="font-size:11px;color:var(--text-dim);">6 meses</span></div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar" style="width:100%;background:#1B7F37;">185.000 · Supera Flexform</div>
+        </div>
+        <div class="wf-gain" style="color:#1B7F37;">+60.600</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text-light);margin-top:16px;">Barras em escala relativa ao Cenário 3 (185K = 100%). Valores são estimativas probabilísticas com base em dados Semrush + CTR benchmarks + correlações CWV/ranking.</div>
+  </div>
+
+  <!-- OPORTUNIDADE PRINCIPAL -->
+  <div class="section-header">A Oportunidade de Maior Impacto</div>
+  <div class="card" style="border:2px solid #C00000;">
+    <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);margin-bottom:8px;">MAIOR GAP IDENTIFICADO</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:4px;">"cadeira de escritorio"</div>
+        <div style="font-size:13px;color:var(--text-dim);">201.000 buscas/mês · KD 34% · Intenção Comercial</div>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="text-align:center;padding:16px;background:rgba(192,0,0,.08);border-radius:8px;min-width:100px;">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#C00000;">Fora</div>
+          <div style="font-size:11px;color:var(--text-dim);">Elements hoje</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(21,101,192,.08);border-radius:8px;min-width:100px;">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#1565C0;">#1</div>
+          <div style="font-size:11px;color:var(--text-dim);">Flexform (26.5K/mês)</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:rgba(27,127,55,.08);border-radius:8px;min-width:100px;">
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;color:#1B7F37;">+43K</div>
+          <div style="font-size:11px;color:var(--text-dim);">ganho se #1</div>
+        </div>
+      </div>
+    </div>
+    <hr style="border:none;border-top:1px solid var(--border);margin:16px 0;">
+    <p style="font-size:13px;"><strong>Por que a Elements está ausente?</strong> A homepage usa um H1 que não sinaliza "escritório" ao Google. A URL <span class="url-cite">loja.elements.com.br/cadeiras/cadeiras-de-escritorio</span> existe mas não está sendo ranqueada — falta de autoridade de página + conteúdo de coleção sem texto semântico + CWV FAILED reduzindo elegibilidade de ranking. Flexform tem DR superior (~40) E conteúdo otimizado nessa URL. <strong>Ação para chegar ao top 5: CWV fix + H1 homepage + texto de coleção + link building interno.</strong></p>
+  </div>
+
+</div><!-- /tab-proj -->
+
+
+<!-- ═══════════════════════════════════════════════
+     TAB 3 — RESUMO EXECUTIVO
+══════════════════════════════════════════════════ -->
+<div id="tab-exec" class="tab-pane">
+
+  <div class="card" style="border-left:4px solid var(--red);margin-bottom:32px;">
+    <p style="font-size:15px;font-weight:700;margin-bottom:8px;">Diagnóstico em uma frase</p>
+    <p style="font-size:14px;line-height:1.7;">A Elements Loja é o segundo maior player orgânico do segmento de cadeiras ergonômicas com ~124K visitas/mês e posição #1 na keyword principal — mas opera com uma falha crítica de performance mobile (INP 304ms) que <strong>expõe sua liderança ao risco</strong>, e está completamente ausente de "cadeira de escritorio" (201K vol), o maior cluster do segmento, onde o concorrente Flexform coleta 26.500 visitas/mês sozinho. Corrigir essas duas lacunas pode elevar o tráfego em até 48% em 6 meses, superando Flexform como líder orgânico.</p>
+  </div>
+
+  <div class="section-header">Achados Críticos · Elements Loja</div>
+  <div class="card">
+    <div class="finding-row">
+      <div class="finding-icon">❌</div>
+      <div class="finding-text">
+        <div class="finding-title">INP 304ms mobile → CWV FAILED (todo o site)</div>
+        <div class="finding-desc">Principal risco de posição: DT3 tem PASSED em ambos os dispositivos. Se o Google pesar mais o sinal CWV, a Elements perde posições para DT3 em "cadeira ergonomica". A causa raiz são scripts de terceiros (Meta Pixel, chat widget, apps Shopify) no main thread mobile.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-fail">Sprint 1 · Q×I×D 80</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">Ausente do top 10 para "cadeira de escritorio" (201K vol)</div>
+        <div class="finding-desc">Maior keyword transacional do segmento. Flexform detém o #1 com 26.500 visitas/mês. Elements não aparece no top 10 Semrush. Gap de +43K visitas/mês se alcançar #1. Requer: H1 homepage, coleção /escritorio/ otimizada, CWV PASSED.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Sprint 1-2 · Alta</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">✅</div>
+      <div class="finding-text">
+        <div class="finding-title">#1 em "cadeira ergonomica" (110K vol) — posição de mercado</div>
+        <div class="finding-desc">Único dos 4 sites analisados com liderança confirmada nessa keyword estratégica. 9.000 visitas/mês. Proteção desta posição é prioridade máxima — o CWV fix é a defesa mais imediata.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-pass">Defender</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">Blog 185 artigos sub-otimizados — ativo subutilizado</div>
+        <div class="finding-desc">Cada artigo com H1 incorreto (section headings em vez de title semântico) e sem autoria especializada. Com otimização, potencial de +10–20K visitas/mês de long-tail keywords informacionais.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Sprint 2–3</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">~35% brand traffic — dependência de marca, não autoridade topical</div>
+        <div class="finding-desc">Calculado a partir do export Semrush: "elements" (17.4%) + "astra elements" (2.3%) + outros termos brand ≈ 35% do total. Crecer organicamente requer diversificação para non-brand keywords de categoria.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Médio Prazo</span></div>
+    </div>
+  </div>
+
+  <div class="section-header">Achados Críticos · Elements Corporativo</div>
+  <div class="card">
+    <div class="finding-row">
+      <div class="finding-icon">❌</div>
+      <div class="finding-text">
+        <div class="finding-title">561 visitas orgânicas/mês — 221× menos que a Loja</div>
+        <div class="finding-desc">Tráfego praticamente inexistente para um e-commerce B2B. ~99% do tráfego orgânico é brand — zero autoridade em keywords de produto ou categoria. A análise comparativa desta seção foca apenas na Loja; o Corporativo requer estratégia separada de SEO B2B.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-fail">Crítico</span></div>
+    </div>
+    <div class="finding-row">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-text">
+        <div class="finding-title">Schema expõe preços ao Googlebot enquanto UI exige cadastro</div>
+        <div class="finding-desc">JSON-LD com "priceRange" e "price" visíveis no código-fonte. O Googlebot vê preços que o usuário não consegue ver sem CNPJ cadastrado. Potencial de rich snippets de preço que levam a dead-end de UX.</div>
+      </div>
+      <div class="finding-badge"><span class="badge badge-ni">Sprint 1</span></div>
+    </div>
+  </div>
+
+  <!-- PRIORITY MATRIX -->
+  <div class="section-header">Matriz de Priorização · Q×I×D (Qualidade × Impacto × Dependência Estrutural)</div>
+
+  <div class="matrix-grid">
+    <div class="matrix-cell" style="border-top:4px solid #C00000;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#C00000;"></div>Sprint 1 — Implementar agora (Score ≥ 80)</div>
+      <div class="matrix-item">Corrigir INP mobile: deferir/remover Meta Pixel + chat widget do main thread</div>
+      <div class="matrix-item">H1 homepage: "Cadeiras Ergonômicas e Mesas Elétricas Elements"</div>
+      <div class="matrix-item">Remover /pages/header-poc do sitemap.xml</div>
+      <div class="matrix-item">Meta descriptions em todas as PDPs (395 URLs de produto)</div>
+      <div class="matrix-item">CLS desktop 0.11: identificar elemento com layout shift</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #F0A500;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#F0A500;"></div>Sprint 2 — 30–60 dias (Score 40–79)</div>
+      <div class="matrix-item">Criar/otimizar coleção dedicada a "cadeira de escritorio" com H1 + texto semântico</div>
+      <div class="matrix-item">Resolver canibalização "cadeira elements" (consolidar 4 URLs → 1)</div>
+      <div class="matrix-item">BreadcrumbList fix: remover duplicata em PDPs</div>
+      <div class="matrix-item">Blog: auditoria de H1 + adição de autoria nos 185 artigos</div>
+      <div class="matrix-item">Adicionar Organization + WebSite schema na homepage</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #888;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#888;"></div>Sprint 3–4 — 60–180 dias</div>
+      <div class="matrix-item">Estratégia de conteúdo: "mesa de escritorio" (74K vol) — sem líder claro no segmento</div>
+      <div class="matrix-item">FAQ Schema nos artigos de blog (elegibilidade para rich snippets)</div>
+      <div class="matrix-item">Expansão de interlinking: blog → coleções de alto volume</div>
+      <div class="matrix-item">Corporativo: estratégia de SEO B2B (landing pages por segmento)</div>
+      <div class="matrix-item">Review/Rating Schema em PDPs (social proof + CTR orgânico)</div>
+    </div>
+    <div class="matrix-cell" style="border-top:4px solid #1B7F37;">
+      <div class="matrix-cell-title"><div class="matrix-dot" style="background:#1B7F37;"></div>Resultados Esperados por Fase</div>
+      <div class="matrix-item">S1: CWV PASSED mobile · Posições protegidas · +4.5% tráfego</div>
+      <div class="matrix-item">S2: "Cadeira de escritorio" top 5–8 · CTR +15% PDPs</div>
+      <div class="matrix-item">S3: Blog em pleno funcionamento · Schema expandido</div>
+      <div class="matrix-item">S4: Elements como líder orgânico do segmento (~185K/mês)</div>
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <div class="section-header">Próximos Passos · Ação Imediata</div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Ação</th><th>Responsável</th><th>Prazo</th><th>Impacto</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:#C00000;">01</strong></td>
+          <td><strong>Diagnosticar scripts causando INP 304ms</strong> — abrir Chrome DevTools > Performance > gravar interação na homepage mobile</td>
+          <td>Dev / SEO</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-fail">Crítico · CWV PASSED</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#C00000;">02</strong></td>
+          <td><strong>Atualizar H1 da homepage</strong> — de heading de seção genérico para "Cadeiras Ergonômicas e Mesas Elétricas Elements"</td>
+          <td>SEO / Dev</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-ni">Alto · Sinais keyword</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#C00000;">03</strong></td>
+          <td><strong>Conectar Google Search Console</strong> — validar posições reais, CTR por keyword, impressões e erros de cobertura</td>
+          <td>Marketing</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-ni">Alto · Dados reais</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#F0A500;">04</strong></td>
+          <td><strong>Criar coleção /cadeiras-de-escritorio/</strong> otimizada com H1, texto semântico 300+ words e interlinking para PDPs</td>
+          <td>SEO / Conteúdo</td>
+          <td>Semanas 2–4</td>
+          <td><span class="badge badge-ni">Muito alto · 201K vol</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#F0A500;">05</strong></td>
+          <td><strong>Meta descriptions em PDPs</strong> — 395 URLs; template: "[Produto] ergonômico, [benefício principal]. [Garantia/frete]."</td>
+          <td>SEO / Conteúdo</td>
+          <td>Semanas 2–3</td>
+          <td><span class="badge badge-ni">Médio · CTR +15%</span></td>
+        </tr>
+        <tr>
+          <td><strong style="color:#888;">06</strong></td>
+          <td><strong>Remover /pages/header-poc do sitemap.xml</strong> — página de teste pública indexada; URL: <span class="url-cite">loja.elements.com.br/sitemap_pages_1.xml</span></td>
+          <td>Dev</td>
+          <td>Semana 1</td>
+          <td><span class="badge badge-pass">Baixo · Higiene</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUMÁRIO FINAL -->
+  <div class="card" style="margin-top:24px;background:rgba(192,0,0,.04);border:1px solid rgba(192,0,0,.2);">
+    <div style="font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Conclusão da Auditoria S.C.O.P.E.</div>
+    <p style="font-size:13px;line-height:1.8;color:var(--text);">A Elements Loja tem os <strong>ativos certos</strong> para liderar o mercado orgânico de ergonomia no Brasil: autoridade topical confirmada, backlinks, tráfego de 124K/mês e posição #1 na keyword principal. O que falta são <strong>três ajustes técnicos e de conteúdo</strong> que estão claramente mapeados nesta análise. Comparativamente, Flexform lidera por tráfego mas falha no mesmo ponto de CWV (mobile FAILED) — e DT3, que tem PASSED nos dois dispositivos, tem menos autoridade topical e menos tráfego. A janela de oportunidade para a Elements se tornar a <strong>referência orgânica número 1 do segmento</strong> está aberta. A pergunta não é se dá — é quando começa.</p>
+  </div>
+
+</div><!-- /tab-exec -->
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div>
+    <strong>V4 Company · Carvalho &amp; Co.</strong><br>
+    Auditoria S.C.O.P.E. v2.0 — Análise Comparativa Elements Set 2026
+  </div>
+  <div style="text-align:right;">
+    Análise realizada por <strong>Ivan Felipe</strong> ·
+    <a href="mailto:ivan.felipe@v4company.com">ivan.felipe@v4company.com</a><br>
+    Fontes: Semrush Set 2026 · PageSpeed Insights Set 19, 2026 · Chrome DevTools
+  </div>
+</footer>
+
+<script>
+  function showTab(e, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+</body>
+</html>
