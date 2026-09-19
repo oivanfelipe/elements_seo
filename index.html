@@ -10,16 +10,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0D0D0D;
-      --bg-card: #161616;
-      --bg-card-hover: #1E1E1E;
-      --border: #2A2A2A;
+      --bg: #F5F5F5;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #F0F0F0;
+      --border: #E0E0E0;
       --border-hover: #C00000;
       --red: #C00000;
       --red-light: #E53935;
-      --text: #F0F0F0;
-      --text-muted: #888;
-      --text-dim: #555;
+      --text: #1A1A1A;
+      --text-muted: #555;
+      --text-dim: #3D3D3D;
       --white: #fff;
       --accent-loja: #C00000;
       --accent-corp: #1565C0;
@@ -40,7 +40,7 @@
       position: sticky;
       top: env(safe-area-inset-top, 0px);
       z-index: 100;
-      background: rgba(13,13,13,0.92);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -355,15 +355,15 @@
       margin-bottom: 16px;
     }
     .tag-b2c { background: rgba(192,0,0,.15); color: var(--red); }
-    .tag-b2b { background: rgba(21,101,192,.15); color: #64B5F6; }
-    .tag-comp { background: rgba(245,124,0,.15); color: #FFB74D; }
+    .tag-b2b { background: rgba(21,101,192,.12); color: #1565C0; }
+    .tag-comp { background: rgba(230,81,0,.12); color: #E65100; }
 
     .report-card h2 {
       font-family: 'Oswald', Arial, sans-serif;
       font-size: 24px;
       font-weight: 700;
       text-transform: uppercase;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 6px;
     }
     .report-url {
@@ -402,8 +402,8 @@
       letter-spacing: .5px;
     }
     .loja .stat-value { color: var(--red); }
-    .corp .stat-value { color: #64B5F6; }
-    .comp .stat-value { color: #FFB74D; }
+    .corp .stat-value { color: #1565C0; }
+    .comp .stat-value { color: #E65100; }
 
     .report-score-badge {
       position: absolute;
@@ -421,8 +421,8 @@
       border: 2px solid var(--border);
     }
     .score-badge-loja { background: rgba(192,0,0,.15); color: var(--red); border-color: rgba(192,0,0,.3); }
-    .score-badge-corp { background: rgba(21,101,192,.15); color: #64B5F6; border-color: rgba(21,101,192,.3); }
-    .score-badge-comp { background: rgba(245,124,0,.15); color: #FFB74D; border-color: rgba(245,124,0,.3); }
+    .score-badge-corp { background: rgba(21,101,192,.12); color: #1565C0; border-color: rgba(21,101,192,.3); }
+    .score-badge-comp { background: rgba(230,81,0,.12); color: #E65100; border-color: rgba(230,81,0,.3); }
 
     /* ── FOOTER ── */
     .footer {
