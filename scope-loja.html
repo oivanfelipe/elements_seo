@@ -35,18 +35,18 @@
   body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
 
   /* HEADER */
-  .report-header { background: #111; color: #fff; padding: 48px 64px; position: relative; border-bottom: 4px solid var(--red); }
+  .report-header { background: var(--bg-card); color: var(--text); padding: 48px 64px; position: relative; border-bottom: 4px solid var(--red); }
   .report-header .agency { font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; font-weight: 700; }
-  .report-header h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,36px); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: #fff; }
-  .report-header .subtitle { font-size: 16px; color: #D9D9D9; margin-bottom: 24px; }
-  .report-header .meta { display: flex; gap: 24px; font-size: 13px; color: #888; flex-wrap: wrap; }
+  .report-header h1 { font-family: var(--font-display); font-size: clamp(24px,4vw,36px); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: var(--text); }
+  .report-header .subtitle { font-size: 16px; color: var(--text-dim); margin-bottom: 24px; }
+  .report-header .meta { display: flex; gap: 24px; font-size: 13px; color: var(--text-dim); flex-wrap: wrap; }
   .confidential-tag { position: absolute; top: 48px; right: 64px; border: 1px solid var(--red); color: var(--red); padding: 6px 14px; border-radius: 4px; font-size: 11px; letter-spacing: 1px; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; }
 
   /* TABS */
-  .tab-bar { background: #1A1A1A; display: flex; gap: 0; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 100; padding: 0 48px; overflow-x: auto; }
-  .tab-btn { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; background: none; border: none; border-bottom: 3px solid transparent; padding: 16px 24px; cursor: pointer; white-space: nowrap; transition: color .2s, border-color .2s; }
-  .tab-btn:hover { color: #ddd; }
-  .tab-btn.active { color: #fff; border-bottom-color: var(--red); }
+  .tab-bar { background: var(--bg-card); display: flex; gap: 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 48px; overflow-x: auto; }
+  .tab-btn { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); background: none; border: none; border-bottom: 3px solid transparent; padding: 16px 24px; cursor: pointer; white-space: nowrap; transition: color .2s, border-color .2s; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
 
