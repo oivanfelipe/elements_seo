@@ -73,7 +73,7 @@
   .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; margin-bottom: 24px; }
   .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; text-align: center; }
   .kpi-card .kpi-value { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--red); }
-  .kpi-card .kpi-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; font-weight: 700; }
+  .kpi-card .kpi-label { font-family: var(--font-display); font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; font-weight: 700; }
   .kpi-card .kpi-source { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
   /* SCORES */
@@ -93,7 +93,7 @@
   .audit-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
   .audit-item-header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--bg); }
   .audit-item-header .item-id { font-size: 11px; color: var(--text-dim); font-weight: 700; min-width: 32px; font-family: var(--font-display); }
-  .audit-item-header .item-title { font-size: 14px; font-weight: 700; flex: 1; }
+  .audit-item-header .item-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; flex: 1; }
   .audit-item-body { padding: 20px; }
 
   /* EVIDENCE / BOXES */
@@ -101,9 +101,9 @@
   .evidence-box { background: var(--bg); border-left: 3px solid var(--text-dim); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; font-family: 'Courier New', monospace; }
   .evidence-box .evidence-label { font-family: var(--font); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--text-dim); font-weight: 700; margin-bottom: 6px; }
   .benchmark-box { background: #FFF8E1; border-left: 3px solid var(--orange); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
-  .benchmark-box .benchmark-label { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+  .benchmark-box .benchmark-label { font-family: var(--font-display); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
   .recommendation-box { background: #FFF5F5; border-left: 3px solid var(--red); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
-  .recommendation-box .rec-label { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--red); font-weight: 700; margin-bottom: 4px; }
+  .recommendation-box .rec-label { font-family: var(--font-display); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--red); font-weight: 700; margin-bottom: 4px; }
   .impact-box { background: #E6F4EA; border-left: 3px solid var(--green); border-radius: 0 6px 6px 0; padding: 10px 16px; margin: 8px 0; font-size: 13px; }
   .conclusion-block { border-top: 2px solid var(--red); padding-top: 12px; margin-top: 20px; }
   .conclusion-block .conclusion-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--red); margin-bottom: 6px; }
@@ -146,7 +146,7 @@
   .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
   .kpi-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; text-align: center; }
   .kpi-val { font-family: var(--font-display); font-size: 32px; font-weight: 700; line-height: 1.1; }
-  .kpi-rank { font-size: 11px; font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; }
+  .kpi-rank { font-family: var(--font-display); font-size: 11px; font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; }
 
   .badge { display: inline-block; padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 700; font-family: var(--font-display); letter-spacing: 0.5px; white-space: nowrap; }
   .badge-pass { background: rgba(27,127,55,.15); color: #1B7F37; }
@@ -172,7 +172,7 @@
   .scenario-base::before { background: var(--orange); }
   .scenario-opt::before { background: var(--green); }
   .scenario-label { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
-  .scenario-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+  .scenario-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 16px; }
   .scenario-num { font-family: var(--font-display); font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
   .scenario-sub { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
   .scenario-delta { font-size: 14px; font-weight: 700; }
@@ -190,7 +190,7 @@
   .finding-row:last-child { border-bottom: none; }
   .finding-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
   .finding-text { flex: 1; }
-  .finding-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .finding-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 2px; }
   .finding-desc { font-size: 13px; color: var(--text-dim); }
   .finding-badge { flex-shrink: 0; align-self: center; }
 
